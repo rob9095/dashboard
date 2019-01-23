@@ -11,6 +11,7 @@ import PoProductTable from '../components/PoProductTable';
 import ProductTableLegacy from '../components/ProductTableLegacy';
 import ProgressWidget from '../components/ProgressWidget';
 import BasicTable from '../components/BasicTable';
+import IconStat from '../components/IconStat';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -177,8 +178,8 @@ class Dashboard extends Component {
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                   </Breadcrumb>
                   <Row>
-                    <Col lg={24} xl={8}>
-                      <div className="stkd-content">
+                    <Col sm={24} md={8}>
+                      <div className="stkd-widget stkd-content">
                         <ProgressWidget
                           title={'Projects'}
                           footerText={'Lorem ipsum dolor sit amet consectetur adipiscing elit magna aliqua.'}
@@ -193,8 +194,8 @@ class Dashboard extends Component {
                         />
                       </div>
                     </Col>
-                    <Col lg={24} xl={16}>
-                      <div className="stkd-content">
+                    <Col sm={24} md={16}>
+                      <div className="stkd-widget stkd-content">
                         <BasicTable
                           pagination={false}
                         />
@@ -202,31 +203,54 @@ class Dashboard extends Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col lg={24} xl={8}>
-                      <div className="stkd-content">
-                        <ProgressWidget
-                          title={'Projects'}
-                          footerText={'Lorem ipsum dolor sit amet consectetur adipiscing elit magna aliqua.'}
-                          data={
-                            [
-                              {id: 1, text: 'UI Design',progress: 75},
-                              {id: 2, text: 'API Development',progress: 85},
-                              {id: 3, text: 'Sales Analysis',progress: 45},
-                              {id: 4, text: 'A/B Testing',progress: 65},
-                            ]
-                          }
-                        />
+                      <Col xs={24} sm={12} md={12} lg={6}>
+                      <div className="stkd-widget">
+                          <IconStat
+                            icon={'message'}
+                            iconTheme={'filled'}
+                            title={'Unread Messages'}
+                            stat={24}
+                            //hex format color
+                            color={'#716aca'}
+                          />
                       </div>
-                    </Col>
-                    <Col lg={24} xl={8}>
-                      <div className="stkd-content">
-                      </div>
-                    </Col>
-                    <Col lg={24} xl={8}>
-                      <div className="stkd-content" style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                        Bill is a cat.
-                      </div>
-                    </Col>
+                      </Col>
+                      <Col xs={24} sm={12} md={12} lg={6}>
+                        <div className="stkd-widget">
+                          <IconStat
+                            icon={'alert'}
+                            iconTheme={'filled'}
+                            title={'New Alerts'}
+                            stat={24}
+                            //hex format color
+                            color={'#f5222d'}
+                          />
+                        </div>
+                      </Col>
+                      <Col xs={24} sm={12} md={12} lg={6}>
+                        <div className="stkd-widget">
+                          <IconStat
+                            icon={'like'}
+                            iconTheme={'filled'}
+                            title={'Recent Likes'}
+                            stat={24}
+                            //hex format color
+                            color={'#52c41a'}
+                          />
+                        </div>
+                      </Col>
+                      <Col xs={24} sm={12} md={12} lg={6}>
+                        <div className="stkd-widget">
+                          <IconStat
+                            icon={'idcard'}
+                            iconTheme={'filled'}
+                            title={'New Users'}
+                            stat={24}
+                            //hex format color
+                            color={'#4183ff'}
+                          />
+                        </div>
+                      </Col>
                   </Row>
                 </div>
               )} />

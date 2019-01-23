@@ -7,6 +7,10 @@ body {
   background: #f0f2f5 !important;
 }
 
+table {
+  font-family: 'Work Sans', sans-serif !important;
+}
+
 button {
   font-family: 'Work Sans', sans-serif !important;
 }
@@ -28,6 +32,42 @@ body #root {
 /* Default Widget Styles */
 .widget-wrapper .widget-footer {
   margin: 1em 1em 0 0;
+}
+
+/* Icon Stat Widget */
+.iconStat-wrapper .stat h3 {
+  margin-bottom: -5px;
+  color: #fff;
+}
+
+.iconStat-wrapper .stat span {
+  color: #fff;
+  font-size: 16px;
+}
+
+.iconStat-wrapper .stat {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 0px 10px 15px;
+  font-size: 20px;
+  border-radius: 0px 10px 10px 0px;
+}
+.iconStat-wrapper .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  color: #fff;
+  font-size: 2rem;
+  padding: 20px;
+  border-radius: 10px 0px 0px 10px;
+}
+.iconStat-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100px;
 }
 
 /* App dashboard structure */
@@ -186,8 +226,11 @@ i.xl svg {
   flex-direction: row;
 }
 
-.stkd-content {
+.stkd-widget {
   margin: 7px;
+}
+
+.stkd-content {
   box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.08);
   background: #fff;
   padding: 24px;
