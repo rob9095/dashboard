@@ -37,11 +37,13 @@ class BasicTable extends Component {
   }
   render() {
     return(
-      <Table
-        pagination={this.props.pagination}
-        columns={this.state.columns}
-        dataSource={this.state.data}
-      />
+      <div className={this.props.contain ? 'contain': null}>
+        <Table
+          pagination={this.props.pagination}
+          columns={this.state.columns}
+          dataSource={this.state.data}
+        />
+      </div>
     )
   }
 }

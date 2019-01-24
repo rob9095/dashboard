@@ -39,7 +39,7 @@ body #root {
 
 /* Default Widget Styles */
 .widget-footer {
-  margin: -5px 0 0 0;
+  margin: 5px 0 0 0;
 }
 
 .icon {
@@ -59,11 +59,9 @@ body #root {
 /* Icon Stat Widget */
 .iconStat-wrapper .stat h3 {
   margin-bottom: -5px;
-  color: #fff;
 }
 
 .iconStat-wrapper .stat span {
-  color: #fff;
   font-size: 16px;
 }
 
@@ -72,9 +70,9 @@ body #root {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 5px 0px 10px 15px;
   font-size: 20px;
   border-radius: 0px 10px 10px 0px;
+  min-height: 103px;
 }
 .iconStat-wrapper .icon {
   display: flex;
@@ -249,7 +247,7 @@ i.xl svg {
 }
 
 .stkd-widget {
-  margin: 7px;
+  margin: 10px;
 }
 
 .stkd-content {
@@ -771,7 +769,7 @@ input:checked + .stkd-slider:before {
   display: flex;
 }
 
-.ant-table table tr td.no-wrap {
+.ant-table table tr td {
   white-space: nowrap;
 }
 

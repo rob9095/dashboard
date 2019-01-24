@@ -17,27 +17,29 @@ const ProgressWidget = (props) => {
     }
   }
   return (
-    <div className="widget-wrapper">
-      <div className="flex" style={styles.header}>
-        <h2>{props.title}</h2>
-        {props.icon && (
-          <div className="icon" style={styles.icon}>
-            <Icon type={props.icon} theme={props.iconTheme} />
-          </div>
-        )}
-      </div>
-      {props.data.map(item => (
-        <div key={item.id} style={styles.progessBar}>
-          {item.text ? item.text : item.progress + '% Complete'}
-          <Progress
-            strokeColor={item.color}
-            percent={item.progress}
-            status={item.status}
-            showInfo={item.showInfo}
-          />
+    <div className="stkd-widget stkd-content">
+      <div className="widget-wrapper">
+        <div className="flex" style={styles.header}>
+          <h2>{props.title}</h2>
+          {props.icon && (
+            <div className="icon" style={styles.icon}>
+              <Icon type={props.icon} theme={props.iconTheme} />
+            </div>
+          )}
         </div>
-      ))}
-      <p className="widget-footer">{props.footerText}</p>
+        {props.data.map(item => (
+          <div key={item.id} style={styles.progessBar}>
+            {item.text ? item.text : item.progress + '% Complete'}
+            <Progress
+              strokeColor={item.color}
+              percent={item.progress}
+              status={item.status}
+              showInfo={item.showInfo}
+            />
+          </div>
+        ))}
+        <p className="widget-footer">{props.footerText}</p>
+      </div>
     </div>
   )
 }

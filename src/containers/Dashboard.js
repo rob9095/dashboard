@@ -179,81 +179,76 @@ class Dashboard extends Component {
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                   </Breadcrumb>
                   <Row>
-                    <Col xs={24} sm={24} md={8} lg={8}>
-                      <div className="stkd-widget stkd-content">
-                        <ProgressWidget
-                          title={'Projects'}
-                          footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          icon={null}
-                          iconTheme={null}
-                          iconColor={null}
-                          data={
-                            [
-                              { id: 1, text: 'UI Design', progress: 75, color: '', showInfo: true, status: 'active'},
-                              { id: 2, text: 'API Development', progress: 85, color: '', showInfo: true, status: 'active'},
-                              { id: 3, text: 'Sales Analysis', progress: 45, color: '', showInfo: true, status: 'active'},
-                              { id: 4, text: 'A/B Testing', progress: 65, color: '', showInfo: true, status: 'active'},
-                            ]
-                          }
-                        />
-                      </div>
+                    <Col xs={24} sm={24} md={12} lg={8}>
+                      <ProgressWidget
+                        title={'Projects'}
+                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                        icon={null}
+                        iconTheme={null}
+                        iconColor={null}
+                        data={
+                          [
+                            { id: 1, text: 'UI Design', progress: 75, color: '', showInfo: true, status: 'active'},
+                            { id: 2, text: 'API Development', progress: 85, color: '', showInfo: true, status: 'active'},
+                            { id: 3, text: 'Sales Analysis', progress: 45, color: '', showInfo: true, status: 'active'},
+                            { id: 4, text: 'A/B Testing', progress: 65, color: '', showInfo: true, status: 'active'},
+                          ]
+                        }
+                      />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={16}>
                       <div className="stkd-widget stkd-content">
                         <BasicTable
                           pagination={false}
+                          contain
                         />
                       </div>
                     </Col>
                   </Row>
                   <Row>
                       <Col xs={24} sm={12} md={12} lg={6}>
-                      <div className="stkd-widget">
                           <IconStat
                             icon={'message'}
                             iconTheme={'filled'}
                             title={'Unread Messages'}
-                            stat={24}
+                            stat={19}
                             //hex format color
                             color={'#716aca'}
+                            filled={true}
                           />
-                      </div>
                       </Col>
                       <Col xs={24} sm={12} md={12} lg={6}>
-                        <div className="stkd-widget">
                           <IconStat
                             icon={'alert'}
                             iconTheme={'filled'}
                             title={'New Alerts'}
-                            stat={24}
+                            stat={16}
                             //hex format color
                             color={'#f4516c'}
+                            filled={true}
                           />
-                        </div>
                       </Col>
                       <Col xs={24} sm={12} md={12} lg={6}>
-                        <div className="stkd-widget">
                           <IconStat
                             icon={'like'}
                             iconTheme={'filled'}
                             title={'Recent Likes'}
-                            stat={24}
+                            stat={41}
                             //hex format color
                             color={'#34bfa3'}
+                            filled={true}
                           />
-                        </div>
                       </Col>
                       <Col xs={24} sm={12} md={12} lg={6}>
-                        <div className="stkd-widget">
                           <IconStat
                             icon={'idcard'}
                             iconTheme={'filled'}
                             title={'New Users'}
-                            stat={24}
+                            stat={13}
                             //hex format color
                             color={'#36a3f7'}
+                            filled={true}
                           />
-                        </div>
                       </Col>
                   </Row>
                   <Row>
@@ -263,7 +258,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#716aca'}
+                          accentColor={'#34bfa3'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -275,7 +270,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#716aca'}
+                          accentColor={'#34bfa3'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -287,7 +282,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#716aca'}
+                          accentColor={'#34bfa3'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -299,7 +294,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#716aca'}
+                          accentColor={'#34bfa3'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -307,8 +302,33 @@ class Dashboard extends Component {
                     </Col>
                   </Row>
                   <Row>
+                  <Col xs={24} sm={12} md={12} lg={6}>
+                        <IconStat
+                          icon={'idcard'}
+                          iconTheme={'filled'}
+                          title={'New Users'}
+                          stat={13}
+                          //hex format color
+                          color={'#36a3f7'}
+                        />
+                        <IconStat
+                          icon={'message'}
+                          iconTheme={'filled'}
+                          title={'Unread Messages'}
+                          stat={28}
+                          //hex format color
+                          color={'#716aca'}
+                        />
+                        <IconStat
+                          icon={'like'}
+                          iconTheme={'filled'}
+                          title={'Recent Likes'}
+                          stat={23}
+                          //hex format color
+                          color={'#34bfa3'}
+                        />                        
+                    </Col>
                     <Col xs={24} sm={12} md={12} lg={6}>
-                      <div className="stkd-widget stkd-content">
                         <ProgressWidget
                           title={'Bugs Fixed'}
                           footerText={null}
@@ -321,8 +341,6 @@ class Dashboard extends Component {
                             ]
                           }
                         />
-                      </div>
-                      <div className="stkd-widget stkd-content">
                         <ProgressWidget
                           title={'Feedback'}
                           footerText={null}
@@ -335,8 +353,6 @@ class Dashboard extends Component {
                             ]
                           }
                         />
-                      </div>
-                      <div className="stkd-widget stkd-content">
                         <ProgressWidget
                           title={'Tickets'}
                           footerText={null}
@@ -349,7 +365,6 @@ class Dashboard extends Component {
                             ]
                           }
                         />
-                      </div> 
                     </Col>
                   </Row>
                 </div>
