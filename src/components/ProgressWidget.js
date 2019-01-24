@@ -1,23 +1,45 @@
 import React from 'react';
 import { Progress } from 'antd';
+import { Icon } from "antd";
 
-const styles = {
-  progessBar: {
-    margin: '17px 0px',
+const ProgressWidget = (props) => {
+  const styles = {
+    header: {
+      justifyContent: 'space-between',
+      marginBottom: -15,
+    },
+    progessBar: {
+      margin: '17px 0px',
+    },
+    icon: {
+      color: props.iconColor,
+      fontSize: 25,
+    }
   }
-}
-
-const ProgressWidget = (props) => (
-  <div className="widget-wrapper">
-    <h2>{props.title}</h2>
-    {props.data.map(item => (
-      <div key={item.id} style={styles.progessBar}>
-      {item.text}
-      <Progress strokeColor={item.color} percent={item.progress} status="active" />
+  return (
+    <div className="widget-wrapper">
+      <div className="flex" style={styles.header}>
+        <h2>{props.title}</h2>
+        {props.icon && (
+          <div className="icon" style={styles.icon}>
+            <Icon type={props.icon} theme={props.iconTheme} />
+          </div>
+        )}
       </div>
-    ))}
-    <p className="widget-footer">{props.footerText}</p>
-  </div>
-)
+      {props.data.map(item => (
+        <div key={item.id} style={styles.progessBar}>
+          {item.text ? item.text : item.progress + '% Complete'}
+          <Progress
+            strokeColor={item.color}
+            percent={item.progress}
+            status={item.status}
+            showInfo={item.showInfo}
+          />
+        </div>
+      ))}
+      <p className="widget-footer">{props.footerText}</p>
+    </div>
+  )
+}
 
 export default ProgressWidget;

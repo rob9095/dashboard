@@ -12,6 +12,7 @@ import ProductTableLegacy from '../components/ProductTableLegacy';
 import ProgressWidget from '../components/ProgressWidget';
 import BasicTable from '../components/BasicTable';
 import IconStat from '../components/IconStat';
+import IconWidget from '../components/IconWidget';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -178,23 +179,26 @@ class Dashboard extends Component {
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                   </Breadcrumb>
                   <Row>
-                    <Col sm={24} md={8}>
+                    <Col xs={24} sm={24} md={8} lg={8}>
                       <div className="stkd-widget stkd-content">
                         <ProgressWidget
                           title={'Projects'}
-                          footerText={'Lorem ipsum dolor sit amet consectetur adipiscing elit magna aliqua.'}
+                          footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                          icon={null}
+                          iconTheme={null}
+                          iconColor={null}
                           data={
                             [
-                              {id: 1, text: 'UI Design',progress: 75,color: ''},
-                              {id: 2, text: 'API Development',progress: 85,color: ''},
-                              {id: 3, text: 'Sales Analysis',progress: 45,color: ''},
-                              {id: 4, text: 'A/B Testing',progress: 65,color: ''},
+                              { id: 1, text: 'UI Design', progress: 75, color: '', showInfo: true, status: 'active'},
+                              { id: 2, text: 'API Development', progress: 85, color: '', showInfo: true, status: 'active'},
+                              { id: 3, text: 'Sales Analysis', progress: 45, color: '', showInfo: true, status: 'active'},
+                              { id: 4, text: 'A/B Testing', progress: 65, color: '', showInfo: true, status: 'active'},
                             ]
                           }
                         />
                       </div>
                     </Col>
-                    <Col sm={24} md={16}>
+                    <Col xs={24} sm={24} md={12} lg={16}>
                       <div className="stkd-widget stkd-content">
                         <BasicTable
                           pagination={false}
@@ -223,7 +227,7 @@ class Dashboard extends Component {
                             title={'New Alerts'}
                             stat={24}
                             //hex format color
-                            color={'#f5222d'}
+                            color={'#f4516c'}
                           />
                         </div>
                       </Col>
@@ -235,7 +239,7 @@ class Dashboard extends Component {
                             title={'Recent Likes'}
                             stat={24}
                             //hex format color
-                            color={'#52c41a'}
+                            color={'#34bfa3'}
                           />
                         </div>
                       </Col>
@@ -247,10 +251,106 @@ class Dashboard extends Component {
                             title={'New Users'}
                             stat={24}
                             //hex format color
-                            color={'#4183ff'}
+                            color={'#36a3f7'}
                           />
                         </div>
                       </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={24} sm={12} md={12} lg={6}>
+                      <div className="stkd-widget stkd-content">
+                        <IconWidget
+                          title={'Sales'}
+                          stat={'$1300'}
+                          text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                          accentColor={'#716aca'}
+                          icon={null}
+                          iconTheme={null}
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12} md={12} lg={6}>
+                      <div className="stkd-widget stkd-content">
+                        <IconWidget
+                          title={'Sales'}
+                          stat={'$1300'}
+                          text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                          accentColor={'#716aca'}
+                          icon={null}
+                          iconTheme={null}
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12} md={12} lg={6}>
+                      <div className="stkd-widget stkd-content">
+                        <IconWidget
+                          title={'Sales'}
+                          stat={'$1300'}
+                          text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                          accentColor={'#716aca'}
+                          icon={null}
+                          iconTheme={null}
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12} md={12} lg={6}>
+                      <div className="stkd-widget stkd-content">
+                        <IconWidget
+                          title={'Sales'}
+                          stat={'$1300'}
+                          text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                          accentColor={'#716aca'}
+                          icon={null}
+                          iconTheme={null}
+                        />
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={24} sm={12} md={12} lg={6}>
+                      <div className="stkd-widget stkd-content">
+                        <ProgressWidget
+                          title={'Bugs Fixed'}
+                          footerText={null}
+                          icon={'trophy'}
+                          iconColor={'#36a3f7'}
+                          iconTheme={"filled"}
+                          data={
+                            [
+                              { id: 1, text: null, progress: 60, color: '', showInfo: false, status: 'active' },
+                            ]
+                          }
+                        />
+                      </div>
+                      <div className="stkd-widget stkd-content">
+                        <ProgressWidget
+                          title={'Feedback'}
+                          footerText={null}
+                          icon={'smile'}
+                          iconColor={'#f4516c'}
+                          iconTheme={"filled"}
+                          data={
+                            [
+                              { id: 1, text: '90% Positive Reviews', progress: 90, color: '#f4516c', showInfo: false, status: 'active' },
+                            ]
+                          }
+                        />
+                      </div>
+                      <div className="stkd-widget stkd-content">
+                        <ProgressWidget
+                          title={'Tickets'}
+                          footerText={null}
+                          icon={'question-circle'}
+                          iconColor={'#ffb822'}
+                          iconTheme={"filled"}
+                          data={
+                            [
+                              { id: 1, text: '60% Tickets Answered', progress: 60, color: '#ffb822', showInfo: false, status: 'active' },
+                            ]
+                          }
+                        />
+                      </div> 
+                    </Col>
                   </Row>
                 </div>
               )} />

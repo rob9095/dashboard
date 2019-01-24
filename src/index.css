@@ -29,9 +29,31 @@ body #root {
   position: relative;
 }
 
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
 /* Default Widget Styles */
-.widget-wrapper .widget-footer {
-  margin: 1em 1em 0 0;
+.widget-footer {
+  margin: -5px 0 0 0;
+}
+
+.icon {
+  color: #716aca;
+}
+
+/* Icon Widget */
+.iconWidget-wrapper .title {
+  text-transform: uppercase;
+}
+
+.iconWidget-wrapper .stat,.iconWidget-wrapper .icon {
+  font-size: 30px;
+  margin: -5px 0px 15px 0px;
 }
 
 /* Icon Stat Widget */
