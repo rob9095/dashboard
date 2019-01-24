@@ -28,9 +28,9 @@ class BasicTable extends Component {
         title: 'Action',
         key: 'action',
         render: (text, record) => (
-          <span>
+          <div className="stkd-widget stkd-content">
             <a title={record.email} href={"mailto:"+record.email}>Email</a>
-          </span>
+          </div>
         ),
       }]
     }

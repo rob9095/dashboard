@@ -13,6 +13,7 @@ import ProgressWidget from '../components/ProgressWidget';
 import BasicTable from '../components/BasicTable';
 import IconStat from '../components/IconStat';
 import IconWidget from '../components/IconWidget';
+import ActivityChartWidget from '../components/ActivityChartWidget'
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -197,12 +198,11 @@ class Dashboard extends Component {
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={16}>
-                      <div className="stkd-widget stkd-content">
-                        <BasicTable
+                        {/* <BasicTable
                           pagination={false}
                           contain
-                        />
-                      </div>
+                        /> */}
+                        <ActivityChartWidget />
                     </Col>
                   </Row>
                   <Row>
