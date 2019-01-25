@@ -133,6 +133,7 @@ body #root {
   font-size: 20px;
   border-radius: 0px 10px 10px 0px;
   min-height: 103px;
+  padding: 5px 0px 10px 15px;
 }
 .iconStat-wrapper .icon {
   display: flex;

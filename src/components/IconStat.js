@@ -40,7 +40,6 @@ const IconStat = (props) => {
     stat: {
       background: props.color,
       color: '#fff',
-      padding: '5px 0px 10px 15px',
     },
   }
   return (
