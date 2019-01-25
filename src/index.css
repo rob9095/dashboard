@@ -65,6 +65,26 @@ body #root {
   margin: 0px;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.right {
+  right: 0px;
+}
+
+.left {
+  left: 0px;
+}
+
+.top {
+  top: 0px;
+}
+
+.bottom {
+  bottom: 0px;
+}
+
 /* Default Widget Styles */
 .widget-footer {
   margin: 5px 0 0 0;
@@ -80,13 +100,9 @@ body #root {
   min-height: 375px;
 }
 
-.activityChart-widget .header h2 {
-  text-transform: uppercase;
-}
-
 .activityChart-widget .stat h1 {
   font-size: 3rem;
-  color: rgba(54, 163, 255, 0.85)
+  font-weight: bold;
 }
 
 

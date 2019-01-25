@@ -203,7 +203,8 @@ class Dashboard extends Component {
                           contain
                         /> */}
                         <ActivityChartWidget
-                          icon={'dash'}
+                          accentColor={'rgb(25, 144, 255)'}
+                          icon={'ellipsis'}
                           iconTheme={'outlined'}
                           dropDownIcon={'calendar'}
                           dropDownIconTheme={'outlined'}
