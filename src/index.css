@@ -37,6 +37,34 @@ body #root {
   flex-direction: column;
 }
 
+.align-items-center {
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.full-pad {
+  padding: 24px;
+}
+
+.half-pad {
+  padding: 12px;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
 /* Default Widget Styles */
 .widget-footer {
   margin: 5px 0 0 0;
@@ -45,6 +73,22 @@ body #root {
 .icon {
   color: #716aca;
 }
+
+/* Activity Chart Widget */
+.activityChart-widget {
+  background: #fff;
+  min-height: 375px;
+}
+
+.activityChart-widget .header h2 {
+  text-transform: uppercase;
+}
+
+.activityChart-widget .stat h1 {
+  font-size: 3rem;
+  color: rgba(54, 163, 255, 0.85)
+}
+
 
 /* Icon Widget */
 .iconWidget-wrapper .title {

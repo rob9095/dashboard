@@ -202,7 +202,19 @@ class Dashboard extends Component {
                           pagination={false}
                           contain
                         /> */}
-                        <ActivityChartWidget />
+                        <ActivityChartWidget
+                          icon={'dash'}
+                          iconTheme={'outlined'}
+                          dropDownIcon={'calendar'}
+                          dropDownIconTheme={'outlined'}
+                          dropDownOptions={
+                            [
+                              { id: 1, text: "Last 7 Days", icon: null, iconTheme: null },
+                              { id: 2, text: "Last 2 Weeks", icon: null, iconTheme: null },
+                              { id: 3, text: "Last Month", icon: null, iconTheme: null },
+                            ]
+                          }
+                        />
                     </Col>
                   </Row>
                   <Row>
