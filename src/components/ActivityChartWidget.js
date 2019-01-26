@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Menu, Dropdown, Button, Icon, message } from "antd";
+import { Icon } from "antd";
+import IconDropDown from './IconDropDown';
 
 
 
@@ -15,21 +16,25 @@ class ActivityChartWidget extends Component {
       const {data,labels} = this.state
       const ctx = canvas.getContext("2d")
 		  const gradient = ctx.createLinearGradient(154.000, 10.000, 146.000, 280.000);
-      gradient.addColorStop(0.0, "rgba(25, 144, 255, 0.5)");
+      gradient.addColorStop(0.0, "rgba(68, 124, 230, .7)");
       gradient.addColorStop(0.8, "rgba(231, 244, 254, 0.0)");
       return {
         labels,
         datasets: [
           {
             backgroundColor: gradient,
-            borderColor: 'rgb(25, 144, 255)',
+            borderColor: 'rgba(68, 124, 230, .7)',
             borderWidth: 0,
             hoverBackgroundColor: 'rgba(255,99,132,0.40)',
-            hoverBorderColor: 'rgba(25, 144, 255, 0.322)',
+            hoverBorderColor: 'rgba(68, 124, 230, .7)',
             pointRadius: [0,4,4,4,4,4,4,4,0],
             pointBackgroundColor: "#fff",
             pointBorderWidth: 3,
-            pointBorderColor: "rgb(25, 144, 255)",
+            pointBorderColor: "rgba(68, 124, 230, .7)",
+            pointHoverRadius: 4,
+            pointHoverBackgroundColor: '#f4516c',
+            pointHoverBorderWidth: 12,
+            pointHoverBorderColor: 'rgba(0, 0, 0, 0.25)',
             data,
           }
         ]
@@ -52,36 +57,28 @@ class ActivityChartWidget extends Component {
   }
 
   render() {
-    const menu = (
-      <Menu onClick={this.handleMenuClick}>
-        {this.props.dropDownOptions.map(item=>
-          <Menu.Item key={item.id}>
-            {item.icon && (
-              <Icon type={item.icon} theme={item.iconTheme} />
-            )}
-            {item.text}
-          </Menu.Item>
-        )}
-      </Menu>
-    );
     const percentChange = this.getPercentChange(this.state.data)
     return <div className="stkd-widget stkd-content no-pad">
         <div className="activityChart-widget flex flex-col space-between">
           <div className="data-wrapper full-pad">
             <div className="header flex space-between align-items-center">
-              <h2 className="no-margin">Daily Views</h2>
-              <Dropdown overlay={menu}>
-                <Icon 
-                  type={this.props.icon}
-                  theme={this.props.iconTheme}
-                  style={{
-                    fontSize: '2rem',
-                  }}
-                />
-              </Dropdown>
+              <h2 className="no-margin">Recent Activity</h2>
+              <IconDropDown
+                icon={'ellipsis'}
+                iconTheme={'outlined'}
+                iconSize={'2rem'}
+                dropDownPlacement={'bottomRight'}
+                options={
+                  [
+                    { id: 1, text: "Last 7 Days", icon: null, iconTheme: null },
+                    { id: 2, text: "Last 2 Weeks", icon: null, iconTheme: null },
+                    { id: 3, text: "Last Month", icon: null, iconTheme: null },
+                  ]
+                }
+              />
             </div>
             <div className="stat flex space-between align-items-center">
-              <h1 className="no-margin" style={{color: this.props.accentColor}}>
+              <h1 className="no-margin">
                 {this.getNumWithCommas(this.state.data[this.state.data.length - 1])}
               </h1>
             </div>
@@ -124,11 +121,11 @@ class ActivityChartWidget extends Component {
           <div className="absolute bottom left full-pad">
             <div className="stkd-content flex align-items-center">
               {percentChange >= 0 ?
-                <Icon type="plus-circle" theme={"twoTone"} twoToneColor="#34bfa3" />
+                <Icon type="plus-circle" theme={"twoTone"} twoToneColor="#18cb93" />
                 :
-                <Icon type="minus-circle" theme={"twoTone"} twoTwoneColor="#f4516c" />
+                <Icon type="minus-circle" theme={"twoTone"} twoTwoneColor="#e64444" />
               }
-              <h3 className="no-margin" style={{paddingLeft: '10px', color: 'rgba(0, 0, 0, 0.43)'}}>{percentChange}% {percentChange >= 0 ? 'Increase' : 'Decrease'}</h3>
+              <h3 className="no-margin" style={{paddingLeft: '10px'}}>{percentChange}% {percentChange >= 0 ? 'Increase' : 'Decrease'}</h3>
             </div>
           </div>
         </div>

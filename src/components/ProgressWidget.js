@@ -9,7 +9,7 @@ const ProgressWidget = (props) => {
       marginBottom: -15,
     },
     progessBar: {
-      margin: '20px 0px',
+      margin: '17px 0px',
     },
     icon: {
       color: props.iconColor,

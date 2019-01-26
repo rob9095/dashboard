@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
+import IconDropDown from './IconDropDown';
 
 class BasicTable extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class BasicTable extends Component {
         {"key":2,"first_name":"Gwyneth","last_name":"Snell","email":"gsnell1@si.edu","location":"370 Village Green Center"},
         {"key":3,"first_name":"Laurel","last_name":"Sparwell","email":"lsparwell2@psu.edu","location":"66 Raven Alley"},
         {"key":4,"first_name":"Timmie","last_name":"Dumbar","email":"tdumbar3@about.me","location":"0912 Vera Drive"},
-        {"key":5,"first_name":"Buiron","last_name":"Benadette","email":"bbenadette4@tmall.com","location":"64 Calypso Parkway"}
+        {"key":5,"first_name":"Buiron","last_name":"Benadette","email":"bbenadette4@tmall.com","location":"64 Calypso Parkway"},
+        {"key":6,"first_name":"John","last_name":"Turnwell","email":"jjturnwell23@tmailed.com","location":"186 Wayco Blvd"}
       ],
       columns: [{
         title: 'First Name',
@@ -28,8 +30,20 @@ class BasicTable extends Component {
         title: 'Action',
         key: 'action',
         render: (text, record) => (
-          <div className="stkd-widget stkd-content">
-            <a title={record.email} href={"mailto:"+record.email}>Email</a>
+          <div>
+            <IconDropDown
+              icon={'ellipsis'}
+              iconTheme={'outlined'}
+              dropDownPlacement={'bottomRight'}
+              iconSize={'1.5rem'}
+              options={
+                [
+                  { id: 1, text: "Update", icon: 'reload', iconTheme: 'outlined' },
+                  { id: 2, text: "Email", icon: 'mail', iconTheme: 'outlined' },
+                  { id: 3, text: "Delete", icon: 'delete', iconTheme: 'outlined' },
+                ]
+              }
+            />
           </div>
         ),
       }]
@@ -37,7 +51,7 @@ class BasicTable extends Component {
   }
   render() {
     return(
-      <div className={this.props.contain ? 'contain': null}>
+      <div className={this.props.contain ? 'stkd-content stkd-widget contain' : 'stkd-content stkd-widget'}>
         <Table
           pagination={this.props.pagination}
           columns={this.state.columns}

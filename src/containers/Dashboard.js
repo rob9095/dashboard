@@ -189,32 +189,17 @@ class Dashboard extends Component {
                         iconColor={null}
                         data={
                           [
-                            { id: 1, text: 'UI Design', progress: 75, color: '', showInfo: true, status: 'active'},
-                            { id: 2, text: 'API Development', progress: 85, color: '', showInfo: true, status: 'active'},
-                            { id: 3, text: 'Sales Analysis', progress: 45, color: '', showInfo: true, status: 'active'},
-                            { id: 4, text: 'A/B Testing', progress: 65, color: '', showInfo: true, status: 'active'},
+                            { id: 1, text: 'UI Design', progress: 75, color: '#447de6', showInfo: true, status: 'active'},
+                            { id: 2, text: 'API Development', progress: 85, color: '#447de6', showInfo: true, status: 'active'},
+                            { id: 3, text: 'Sales Analysis', progress: 45, color: '#447de6', showInfo: true, status: 'active'},
+                            { id: 4, text: 'A/B Testing', progress: 65, color: '#447de6', showInfo: true, status: 'active'},
                           ]
                         }
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={16}>
-                        {/* <BasicTable
-                          pagination={false}
-                          contain
-                        /> */}
                         <ActivityChartWidget
-                          accentColor={'rgb(25, 144, 255)'}
-                          icon={'ellipsis'}
-                          iconTheme={'outlined'}
-                          dropDownIcon={'calendar'}
-                          dropDownIconTheme={'outlined'}
-                          dropDownOptions={
-                            [
-                              { id: 1, text: "Last 7 Days", icon: null, iconTheme: null },
-                              { id: 2, text: "Last 2 Weeks", icon: null, iconTheme: null },
-                              { id: 3, text: "Last Month", icon: null, iconTheme: null },
-                            ]
-                          }
+                          accentColor={'#447de6'}
                         />
                     </Col>
                   </Row>
@@ -225,8 +210,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'Unread Messages'}
                             stat={19}
-                            //hex format color
-                            color={'#716aca'}
+                            color={'#447de6'}
                             filled={true}
                           />
                       </Col>
@@ -236,8 +220,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'New Alerts'}
                             stat={16}
-                            //hex format color
-                            color={'#f4516c'}
+                            color={'#ff8d38'}
                             filled={true}
                           />
                       </Col>
@@ -247,8 +230,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'Recent Likes'}
                             stat={41}
-                            //hex format color
-                            color={'#34bfa3'}
+                            color={'#18cb93'}
                             filled={true}
                           />
                       </Col>
@@ -258,8 +240,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'New Users'}
                             stat={13}
-                            //hex format color
-                            color={'#36a3f7'}
+                            color={'#8978a0'}
                             filled={true}
                           />
                       </Col>
@@ -271,7 +252,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#34bfa3'}
+                          accentColor={'#18cb93'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -283,7 +264,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#34bfa3'}
+                          accentColor={'#18cb93'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -295,7 +276,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#34bfa3'}
+                          accentColor={'#18cb93'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -307,7 +288,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#34bfa3'}
+                          accentColor={'#18cb93'}
                           icon={null}
                           iconTheme={null}
                         />
@@ -322,7 +303,7 @@ class Dashboard extends Component {
                           title={'New Users'}
                           stat={13}
                           //hex format color
-                          color={'#36a3f7'}
+                          color={'#447de6'}
                         />
                         <IconStat
                           icon={'message'}
@@ -330,7 +311,7 @@ class Dashboard extends Component {
                           title={'Unread Messages'}
                           stat={28}
                           //hex format color
-                          color={'#716aca'}
+                          color={'#8978a0'}
                         />
                         <IconStat
                           icon={'like'}
@@ -346,11 +327,11 @@ class Dashboard extends Component {
                           title={'Bugs Fixed'}
                           footerText={null}
                           icon={'trophy'}
-                          iconColor={'#36a3f7'}
+                          iconColor={'#447de6'}
                           iconTheme={"filled"}
                           data={
                             [
-                              { id: 1, text: null, progress: 60, color: '', showInfo: false, status: 'active' },
+                              { id: 1, text: null, progress: 60, color: '#447de6', showInfo: false, status: 'active' },
                             ]
                           }
                         />
@@ -358,11 +339,11 @@ class Dashboard extends Component {
                           title={'Feedback'}
                           footerText={null}
                           icon={'smile'}
-                          iconColor={'#f4516c'}
+                          iconColor={'#34bfa3'}
                           iconTheme={"filled"}
                           data={
                             [
-                              { id: 1, text: '90% Positive Reviews', progress: 90, color: '#f4516c', showInfo: false, status: 'active' },
+                              { id: 1, text: '90% Positive Reviews', progress: 90, color: '#34bfa3', showInfo: false, status: 'active' },
                             ]
                           }
                         />
@@ -370,14 +351,20 @@ class Dashboard extends Component {
                           title={'Tickets'}
                           footerText={null}
                           icon={'question-circle'}
-                          iconColor={'#ffb822'}
+                          iconColor={'#ff8d38'}
                           iconTheme={"filled"}
                           data={
                             [
-                              { id: 1, text: '60% Tickets Answered', progress: 60, color: '#ffb822', showInfo: false, status: 'active' },
+                              { id: 1, text: '60% Tickets Answered', progress: 60, color: '#ff8d38', showInfo: false, status: 'active' },
                             ]
                           }
                         />
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={12}>
+                      <BasicTable
+                        pagination={false}
+                        contain
+                      />
                     </Col>
                   </Row>
                 </div>
