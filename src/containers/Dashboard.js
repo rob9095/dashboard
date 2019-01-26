@@ -112,7 +112,7 @@ class Dashboard extends Component {
             collapsed={this.state.collapsed}
           >
             <div className="logo">
-              {/* {this.state.collapsed ? <img src={check} width='30px' /> : <img src={logo} width='130px' /> } */}
+              {/* {this.state.collapsed ? <h3>logo</h3> : <h3>logo</h3> } */}
             </div>
             <Menu onClick={this.handleMenuClick} theme="dark" mode="inline" selectedKeys={this.state.activeMenuItems}>
               <Menu.Item className="stkd-dark menu-item" key="appHome">

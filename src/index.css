@@ -85,6 +85,12 @@ body #root {
   bottom: 0px;
 }
 
+/* Dropdown Menu */
+.ant-dropdown-menu-item {
+  display: flex;
+  align-items: center;
+}
+
 /* Default Widget Styles */
 .widget-footer {
   margin: 5px 0 0 0;
