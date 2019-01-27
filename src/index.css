@@ -24,6 +24,31 @@ body #root {
   width: 100%;
 }
 
+/* Default Widget Styles */
+.stkd-widget {
+  margin: 10px;
+}
+
+.stkd-content {
+  box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.08);
+  background: #fff;
+  padding: 24px;
+}
+
+.contain {
+  overflow-x: auto;
+}
+
+.widget-footer {
+  margin: 5px 0 0 0;
+}
+
+.icon {
+  color: #716aca;
+}
+
+/* Global Styles */
+
 .ant-layout {
   height: 100%;
   position: relative;
@@ -51,6 +76,10 @@ body #root {
 
 .space-evenly {
   justify-content: space-evenly;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
 }
 
 .full-pad {
@@ -89,15 +118,6 @@ body #root {
 .ant-dropdown-menu-item {
   display: flex;
   align-items: center;
-}
-
-/* Default Widget Styles */
-.widget-footer {
-  margin: 5px 0 0 0;
-}
-
-.icon {
-  color: #716aca;
 }
 
 /* Activity Chart Widget */
@@ -311,20 +331,6 @@ i.xl svg {
 
 .centered-container.row {
   flex-direction: row;
-}
-
-.stkd-widget {
-  margin: 10px;
-}
-
-.stkd-content {
-  box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.08);
-  background: #fff;
-  padding: 24px;
-}
-
-.contain {
-  overflow-x: auto;
 }
 
 .ant-menu {

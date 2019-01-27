@@ -199,6 +199,7 @@ class Dashboard extends Component {
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={16}>
                         <ActivityChartWidget
+                          title={'Recent Activity'}
                           accentColor={'#447de6'}
                         />
                     </Col>
@@ -211,7 +212,7 @@ class Dashboard extends Component {
                             title={'Unread Messages'}
                             stat={19}
                             color={'#447de6'}
-                            filled={true}
+                            filled={false}
                           />
                       </Col>
                       <Col xs={24} sm={12} md={12} lg={6}>
@@ -221,7 +222,7 @@ class Dashboard extends Component {
                             title={'New Alerts'}
                             stat={16}
                             color={'#ff8d38'}
-                            filled={true}
+                            filled={false}
                           />
                       </Col>
                       <Col xs={24} sm={12} md={12} lg={6}>
@@ -231,7 +232,7 @@ class Dashboard extends Component {
                             title={'Recent Likes'}
                             stat={41}
                             color={'#18cb93'}
-                            filled={true}
+                            filled={false}
                           />
                       </Col>
                       <Col xs={24} sm={12} md={12} lg={6}>
@@ -240,8 +241,8 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'New Users'}
                             stat={13}
-                            color={'#8978a0'}
-                            filled={true}
+                            color={'#8061ef'}
+                            filled={false}
                           />
                       </Col>
                   </Row>
@@ -311,7 +312,7 @@ class Dashboard extends Component {
                           title={'Unread Messages'}
                           stat={28}
                           //hex format color
-                          color={'#8978a0'}
+                          color={'#8061ef'}
                         />
                         <IconStat
                           icon={'like'}

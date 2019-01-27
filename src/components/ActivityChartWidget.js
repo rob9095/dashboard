@@ -9,8 +9,8 @@ class ActivityChartWidget extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [10770, 10985, 10402, 10809, 10232, 9760, 9847, 10422, 10668],
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday',],
+      data: [4000, 5000, 4600, 3800, 5200, 4000, 4500, 4000, 4300, 5400, 4500, 5000, 6000, 5500, 7000, 6552],
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March", "April"],
     }
     this.data = (canvas) => {
       const {data,labels} = this.state
@@ -32,7 +32,7 @@ class ActivityChartWidget extends Component {
             pointBorderWidth: 3,
             pointBorderColor: "rgba(68, 124, 230, .7)",
             pointHoverRadius: 4,
-            pointHoverBackgroundColor: '#f4516c',
+            pointHoverBackgroundColor: '#ff8d38',
             pointHoverBorderWidth: 12,
             pointHoverBorderColor: 'rgba(0, 0, 0, 0.25)',
             data,
@@ -43,13 +43,9 @@ class ActivityChartWidget extends Component {
   }
 
   getPercentChange = (data) => {
-    const percents = data.map((num,i,arr)=>{
-      let val = data.length-1 !== i ? num - arr[i+1] : null
-      if (val) {
-        return (val/num) * 100
-      }
-    }).filter(n=>n!==undefined)
-    return ((percents.reduce(( p, c ) => p+c, 0) / percents.length) * 100).toFixed(2);
+    const firstVal = data[0]
+    const lastVal = data[data.length - 1]
+    return (((lastVal - firstVal) / lastVal)*100).toFixed(2)
   }
 
   getNumWithCommas(x) {
@@ -62,7 +58,7 @@ class ActivityChartWidget extends Component {
         <div className="activityChart-widget flex flex-col space-between">
           <div className="data-wrapper full-pad">
             <div className="header flex space-between align-items-center">
-              <h2 className="no-margin">Recent Activity</h2>
+              <h2 className="no-margin">{this.props.title}</h2>
               <IconDropDown
                 icon={'ellipsis'}
                 iconTheme={'outlined'}
@@ -111,19 +107,19 @@ class ActivityChartWidget extends Component {
                     },
                     ticks: {
                       display: false,
-                      suggestedMin: 9000,
-                      suggestedMax: 11000,
+                      suggestedMin: 0,
+                      //suggestedMax: 0,
                     }
                   }]
                 }
               }} />
           </div>
           <div className="absolute bottom left full-pad">
-            <div className="stkd-content flex align-items-center">
+            <div className="half-pad stkd-content flex align-items-center">
               {percentChange >= 0 ?
                 <Icon type="plus-circle" theme={"twoTone"} twoToneColor="#18cb93" />
                 :
-                <Icon type="minus-circle" theme={"twoTone"} twoTwoneColor="#e64444" />
+                <Icon type="minus-circle" theme={"twoTone"} twoToneColor="#e64444" />
               }
               <h3 className="no-margin" style={{paddingLeft: '10px'}}>{percentChange}% {percentChange >= 0 ? 'Increase' : 'Decrease'}</h3>
             </div>

@@ -4,26 +4,34 @@ const Color = require('color');
 
 const IconStat = (props) => {
   const styles = {
-    icon: {
-      background: Color(props.color).darken(0.1),
+    filled: {
+      icon: {
+        background: Color(props.color).darken(0.1),
+      },
+      stat: {
+        background: props.color,
+        color: '#fff',
+      },
     },
-    stat: {
-      background: props.color,
-      color: '#fff',
+    default: {
+      icon: {
+        background: `linear-gradient(-145deg, ${props.color}, ${Color(props.color).fade(.3)})`,
+        borderRadius: 0,
+      },
     },
   }
   return (
-    <div className={props.filled ? 'stkd-widget' : 'stkd-widget stkd-content'}>
-      <div className="iconStat-wrapper">
+    <div className={props.filled ? 'stkd-widget' : 'half-pad stkd-widget stkd-content'}>
+      <div className={props.filled ? 'iconStat-wrapper' : 'iconStat-wrapper flex-row-reverse'}>
         <div
           className="icon"
-          style={props.filled ? styles.icon : {color: props.color, width: '20%'}}
+          style={props.filled ? styles.filled.icon : styles.default.icon}
         >
           <Icon type={props.icon} theme={props.iconTheme} />
         </div>
         <div
           className="stat"
-          style={props.filled ? styles.stat : {width: '80%'}}
+          style={props.filled ? styles.filled.stat : styles.default.stat}
         >
           <h3 style={props.filled ? {color:'#fff'} : null}>{props.stat}</h3>
           <span>{props.title}</span>
