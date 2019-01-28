@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Icon } from "antd";
 import IconDropDown from './IconDropDown';
+const Color = require('color');
 
 
 
@@ -15,22 +16,22 @@ class ActivityChartWidget extends Component {
     this.data = (canvas) => {
       const {data,labels} = this.state
       const ctx = canvas.getContext("2d")
-		  const gradient = ctx.createLinearGradient(154.000, 10.000, 146.000, 280.000);
-      gradient.addColorStop(0.0, "rgba(68, 124, 230, .7)");
-      gradient.addColorStop(0.8, "rgba(231, 244, 254, 0.0)");
+      const gradient = ctx.createLinearGradient(0, 0, 0, 280);
+      gradient.addColorStop(0, Color(props.accentColor).alpha(.7));
+      gradient.addColorStop(1, Color('#fff').alpha(0));
       return {
         labels,
         datasets: [
           {
             backgroundColor: gradient,
-            borderColor: 'rgba(68, 124, 230, .7)',
+            borderColor: Color(props.accentColor),
             borderWidth: 0,
-            hoverBackgroundColor: 'rgba(255,99,132,0.40)',
-            hoverBorderColor: 'rgba(68, 124, 230, .7)',
+            hoverBackgroundColor: '#fff',
+            hoverBorderColor: '#333',
             pointRadius: [0,4,4,4,4,4,4,4,0],
             pointBackgroundColor: "#fff",
             pointBorderWidth: 3,
-            pointBorderColor: "rgba(68, 124, 230, .7)",
+            pointBorderColor: Color(props.accentColor),
             pointHoverRadius: 4,
             pointHoverBackgroundColor: '#ff8d38',
             pointHoverBorderWidth: 12,
@@ -79,7 +80,7 @@ class ActivityChartWidget extends Component {
               </h1>
             </div>
           </div>
-          <div style={{ marginLeft: "-10px" }} className="chart">
+          <div style={{ marginLeft: -10, marginBottom: -10}} className="chart">
             <Line 
               data={this.data}
               height={230}
@@ -88,9 +89,14 @@ class ActivityChartWidget extends Component {
                 maintainAspectRatio: false,
                 layout: {
                   padding: {
-                    top: 5
+                    top: 15
                   }
                 },
+                // elements: {
+                //   line: {
+                //     tension: 0,
+                //   }
+                // },
                 legend: { display: false },
                 scales: {
                   xAxes: [{
@@ -107,11 +113,10 @@ class ActivityChartWidget extends Component {
                     },
                     ticks: {
                       display: false,
-                      suggestedMin: 0,
-                      //suggestedMax: 0,
+                      beginAtZero: true,
                     }
                   }]
-                }
+                },
               }} />
           </div>
           <div className="absolute bottom left full-pad">

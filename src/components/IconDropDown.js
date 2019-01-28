@@ -16,7 +16,7 @@ const IconDropDown = (props) => {
   );
   return (
     <Dropdown overlay={menu} placement={props.dropDownPlacement}>
-      <Button style={{display: 'flex'}}>
+      <Button className="flex-i" style={props.noBorder ? {border: 0, boxShadow: 'none'} : null}>
         <Icon
           type={props.icon}
           theme={props.iconTheme}

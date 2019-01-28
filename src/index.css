@@ -58,8 +58,16 @@ body #root {
   display: flex;
 }
 
+.flex-i {
+  display: flex !important;
+}
+
 .flex-col {
   flex-direction: column;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
 
 .align-items-center {
@@ -141,6 +149,18 @@ body #root {
   font-size: 30px;
   margin: -5px 0px 15px 0px;
 }
+
+
+/* Chart Labels */
+.chart-labels .ant-list-split .ant-list-item {
+  border: 0px;
+}
+
+.chart-labels .ant-list-item-meta-avatar {
+  margin-right: 10px;
+  margin-top: 13px;
+}
+
 
 /* Icon Stat Widget */
 .iconStat-wrapper .stat h3 {
