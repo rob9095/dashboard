@@ -183,13 +183,13 @@ class Dashboard extends Component {
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                   </Breadcrumb>
                   <Row>
-                    <Col xs={24} sm={24} md={12} lg={8}>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={8}>
                       <ActivityChartWidget
                         title={'Page Views'}
                         accentColor={'#447de6'}
                       />
                     </Col>
-                    <Col xs={24} sm={24} md={12} lg={8}>
+                    <Col xs={24} sm={24} md={12} lg={12} xl={8}>
                       <ProgressWidget
                         title={'Project Progress'}
                         footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
@@ -206,7 +206,7 @@ class Dashboard extends Component {
                         }
                       />
                     </Col>
-                    <Col xs={24} sm={24} md={12} lg={8}>
+                    <Col xs={24} sm={24} md={12} lg={12} xl={8}>
                       <PieChartWidget
                         accentColor={'#447de6'}
                         title={'User Trends'}
@@ -379,7 +379,7 @@ class Dashboard extends Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col xs={24} sm={24} md={12} lg={12}>
+                    <Col xs={24} sm={24} md={24} lg={12}>
                         <TodoWidget
                           title={"Current Tasks"}
                           data={
@@ -394,7 +394,7 @@ class Dashboard extends Component {
                           }
                         />
                     </Col>
-                    <Col xs={24} sm={24} md={12} lg={12}>
+                    <Col xs={24} sm={24} md={24} lg={12}>
                         <TicketListWidget
                           title={"Support Tickets"}
                           data={

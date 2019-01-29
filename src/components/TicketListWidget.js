@@ -10,7 +10,6 @@ const TicketListWidget = props => (
         icon={"down"}
         iconTheme={"outlined"}
         text={"All"}
-        size={"large"}
         dropDownPlacement={"bottomRight"}
         options={[
           { id: 1, text: "All Tickets", icon: null, iconTheme: null },

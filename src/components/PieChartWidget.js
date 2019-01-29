@@ -66,12 +66,12 @@ class PieChartWidget extends Component {
             <TabPane tab="Month" key="3" />
             <TabPane tab="Year" key="4" />
           </Tabs>
-          <div className="chart flex align-items-center justify-content-center half-pad" style={{maxWidth: 350, height: 200, margin: '0 auto'}}>
+          <div className="chart flex align-items-center justify-content-center half-pad" style={{minHeight: 200}}>
             <Doughnut
               options={{
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 legend: {
-                  position: 'right',
+                  position: 'bottom',
                   labels: {
                     boxWidth: 15,
                     padding: 20,
