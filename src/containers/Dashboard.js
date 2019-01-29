@@ -16,6 +16,7 @@ import IconWidget from '../components/IconWidget';
 import ActivityChartWidget from '../components/ActivityChartWidget'
 import PieChartWidget from '../components/PieChartWidget';
 import TodoWidget from '../components/TodoWidget';
+import TicketListWidget from "../components/TicketListWidget";
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -419,13 +420,24 @@ class Dashboard extends Component {
                               { id: 1, title: 'UI Design', description: 'By Ron', color: '#447de6' },
                               { id: 2, title: 'API Development', description: 'By Susan', color: '#ff8d38' },
                               { id: 3, title: 'Sales Analysis', description: 'By Allen', color: '#18cb93' },
-                              { id: 4, title: 'A/B Testing', description: 'By Elsie', color: '#8061ef' },                         
+                              { id: 4, title: 'A/B Testing', description: 'By Elsie', color: '#8061ef' },    
+                              { id: 5, title: 'User Survey', description: 'By Karen', color: '#447de6' },
+                              { id: 6, title: 'Check Logs', description: 'By John', color: '#ff8d38' },                         
                             ]
                           }
                         />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={12}>
-
+                        <TicketListWidget
+                          title={"Support Tickets"}
+                          data={
+                            [
+                              { id: 1, title: 'UI Design', description: ' Eu eum volutpat repudiare, ius exerci soleat malorum at. Cibo corpora intellegat eu sea. Veri exerci et sea. Illud aliquip an mei, an civibus dolores contentiones vix, eirmod integre mei at.', date: 'Today', avatar: 'https://randomuser.me/api/portraits/men/32.jpg', color: '#447de6', status: 'pending' },
+                              { id: 2, title: 'API Development', description: 'Ferri labores adversarium ad duo, sed prima soleat et, quo ut facilisi inciderint. Pro ut aliquid suscipit, sit at dicat recusabo. Munere suscipiantur te vix, qui in reque dolore admodum. No civibus facilisis pri.', date: '1 day ago', avatar: 'https://randomuser.me/api/portraits/women/44.jpg', color: '#ff8d38', status: 'open' },
+                              { id: 3, title: 'Sales Analysis', description: 'Duo cetero fastidii placerat cu, in quo nostro referrentur. Te erant invidunt est, per tantas essent te. Et pro dicat delenit. No error vocibus adipisci has, velit appetere has te.', date: '2 weeks ago', avatar: 'https://randomuser.me/api/portraits/men/86.jpg', color: '#18cb93', status: 'complete' },
+                            ]
+                          }
+                        />
                     </Col>                    
                   </Row>
                 </div>

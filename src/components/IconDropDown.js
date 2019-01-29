@@ -17,14 +17,17 @@ const IconDropDown = (props) => {
   return (
     <div style={{ marginBottom: '.5em' }}>
       <Dropdown overlay={menu} placement={props.dropDownPlacement}>
-        <Button className="flex-i" style={props.noBorder ? { border: 0, boxShadow: 'none' } : null}>
-          <Icon
-            type={props.icon}
-            theme={props.iconTheme}
-            style={{
-              fontSize: props.iconSize,
-            }}
-          />
+        <Button size={props.size} className="flex-i" style={props.noBorder ? { border: 0, boxShadow: 'none' } : null}>
+          {props.text}
+          {props.icon && (
+            <Icon
+              type={props.icon}
+              theme={props.iconTheme}
+              style={{
+                fontSize: props.iconSize,
+              }}
+            />
+          )}
         </Button>
       </Dropdown>
     </div>

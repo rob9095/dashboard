@@ -46,12 +46,16 @@ body #root {
 .icon {
   color: #716aca;
 }
-
 /* Global Styles */
 
 .ant-layout {
   height: 100%;
   position: relative;
+}
+
+.ant-btn {
+  display: flex;
+  align-items: center;
 }
 
 .flex {
@@ -122,6 +126,11 @@ body #root {
   bottom: 0px;
 }
 
+.border-bottom {
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+
 /* Dropdown Menu */
 .ant-dropdown-menu-item {
   display: flex;
@@ -139,7 +148,32 @@ body #root {
   font-weight: bold;
 }
 
-/* Todo Items */
+/* Ticket List Items */
+
+.ticket-item .ant-list-item-meta {
+  display: flex;
+  align-items: center;
+}
+
+.ticket-item .ant-list-item-meta-title {
+  font-size: 16px;
+}
+
+.ticket-item .ticket-tag {
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 50px;
+}
+
+.ticket-item {
+  padding-bottom: 12px;
+}
+
+.ticket-item:last-child {
+  border-bottom: 0px;
+}
+
+/* Todo List Items */
 .todo-item .ant-list-item-meta {
   display: flex;
   align-items: center;
@@ -486,7 +520,6 @@ i.xl svg {
 }
 .ant-avatar {
   font-family: 'Work Sans', sans-serif !important;
-  text-transform: uppercase;
 }
 
 .user-card-menu {

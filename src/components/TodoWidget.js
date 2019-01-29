@@ -5,9 +5,9 @@ const TabPane = Tabs.TabPane;
 
 const TodoWidget = props => (
   <div className="stkd-widget stkd-content">
-    <div className="flex space-between align-items-center" style={{borderBottom: '1px solid #e8e8e8'}}>
+    <div className="flex space-between align-items-center">
       <h2>{props.title}</h2>
-      <Tabs defaultActiveKey="1" tabBarStyle={{borderBottom: 'none'}}>
+      <Tabs defaultActiveKey="1" tabBarGutter={12} tabBarStyle={{borderBottom: 'none'}}>
         <TabPane tab="Today" key="1" />
         <TabPane tab="Week" key="2" />
       </Tabs>
