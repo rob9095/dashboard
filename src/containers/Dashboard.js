@@ -187,12 +187,12 @@ class Dashboard extends Component {
                       <PieChartWidget
                         accentColor={'#447de6'}
                         title={'User Trends'}
-                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis.'}
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={8}>
                       <ProgressWidget
-                        title={'Projects'}
+                        title={'Project Progress'}
                         footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
                         icon={null}
                         iconTheme={null}
@@ -375,39 +375,6 @@ class Dashboard extends Component {
                       <BasicTable
                         pagination={false}
                         contain
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={24} sm={24} md={12} lg={8}>
-                      <PieChartWidget
-                        accentColor={'#447de6'}
-                        title={'Users by Device'}
-                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                      />
-                    </Col>
-                    <Col xs={24} sm={24} md={12} lg={8}>
-                    <ProgressWidget
-                        title={'Projects'}
-                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                        icon={null}
-                        iconTheme={null}
-                        iconColor={null}
-                        data={
-                          [
-                            { id: 1, text: 'UI Design', progress: 75, color: '#447de6', showInfo: true, status: 'active'},
-                            { id: 2, text: 'API Development', progress: 85, color: '#447de6', showInfo: true, status: 'active'},
-                            { id: 3, text: 'Sales Analysis', progress: 45, color: '#447de6', showInfo: true, status: 'active'},
-                            { id: 4, text: 'A/B Testing', progress: 65, color: '#447de6', showInfo: true, status: 'active'},
-                          ]
-                        }
-                      />
-                    </Col>
-                    <Col xs={24} sm={24} md={12} lg={8}>
-                      <PieChartWidget
-                        accentColor={'#447de6'}
-                        title={'Users by Device'}
-                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
                       />
                     </Col>
                   </Row>

@@ -1,37 +1,40 @@
 import React, { Component } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { List, Row, Col, Tag } from 'antd';
+import { Tabs } from 'antd';
 import IconDropDown from './IconDropDown';
+const TabPane = Tabs.TabPane;
 const Color = require('color');
 
 class PieChartWidget extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [58.2,27.5,14.3],
-      labels: ['Desktop','Tablet','Mobile'],
-      colors: [
-        Color(props.accentColor).string(),
-        Color(props.accentColor).fade(.25).string(),
-        Color(props.accentColor).fade(.50).string(),
-      ]
-    }
-    this.data = (canvas) => {
-      const {data,labels,colors} = this.state
-      return {
-        labels,
+      chart: {
         datasets: [
           {
-            backgroundColor: colors,
-            hoverBackgroundColor: colors,
-            data,
+            backgroundColor: [Color(props.accentColor).fade(.1).string(),Color(props.accentColor).fade(.25).string(),Color(props.accentColor).fade(.50).string()],
+            data: [58.2, 27.5, 14.3],
           }
-        ]
-      }
-    };
+        ],
+        labels: ['Desktop', 'Tablet', 'Mobile'],
+      },
+    }
   }
+
+  updateData = () => {
+      const newData = this.state.chart.labels.map(() => (Math.floor(Math.random() * 100)))
+
+      const chart = {
+        ...this.state.chart,
+        datasets: [{...this.state.chart.datasets[0], data: newData}]
+      };
+
+      this.setState({
+        chart,
+      });
+  }
+
   render() {
-    const labelsArr = this.state.labels.map((label,i)=>({label,percent:this.state.data[i],color:this.state.colors[i]}))
     return(
       <div className="stkd-widget stkd-content">
         <div className="pieChartWidget-wrapper">
@@ -52,36 +55,33 @@ class PieChartWidget extends Component {
                 }
             />
           </div>
-          <Row className="flex-i align-items-center">
-            <Col xs={12} className="flex-i justify-content-center">
-              <div className="chart" style={{maxWidth: 220, maxHeight: 240}}>
-              <Doughnut
-                options={{
-                  maintainAspectRatio: true,
-                  legend: { display: false },
-                }}
-                data={this.data}
-              />
-              </div>
-            </Col>
-            <Col xs={12}>
-              <div className="chart-labels flex-i flex-col align-items-center justify-content-center">
-                <List
-                  itemLayout="horizontal"
-                  dataSource={labelsArr}
-                  renderItem={item => (
-                    <List.Item>
-                      <List.Item.Meta
-                        avatar={<Tag color={item.color}> </Tag>}
-                        title={`${item.percent.toFixed(0)}% ${item.label}`}
-                        description={null}
-                      />
-                    </List.Item>
-                  )}
-                />      
-              </div>
-            </Col>
-          </Row>
+          <Tabs
+            tabBarGutter={12}
+            onChange={this.updateData}
+            tabBarStyle={{display: 'flex', justifyContent: 'center', borderBottom: '0px'}}
+            defaultActiveKey="1"
+          >
+            <TabPane tab="Today" key="1" />
+            <TabPane tab="Week" key="2" />
+            <TabPane tab="Month" key="3" />
+            <TabPane tab="Year" key="4" />
+          </Tabs>
+          <div className="chart flex align-items-center justify-content-center half-pad" style={{maxWidth: 350, height: 200, margin: '0 auto'}}>
+            <Doughnut
+              options={{
+                maintainAspectRatio: true,
+                legend: {
+                  position: 'right',
+                  labels: {
+                    boxWidth: 15,
+                    padding: 20,
+                    fontFamily: 'Work Sans',
+                  }
+                },
+              }}
+              data={this.state.chart}
+            />
+          </div>
         </div>
         <p className="widget-footer">{this.props.footerText}</p>
       </div>
