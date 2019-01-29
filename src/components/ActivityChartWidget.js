@@ -81,12 +81,12 @@ class ActivityChartWidget extends Component {
               </h1>
             </div>
           </div>
-          <div style={{ marginLeft: -10, marginBottom: -10}} className="chart">
+          <div style={{ marginLeft: -10, marginBottom: -10, marginTop: 'calc(100px - 40%)'}} className="chart">
             <Line 
               data={this.data}
-              height={230}
+              height={300}
               labels={this.labels}
-              options={{ 
+              options={{
                 maintainAspectRatio: false,
                 layout: {
                   padding: {

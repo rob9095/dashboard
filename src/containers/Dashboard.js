@@ -184,10 +184,9 @@ class Dashboard extends Component {
                   </Breadcrumb>
                   <Row>
                     <Col xs={24} sm={24} md={12} lg={8}>
-                      <PieChartWidget
+                      <ActivityChartWidget
+                        title={'Page Views'}
                         accentColor={'#447de6'}
-                        title={'User Trends'}
-                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis.'}
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={8}>
@@ -208,10 +207,11 @@ class Dashboard extends Component {
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={8}>
-                        <ActivityChartWidget
-                          title={'Page Views'}
-                          accentColor={'#447de6'}
-                        />
+                      <PieChartWidget
+                        accentColor={'#447de6'}
+                        title={'User Trends'}
+                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis.'}
+                      />
                     </Col>
                   </Row>
                   <Row>
