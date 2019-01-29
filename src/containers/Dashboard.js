@@ -15,6 +15,7 @@ import IconStat from '../components/IconStat';
 import IconWidget from '../components/IconWidget';
 import ActivityChartWidget from '../components/ActivityChartWidget'
 import PieChartWidget from '../components/PieChartWidget';
+import TodoWidget from '../components/TodoWidget';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -188,7 +189,24 @@ class Dashboard extends Component {
                         footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
                       />
                     </Col>
-                    <Col xs={24} sm={24} md={12} lg={16}>
+                    <Col xs={24} sm={24} md={12} lg={8}>
+                      <ProgressWidget
+                        title={'Projects'}
+                        footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                        icon={null}
+                        iconTheme={null}
+                        iconColor={null}
+                        data={
+                          [
+                            { id: 1, text: 'UI Design', progress: 75, color: '#447de6', showInfo: true, status: 'active' },
+                            { id: 2, text: 'API Development', progress: 85, color: '#ff8d38', showInfo: true, status: 'active' },
+                            { id: 3, text: 'Sales Analysis', progress: 45, color: '#18cb93', showInfo: true, status: 'active' },
+                            { id: 4, text: 'A/B Testing', progress: 65, color: '#8061ef', showInfo: true, status: 'active' },
+                          ]
+                        }
+                      />
+                    </Col>
+                    <Col xs={24} sm={24} md={12} lg={8}>
                         <ActivityChartWidget
                           title={'Page Views'}
                           accentColor={'#447de6'}
@@ -391,6 +409,24 @@ class Dashboard extends Component {
                         footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
                       />
                     </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={24} sm={24} md={12} lg={12}>
+                        <TodoWidget
+                          title={"Current Tasks"}
+                          data={
+                            [
+                              { id: 1, title: 'UI Design', description: 'By Ron', color: '#447de6' },
+                              { id: 2, title: 'API Development', description: 'By Susan', color: '#ff8d38' },
+                              { id: 3, title: 'Sales Analysis', description: 'By Allen', color: '#18cb93' },
+                              { id: 4, title: 'A/B Testing', description: 'By Elsie', color: '#8061ef' },                         
+                            ]
+                          }
+                        />
+                    </Col>
+                    <Col xs={24} sm={24} md={12} lg={12}>
+
+                    </Col>                    
                   </Row>
                 </div>
               )} />

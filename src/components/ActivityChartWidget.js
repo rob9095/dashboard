@@ -58,13 +58,14 @@ class ActivityChartWidget extends Component {
     return <div className="stkd-widget stkd-content no-pad">
         <div className="activityChart-widget flex flex-col space-between">
           <div className="data-wrapper full-pad">
-            <div className="header flex space-between align-items-center">
-              <h2 className="no-margin">{this.props.title}</h2>
+            <div className="flex space-between align-items-center">
+              <h2>{this.props.title}</h2>
               <IconDropDown
                 icon={'ellipsis'}
                 iconTheme={'outlined'}
                 iconSize={'2rem'}
                 dropDownPlacement={'bottomRight'}
+                noBorder={true}
                 options={
                   [
                     { id: 1, text: "Last 7 Days", icon: null, iconTheme: null },

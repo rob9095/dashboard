@@ -50,7 +50,7 @@ class PieChartWidget extends Component {
                     { id: 3, text: "Last 30 Days", icon: null, iconTheme: null },
                   ]
                 }
-              />
+            />
           </div>
           <Row className="flex-i align-items-center">
             <Col xs={12} className="flex-i justify-content-center">
@@ -65,20 +65,20 @@ class PieChartWidget extends Component {
               </div>
             </Col>
             <Col xs={12}>
-            <div className="chart-labels flex-i flex-col align-items-center" style={{justifyContent: 'center', height: 240}}>
-              <List
-                itemLayout="horizontal"
-                dataSource={labelsArr}
-                renderItem={item => (
-                  <List.Item>
-                    <List.Item.Meta
-                      avatar={<Tag color={item.color}> </Tag>}
-                      title={item.label}
-                      description={item.percent+ "%"}
-                    />
-                  </List.Item>
-                )}
-              />      
+              <div className="chart-labels flex-i flex-col align-items-center" style={{justifyContent: 'center', height: 240}}>
+                <List
+                  itemLayout="horizontal"
+                  dataSource={labelsArr}
+                  renderItem={item => (
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Tag color={item.color}> </Tag>}
+                        title={`${item.percent.toFixed(0)}% ${item.label}`}
+                        description={null}
+                      />
+                    </List.Item>
+                  )}
+                />      
               </div>
             </Col>
           </Row>

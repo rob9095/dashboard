@@ -135,8 +135,33 @@ body #root {
 }
 
 .activityChart-widget .stat h1 {
-  font-size: 3rem;
+  font-size: 42px;
   font-weight: bold;
+}
+
+/* Todo Items */
+.todo-item .ant-list-item-meta {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.todo-item .todo-before {
+  background: rgba(89, 89, 89,.2);
+  position: absolute;
+  width: 5px;
+  border-radius: 5px;
+  height: 39px;
+  margin-top: 15px;
+}
+
+.todo-item .ant-list-item-meta-description {
+  font-size: 12px;
+}
+
+.todo-item h4.ant-list-item-meta-title {
+  margin-bottom: 0px;
 }
 
 
@@ -156,9 +181,10 @@ body #root {
   border: 0px;
 }
 
-.chart-labels .ant-list-item-meta-avatar {
-  margin-right: 10px;
-  margin-top: 13px;
+.chart-labels .ant-list-item .ant-tag {
+  height: 5px;
+  margin-top: 9px;
+  margin-right: 0px;
 }
 
 
