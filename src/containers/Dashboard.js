@@ -165,7 +165,7 @@ class Dashboard extends Component {
               />
             }
           </div>
-          <div className="bottom">
+          <div className="app-body">
             <Switch>
               <Route exact path="/app/po-products" render={props => (
                 <PoProductTable showHeader {...props} />

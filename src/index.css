@@ -294,7 +294,7 @@ body #root {
 	height: 70px;
 }
 
-#app-content .bottom {
+#app-content .app-body {
   padding: 20px;
   overflow-x: hidden;
 }
@@ -303,7 +303,7 @@ body #root {
   bottom: 0px;
 }
 
-.app-dashboard .bottom {
+.app-dashboard .app-body {
   flex-grow: 1;
   overflow-y: auto;
 }

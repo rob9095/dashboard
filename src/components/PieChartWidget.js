@@ -57,7 +57,7 @@ class PieChartWidget extends Component {
               <div className="chart" style={{maxWidth: 220, maxHeight: 240}}>
               <Doughnut
                 options={{
-                  maintainAspectRatio: false,
+                  maintainAspectRatio: true,
                   legend: { display: false },
                 }}
                 data={this.data}
@@ -65,7 +65,7 @@ class PieChartWidget extends Component {
               </div>
             </Col>
             <Col xs={12}>
-              <div className="chart-labels flex-i flex-col align-items-center" style={{justifyContent: 'center', height: 240}}>
+              <div className="chart-labels flex-i flex-col align-items-center justify-content-center">
                 <List
                   itemLayout="horizontal"
                   dataSource={labelsArr}
