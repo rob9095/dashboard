@@ -16,7 +16,10 @@ const IconStat = (props) => {
     default: {
       icon: {
         background: `linear-gradient(-145deg, ${props.color}, ${Color(props.color).fade(.3)})`,
-        borderRadius: 0,
+        borderRadius: 5,
+        maxHeight: 80,
+        maxWidth: 80,
+        margin: 'auto',
       },
     },
   }

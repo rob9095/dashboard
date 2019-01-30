@@ -36,7 +36,7 @@ class PieChartWidget extends Component {
 
   render() {
     return(
-      <div className="stkd-widget stkd-content">
+      <div className="stkd-widget stkd-content" style={{ height: 385 }}>
         <div className="pieChartWidget-wrapper">
           <div className="flex space-between align-items-center">
             <h2>{this.props.title}</h2>
@@ -75,7 +75,8 @@ class PieChartWidget extends Component {
                   labels: {
                     boxWidth: 15,
                     padding: 20,
-                    fontFamily: 'Work Sans',
+                    fontFamily: 'Roboto',
+                    fontColor: 'rgba(121, 126, 152, 0.82)',
                   }
                 },
               }}

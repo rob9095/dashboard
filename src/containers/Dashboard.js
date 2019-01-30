@@ -20,6 +20,7 @@ import TicketListWidget from "../components/TicketListWidget";
 import TimeLineWidget from "../components/TimeLineWidget";
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+const Color = require('color');
 
 class Dashboard extends Component {
   constructor(props) {
@@ -184,13 +185,13 @@ class Dashboard extends Component {
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                   </Breadcrumb>
                   <Row>
-                    <Col xs={24} sm={24} md={24} lg={24} xl={8}>
+                    <Col xs={24} sm={24} md={24} lg={8}>
                       <ActivityChartWidget
                         title={'Page Views'}
                         accentColor={'#447de6'}
                       />
                     </Col>
-                    <Col xs={24} sm={24} md={12} lg={12} xl={8}>
+                    <Col xs={24} sm={24} md={12} lg={8}>
                       <ProgressWidget
                         title={'Project Progress'}
                         footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
@@ -200,14 +201,14 @@ class Dashboard extends Component {
                         data={
                           [
                             { id: 1, text: 'UI Design', progress: 75, color: '#447de6', showInfo: true, status: 'active' },
-                            { id: 2, text: 'API Development', progress: 85, color: '#ff8d38', showInfo: true, status: 'active' },
-                            { id: 3, text: 'Sales Analysis', progress: 45, color: '#18cb93', showInfo: true, status: 'active' },
-                            { id: 4, text: 'A/B Testing', progress: 65, color: '#8061ef', showInfo: true, status: 'active' },
+                            { id: 2, text: 'API Development', progress: 85, color: Color('#447de6').fade(.2).string(), showInfo: true, status: 'active' },
+                            { id: 3, text: 'Sales Analysis', progress: 45, color: Color('#447de6').fade(.4).string(), showInfo: true, status: 'active' },
+                            { id: 4, text: 'A/B Testing', progress: 65, color: Color('#447de6').fade(.6).string(), showInfo: true, status: 'active' },
                           ]
                         }
                       />
                     </Col>
-                    <Col xs={24} sm={24} md={12} lg={12} xl={8}>
+                    <Col xs={24} sm={24} md={12} lg={8}>
                       <PieChartWidget
                         accentColor={'#447de6'}
                         title={'User Trends'}

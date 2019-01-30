@@ -17,7 +17,7 @@ const ProgressWidget = (props) => {
     }
   }
   return (
-    <div className="stkd-widget stkd-content">
+    <div className="stkd-widget stkd-content" style={{height: 385}}>
       <div className="widget-wrapper">
         <div className="flex" style={styles.header}>
           <h2>{props.title}</h2>
