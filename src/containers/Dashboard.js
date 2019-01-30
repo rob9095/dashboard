@@ -83,7 +83,7 @@ class Dashboard extends Component {
     const clientWidth = document.documentElement.clientWidth;
     this.setState({
       clientWidth,
-      collapsed: clientWidth <= 600 ? true : this.state.collapsed,
+      collapsed: clientWidth <= 1200 ? true : this.state.collapsed,
     })
   }
 
