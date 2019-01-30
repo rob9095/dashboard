@@ -10,28 +10,28 @@ class ActivityChartWidget extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [4000, 5000, 4600, 3800, 5200, 4000, 4500, 4000, 4300, 5400, 4500, 5000, 6000, 5500, 7000, 6552],
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March", "April"],
+      data: [4000, 5000, 4600, 4300, 5200, 4400, 4500, 4000, 4300, 5400, 4500, 5130],
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",],
     }
     this.data = (canvas) => {
       const {data,labels} = this.state
       const ctx = canvas.getContext("2d")
       const gradient = ctx.createLinearGradient(0, 0, 0, 280);
-      gradient.addColorStop(0, Color(props.accentColor).alpha(.7));
-      gradient.addColorStop(1, Color('#fff').alpha(0));
+      gradient.addColorStop(0, Color(props.accentColor));
+      gradient.addColorStop(1, Color(props.accentColor).fade(.2));
       return {
         labels,
         datasets: [
           {
             backgroundColor: gradient,
-            borderColor: Color(props.accentColor),
+            borderColor: Color(props.accentColor).darken(.5),
             borderWidth: 0,
             hoverBackgroundColor: '#fff',
             hoverBorderColor: '#333',
-            pointRadius: [0,4,4,4,4,4,4,4,0],
+            pointRadius: data.map((n,i,a)=>i===0 || i === a.length - 1 ? 0 : 5 ),
             pointBackgroundColor: "#fff",
             pointBorderWidth: 3,
-            pointBorderColor: Color(props.accentColor),
+            pointBorderColor: Color(props.accentColor).darken(.5),
             pointHoverRadius: 4,
             pointHoverBackgroundColor: '#ff8d38',
             pointHoverBorderWidth: 12,
@@ -81,7 +81,7 @@ class ActivityChartWidget extends Component {
               </h1>
             </div>
           </div>
-          <div style={{ marginLeft: -10, marginBottom: -10, marginTop: 'calc(100px - 40%)'}} className="chart">
+          <div style={{ marginLeft: -9, marginBottom: -11, marginTop: 'calc(100px - 40%)'}} className="chart">
             <Line 
               data={this.data}
               height={300}
@@ -123,9 +123,9 @@ class ActivityChartWidget extends Component {
           <div className="absolute bottom left full-pad">
             <div className="half-pad stkd-content flex align-items-center">
               {percentChange >= 0 ?
-                <Icon type="plus-circle" theme={"twoTone"} twoToneColor="#18cb93" />
+                <Icon type="rise" style={{color: "#18cb93", fontSize: '1rem'}} />
                 :
-                <Icon type="minus-circle" theme={"twoTone"} twoToneColor="#e64444" />
+                <Icon type="fall" style={{color: "#e64444", fontSize: '1rem'}} />
               }
               <h3 className="no-margin" style={{paddingLeft: '10px'}}>{percentChange}% {percentChange >= 0 ? 'Increase' : 'Decrease'}</h3>
             </div>

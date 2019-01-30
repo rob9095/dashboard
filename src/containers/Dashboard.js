@@ -187,7 +187,7 @@ class Dashboard extends Component {
                     <Col xs={24} sm={24} md={24} lg={24} xl={8}>
                       <ActivityChartWidget
                         title={'Page Views'}
-                        accentColor={'#447de6'}
+                        accentColor={'#e8effc'}
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={12} xl={8}>
