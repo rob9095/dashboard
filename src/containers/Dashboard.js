@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Layout, Menu, Icon, Breadcrumb, Row, Col } from 'antd';
+import { Avatar, Layout, Menu, Icon, Breadcrumb, Row, Col } from 'antd';
 import Navbar from './Navbar';
 import NavbarMobile from './NavbarMobile';
 import NotFound from '../components/NotFound';
@@ -17,6 +17,7 @@ import ActivityChartWidget from '../components/ActivityChartWidget'
 import PieChartWidget from '../components/PieChartWidget';
 import TodoWidget from '../components/TodoWidget';
 import TicketListWidget from "../components/TicketListWidget";
+import TimeLineWidget from "../components/TimeLineWidget";
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -399,13 +400,36 @@ class Dashboard extends Component {
                           title={"Support Tickets"}
                           data={
                             [
-                              { id: 1, title: 'UI Design', description: ' Eu eum volutpat repudiare, ius exerci soleat malorum at. Cibo corpora intellegat eu sea. Veri exerci et sea. Illud aliquip an mei, an civibus dolores contentiones vix, eirmod integre mei at.', date: 'Today', avatar: 'https://randomuser.me/api/portraits/men/32.jpg', color: '#447de6', status: 'pending' },
+                              { id: 1, title: 'UI Design', description: 'Eu eum volutpat repudiare, ius exerci soleat malorum at. Cibo corpora intellegat eu sea. Veri exerci et sea. Illud aliquip an mei, an civibus dolores contentiones vix, eirmod integre mei at.', date: 'Today', avatar: 'https://randomuser.me/api/portraits/men/32.jpg', color: '#447de6', status: 'pending' },
                               { id: 2, title: 'API Development', description: 'Ferri labores adversarium ad duo, sed prima soleat et, quo ut facilisi inciderint. Pro ut aliquid suscipit, sit at dicat recusabo. Munere suscipiantur te vix, qui in reque dolore admodum. No civibus facilisis pri.', date: '1 day ago', avatar: 'https://randomuser.me/api/portraits/women/44.jpg', color: '#ff8d38', status: 'open' },
                               { id: 3, title: 'Sales Analysis', description: 'Duo cetero fastidii placerat cu, in quo nostro referrentur. Te erant invidunt est, per tantas essent te. Et pro dicat delenit. No error vocibus adipisci has, velit appetere has te.', date: '2 weeks ago', avatar: 'https://randomuser.me/api/portraits/men/86.jpg', color: '#18cb93', status: 'complete' },
                             ]
                           }
                         />
                     </Col>                    
+                  </Row>
+                  <Row>
+                    <Col xs={24} sm={24} md={8} lg={8}>
+                      <TimeLineWidget
+                        title={"Timeline"}
+                        data={
+                          [
+                            { id: 1, description: 'Lorem ipsum dolor sit amet, wisi decore timeam et vis', color: '#447de6', time: '07:00'},
+                            { id: 2, description: (<span>Lorem ipsum dolor sit amet, <a href="#">wisi decore</a> timeam et vis. Duo cetero fastidii placerat cu, in quo nostro referrentur.</span>), color: '#ff8d38', time: '09:00' },
+                            { id: 3, description: (
+                              <span className="flex align-items-center flex-wrap">
+                                <h3 style={{ marginRight: 10 }}>Meeting with</h3>
+                                <Avatar src="https://randomuser.me/api/portraits/men/81.jpg" />
+                                <Avatar src="https://randomuser.me/api/portraits/women/21.jpg" />
+                                <Avatar src="https://randomuser.me/api/portraits/women/50.jpg" />
+                              </span>
+                            ), color: '#18cb93', time: '11:00', icon: 'schedule' },
+                            { id: 5, description: 'Duo cetero fastidii placerat cu, in quo nostro referrentur. Te erant invidunt est, per tantas essent te. Et pro dicat delenit. No error vocibus adipisci has, velit appetere has te.', color: '#8061ef', time: '03:00' },
+                            { id: 6, description: (<span>Bug Reported, <a href="#">click here</a> to view detailed report</span>), color: 'red', time: '05:00', icon: 'alert' },
+                          ]
+                        }
+                      />
+                    </Col>
                   </Row>
                 </div>
               )} />

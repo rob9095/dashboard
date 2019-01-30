@@ -36,7 +36,21 @@ body #root {
 }
 
 .contain {
-  overflow-x: auto;
+  overflow: auto;
+}
+
+.contain::-webkit-scrollbar{
+  background-color: transparent;
+  width: 10px;
+}
+
+.contain::-webkit-scrollbar:hover{
+  background-color: rgba(89, 89, 89,.05);
+}
+
+.contain::-webkit-scrollbar-thumb{
+  background-color: rgba(89, 89, 89,.3);
+  border-radius: 30px;
 }
 
 .widget-footer {
@@ -68,6 +82,10 @@ body #root {
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .justify-content-center {
@@ -172,6 +190,25 @@ body #root {
 .ticket-item:last-child {
   border-bottom: 0px;
 }
+
+
+/* Timeline items */
+
+.timeline-item .ant-avatar {
+  margin-top: -10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.timeline-item .time, .timeline-item .extra {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.timeline-item .ant-avatar {
+  width: 32px;
+  height: 32px;
+}
+
 
 /* Todo List Items */
 .todo-item .ant-list-item-meta {
