@@ -18,6 +18,7 @@ import PieChartWidget from '../components/PieChartWidget';
 import TodoWidget from '../components/TodoWidget';
 import TicketListWidget from "../components/TicketListWidget";
 import TimeLineWidget from "../components/TimeLineWidget";
+import theme from '../theme';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const Color = require('color');
@@ -188,7 +189,7 @@ class Dashboard extends Component {
                     <Col xs={24} sm={24} md={24} lg={8}>
                       <ActivityChartWidget
                         title={'Page Views'}
-                        accentColor={'#447de6'}
+                        accentColor={theme.colors.main}
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={8}>
@@ -201,17 +202,17 @@ class Dashboard extends Component {
                         iconColor={null}
                         data={
                           [
-                            { id: 1, text: 'UI Design', progress: 75, color: '#447de6', showInfo: true, status: 'active' },
-                            { id: 2, text: 'API Development', progress: 85, color: Color('#447de6').fade(.2).string(), showInfo: true, status: 'active' },
-                            { id: 3, text: 'Sales Analysis', progress: 45, color: Color('#447de6').fade(.4).string(), showInfo: true, status: 'active' },
-                            { id: 4, text: 'A/B Testing', progress: 65, color: Color('#447de6').fade(.6).string(), showInfo: true, status: 'active' },
+                            { id: 1, text: 'UI Design', progress: 75, color: theme.colors.main, showInfo: true, status: 'active' },
+                            { id: 2, text: 'API Development', progress: 85, color: Color(theme.colors.main).fade(.2).string(), showInfo: true, status: 'active' },
+                            { id: 3, text: 'Sales Analysis', progress: 45, color: Color(theme.colors.main).fade(.4).string(), showInfo: true, status: 'active' },
+                            { id: 4, text: 'A/B Testing', progress: 65, color: Color(theme.colors.main).fade(.6).string(), showInfo: true, status: 'active' },
                           ]
                         }
                       />
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={8}>
                       <PieChartWidget
-                        accentColor={'#447de6'}
+                        accentColor={theme.colors.main}
                         title={'User Trends'}
                         footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis.'}
                       />
@@ -224,7 +225,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'Unread Messages'}
                             stat={19}
-                            color={'#447de6'}
+                            color={theme.colors.main}
                             filled={false}
                           />
                       </Col>
@@ -234,7 +235,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'New Alerts'}
                             stat={16}
-                            color={'#ff8d38'}
+                            color={theme.colors.orange}
                             filled={false}
                           />
                       </Col>
@@ -244,7 +245,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'Recent Likes'}
                             stat={41}
-                            color={'#18cb93'}
+                            color={theme.colors.green}
                             filled={false}
                           />
                       </Col>
@@ -254,7 +255,7 @@ class Dashboard extends Component {
                             iconTheme={'filled'}
                             title={'New Users'}
                             stat={13}
-                            color={'#8061ef'}
+                            color={theme.colors.purple}
                             filled={false}
                           />
                       </Col>
@@ -266,7 +267,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#18cb93'}
+                          accentColor={theme.colors.green}
                           icon={null}
                           iconTheme={null}
                         />
@@ -278,7 +279,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#18cb93'}
+                          accentColor={theme.colors.green}
                           icon={null}
                           iconTheme={null}
                         />
@@ -290,7 +291,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#18cb93'}
+                          accentColor={theme.colors.green}
                           icon={null}
                           iconTheme={null}
                         />
@@ -302,7 +303,7 @@ class Dashboard extends Component {
                           title={'Sales'}
                           stat={'$1300'}
                           text={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
-                          accentColor={'#18cb93'}
+                          accentColor={theme.colors.green}
                           icon={null}
                           iconTheme={null}
                         />
@@ -317,7 +318,7 @@ class Dashboard extends Component {
                           title={'New Users'}
                           stat={13}
                           //hex format color
-                          color={'#447de6'}
+                          color={theme.colors.main}
                         />
                         <IconStat
                           icon={'message'}
@@ -325,7 +326,7 @@ class Dashboard extends Component {
                           title={'Unread Messages'}
                           stat={28}
                           //hex format color
-                          color={'#8061ef'}
+                          color={theme.colors.purple}
                         />
                         <IconStat
                           icon={'like'}
@@ -333,7 +334,7 @@ class Dashboard extends Component {
                           title={'Recent Likes'}
                           stat={23}
                           //hex format color
-                          color={'#34bfa3'}
+                          color={theme.colors.green}
                         />                        
                     </Col>
                     <Col xs={24} sm={12} md={12} lg={6}>
@@ -341,11 +342,11 @@ class Dashboard extends Component {
                           title={'Bugs Fixed'}
                           footerText={null}
                           icon={'trophy'}
-                          iconColor={'#447de6'}
+                          iconColor={theme.colors.main}
                           iconTheme={"filled"}
                           data={
                             [
-                              { id: 1, text: null, progress: 60, color: '#447de6', showInfo: false, status: 'active' },
+                              { id: 1, text: null, progress: 60, color: theme.colors.main, showInfo: false, status: 'active' },
                             ]
                           }
                         />
@@ -353,11 +354,11 @@ class Dashboard extends Component {
                           title={'Feedback'}
                           footerText={null}
                           icon={'smile'}
-                          iconColor={'#34bfa3'}
+                          iconColor={theme.colors.green}
                           iconTheme={"filled"}
                           data={
                             [
-                              { id: 1, text: '90% Positive Reviews', progress: 90, color: '#34bfa3', showInfo: false, status: 'active' },
+                              { id: 1, text: '90% Positive Reviews', progress: 90, color: theme.colors.green, showInfo: false, status: 'active' },
                             ]
                           }
                         />
@@ -365,11 +366,11 @@ class Dashboard extends Component {
                           title={'Tickets'}
                           footerText={null}
                           icon={'question-circle'}
-                          iconColor={'#ff8d38'}
+                          iconColor={theme.colors.orange}
                           iconTheme={"filled"}
                           data={
                             [
-                              { id: 1, text: '60% Tickets Answered', progress: 60, color: '#ff8d38', showInfo: false, status: 'active' },
+                              { id: 1, text: '60% Tickets Answered', progress: 60, color: theme.colors.orange, showInfo: false, status: 'active' },
                             ]
                           }
                         />
@@ -387,12 +388,12 @@ class Dashboard extends Component {
                           title={"Current Tasks"}
                           data={
                             [
-                              { id: 1, title: 'UI Design', description: 'By Ron', color: '#447de6' },
-                              { id: 2, title: 'API Development', description: 'By Susan', color: '#ff8d38' },
-                              { id: 3, title: 'Sales Analysis', description: 'By Allen', color: '#18cb93' },
-                              { id: 4, title: 'A/B Testing', description: 'By Elsie', color: '#8061ef' },    
-                              { id: 5, title: 'User Survey', description: 'By Karen', color: '#447de6' },
-                              { id: 6, title: 'Check Logs', description: 'By John', color: '#ff8d38' },                         
+                              { id: 1, title: 'UI Design', description: 'By Ron', color: theme.colors.main },
+                              { id: 2, title: 'API Development', description: 'By Susan', color: theme.colors.orange },
+                              { id: 3, title: 'Sales Analysis', description: 'By Allen', color: theme.colors.green },
+                              { id: 4, title: 'A/B Testing', description: 'By Elsie', color: theme.colors.purple },    
+                              { id: 5, title: 'User Survey', description: 'By Karen', color: theme.colors.main },
+                              { id: 6, title: 'Check Logs', description: 'By John', color: theme.colors.orange },                         
                             ]
                           }
                         />
@@ -402,9 +403,9 @@ class Dashboard extends Component {
                           title={"Support Tickets"}
                           data={
                             [
-                              { id: 1, title: 'UI Design', description: 'Eu eum volutpat repudiare, ius exerci soleat malorum at. Cibo corpora intellegat eu sea. Veri exerci et sea. Illud aliquip an mei, an civibus dolores contentiones vix, eirmod integre mei at.', date: 'Today', avatar: 'https://randomuser.me/api/portraits/men/32.jpg', color: '#447de6', status: 'pending' },
-                              { id: 2, title: 'API Development', description: 'Ferri labores adversarium ad duo, sed prima soleat et, quo ut facilisi inciderint. Pro ut aliquid suscipit, sit at dicat recusabo. Munere suscipiantur te vix, qui in reque dolore admodum. No civibus facilisis pri.', date: '1 day ago', avatar: 'https://randomuser.me/api/portraits/women/44.jpg', color: '#ff8d38', status: 'open' },
-                              { id: 3, title: 'Sales Analysis', description: 'Duo cetero fastidii placerat cu, in quo nostro referrentur. Te erant invidunt est, per tantas essent te. Et pro dicat delenit. No error vocibus adipisci has, velit appetere has te.', date: '2 weeks ago', avatar: 'https://randomuser.me/api/portraits/men/86.jpg', color: '#18cb93', status: 'complete' },
+                              { id: 1, title: 'UI Design', description: 'Eu eum volutpat repudiare, ius exerci soleat malorum at. Cibo corpora intellegat eu sea. Veri exerci et sea. Illud aliquip an mei, an civibus dolores contentiones vix, eirmod integre mei at.', date: 'Today', avatar: 'https://randomuser.me/api/portraits/men/32.jpg', color: theme.colors.main, status: 'pending' },
+                              { id: 2, title: 'API Development', description: 'Ferri labores adversarium ad duo, sed prima soleat et, quo ut facilisi inciderint. Pro ut aliquid suscipit, sit at dicat recusabo. Munere suscipiantur te vix, qui in reque dolore admodum. No civibus facilisis pri.', date: '1 day ago', avatar: 'https://randomuser.me/api/portraits/women/44.jpg', color: theme.colors.orange, status: 'open' },
+                              { id: 3, title: 'Sales Analysis', description: 'Duo cetero fastidii placerat cu, in quo nostro referrentur. Te erant invidunt est, per tantas essent te. Et pro dicat delenit. No error vocibus adipisci has, velit appetere has te.', date: '2 weeks ago', avatar: 'https://randomuser.me/api/portraits/men/86.jpg', color: theme.colors.green, status: 'complete' },
                             ]
                           }
                         />
@@ -416,8 +417,8 @@ class Dashboard extends Component {
                         title={"Timeline"}
                         data={
                           [
-                            { id: 1, description: 'Lorem ipsum dolor sit amet, wisi decore timeam et vis', color: '#447de6', time: '07:00'},
-                            { id: 2, description: (<span>Lorem ipsum dolor sit amet, <a href="#">wisi decore</a> timeam et vis. Duo cetero fastidii placerat cu, in quo nostro referrentur.</span>), color: '#ff8d38', time: '09:00' },
+                            { id: 1, description: 'Lorem ipsum dolor sit amet, wisi decore timeam et vis', color: theme.colors.main, time: '07:00'},
+                            { id: 2, description: (<span>Lorem ipsum dolor sit amet, <a href="#">wisi decore</a> timeam et vis. Duo cetero fastidii placerat cu, in quo nostro referrentur.</span>), color: theme.colors.orange, time: '09:00' },
                             { id: 3, description: (
                               <span className="flex align-items-center flex-wrap">
                                 <h3 style={{ marginRight: 10 }}>Meeting with</h3>
@@ -425,8 +426,8 @@ class Dashboard extends Component {
                                 <Avatar src="https://randomuser.me/api/portraits/women/21.jpg" />
                                 <Avatar src="https://randomuser.me/api/portraits/women/50.jpg" />
                               </span>
-                            ), color: '#18cb93', time: '11:00', icon: 'schedule' },
-                            { id: 5, description: 'Duo cetero fastidii placerat cu, in quo nostro referrentur. Te erant invidunt est, per tantas essent te. Et pro dicat delenit. No error vocibus adipisci has, velit appetere has te.', color: '#8061ef', time: '03:00' },
+                            ), color: theme.colors.green, time: '11:00', icon: 'schedule' },
+                            { id: 5, description: 'Duo cetero fastidii placerat cu, in quo nostro referrentur. Te erant invidunt est, per tantas essent te. Et pro dicat delenit. No error vocibus adipisci has, velit appetere has te.', color: theme.colors.purple, time: '03:00' },
                             { id: 6, description: (<span>Bug Reported, <a href="#">click here</a> to view detailed report</span>), color: 'red', time: '05:00', icon: 'alert' },
                           ]
                         }
