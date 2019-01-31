@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, List, Tag } from 'antd';
+import { Avatar, Button, List, Tag } from 'antd';
 import IconDropDown from "./IconDropDown";
 
 const TicketListWidget = props => (
@@ -23,7 +23,9 @@ const TicketListWidget = props => (
         <div className="ticket-item border-bottom">
           <List.Item
             actions={[
-              <Tag className="ticket-tag" color={item.color}>{item.status}</Tag>
+              <Tag className="ticket-tag" color={item.color}>
+                {item.status}
+              </Tag>
             ]}
           >
             <List.Item.Meta

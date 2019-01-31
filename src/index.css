@@ -189,7 +189,7 @@ body #root {
 }
 
 .ticket-item {
-  padding-bottom: 12px;
+  padding: 12px 0px 24px 0px;
 }
 
 .ticket-item:last-child {
@@ -207,10 +207,6 @@ body #root {
   margin-top: -10px;
   margin-right: 5px;
   cursor: pointer;
-}
-
-.timeline-item .time, .timeline-item .extra {
-  color: rgba(0, 0, 0, 0.45);
 }
 
 .timeline-item .ant-avatar {

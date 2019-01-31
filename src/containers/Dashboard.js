@@ -195,6 +195,7 @@ class Dashboard extends Component {
                       <ProgressWidget
                         title={'Project Progress'}
                         footerText={'Lorem ipsum dolor sit amet, wisi decore timeam et vis. Vituperata neglegentur definitionem vim in.'}
+                        height={385}
                         icon={null}
                         iconTheme={null}
                         iconColor={null}
