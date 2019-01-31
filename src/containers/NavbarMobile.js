@@ -64,8 +64,8 @@ class NavbarMobile extends Component {
   }
   render() {
     return(
-      <span>
-        <Header className="stkd-navbar">
+      <div style={{width: '100%'}}>
+        <Header className="stkd-navbar" style={{position: 'fixed'}}>
           <Row className={this.state.collapsed ? 'dash-menu-container-mobile' : 'dash-menu-container-mobile open'}>
             {this.state.drawerOpen && (
               <RightDrawer
@@ -142,7 +142,7 @@ class NavbarMobile extends Component {
             </Col>
           </Row>
         )}
-      </span>
+      </div>
     )
   }
 }

@@ -323,7 +323,6 @@ body #root {
 
 #app-sidebar {
   flex-shrink: 0;
-  background: #2c2e3e;
 }
 
 #app-sidebar .top {
@@ -339,6 +338,7 @@ body #root {
 #app-content .app-body {
   padding: 20px;
   overflow-x: hidden;
+  min-width: 320px;
 }
 
 #app-footer {
@@ -982,13 +982,18 @@ i.sort-icon {
 
 /* Sidebar */
 
+#app-sidebar {
+  background: #183a4b;
+}
+
 .stkd-sidebar .logo {
-  background: #282a3c;
+  background: transparent;
   height: 70px;
   padding: 0px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .sidebar-trigger {
@@ -998,14 +1003,53 @@ i.sort-icon {
   transition: color .3s;
 }
 
-.sidebar-trigger:hover {
-  color: #1890ff;
-}
-
 .stkd-sidebar {
-  background: #2c2e3e;
+  height: 100vh;
 }
 
+.stkd-sidebar .ant-menu-inline > .ant-menu-item,
+.stkd-sidebar .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
+.stkd-sidebar .ant-menu-vertical > .ant-menu-item {
+  line-height: 60px;
+  height: 60px;
+}
+.ant-menu-vertical .ant-menu-item:after, .ant-menu-vertical-left .ant-menu-item:after, .ant-menu-vertical-right .ant-menu-item:after, .ant-menu-inline .ant-menu-item:after {
+    border-right: 5px solid #447de6;
+}
+
+.stkd-sidebar .ant-menu-item .anticon, .stkd-sidebar .ant-menu-submenu-title .anticon {
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+
+.stkd-sidebar .ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title,
+.stkd-sidebar .ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title span {
+  display: flex;
+  align-items: center;
+}
+
+.stkd-sidebar.ant-layout-sider {
+  background: #183a4b;
+}
+
+.stkd-sidebar .ant-menu-dark {
+  background: transparent;
+}
+
+.stkd-sidebar .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+  background: #142933;
+}
+
+.stkd-sidebar .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: #0d2e3e;
+}
+
+.stkd-sidebar .ant-menu-dark .ant-menu-sub {
+  background: #183a4b;
+}
+
+/* old sidebar styles */
+/*
 .ant-layout-sider-zero-width > * {
   display: none;
 }
@@ -1118,4 +1162,4 @@ li.ant-menu-item.stkd-dark.menu-item {
 .ant-menu-dark .ant-menu-sub {
   color: #868aa8 !important;
   background: #2c2e3e !important;
-}
+} */
