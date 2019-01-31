@@ -627,10 +627,9 @@ input.ant-input.no-border {
 .stkd-navbar.ant-layout-header {
   background: #fff;
   padding: 0px 25px;
-  box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
   height: 70px;
   line-height: 70px;
-  position: fixed;
   z-index: 1000;
   width: 100%;
   display: flex;
@@ -686,14 +685,9 @@ ul.ant-menu.stkd-menu.ant-menu-light.ant-menu-root.ant-menu-horizontal {
 
 .dash-menu-container {
   display: flex !important;
-  width: calc(100% - 80px);
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0px 25px 0px 0px;
-}
-
-.dash-menu-container.open {
-  width: calc(100% - 255px);
 }
 
 .right-menu-container {
