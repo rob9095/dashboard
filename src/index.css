@@ -1017,9 +1017,24 @@ i.sort-icon {
     border-right: 5px solid #447de6;
 }
 
-.stkd-sidebar .ant-menu-item .anticon, .stkd-sidebar .ant-menu-submenu-title .anticon {
-  border-radius: 10px;
-  font-size: 1.5rem;
+.stkd-sidebar .ant-menu-item .anticon, .stkd-sidebar .ant-menu-submenu-title .anticon,
+.stkd-sidebar .ant-menu-inline-collapsed > .ant-menu-item .anticon,
+.stkd-sidebar .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .anticon {
+  border-radius: 10px; 
+  font-size: 1.4rem;
+}
+
+.stkd-sidebar .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title,
+.stkd-sidebar .ant-menu-inline-collapsed > .ant-menu-item {
+  padding: 0 29px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stkd-sidebar .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title {
+  line-height: 60px;
+  height: 60px;
 }
 
 .stkd-sidebar .ant-menu-dark.ant-menu-inline .ant-menu-item, .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title,
@@ -1037,16 +1052,17 @@ i.sort-icon {
 }
 
 .stkd-sidebar .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background: #142933;
+  background: #0d2e3e;
 }
 
 .stkd-sidebar .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
   background-color: #0d2e3e;
 }
 
-.stkd-sidebar .ant-menu-dark .ant-menu-sub {
-  background: #183a4b;
+.ant-menu-dark .ant-menu-sub {
+  background: #0d2e3e !important;
 }
+
 
 /* old sidebar styles */
 /*

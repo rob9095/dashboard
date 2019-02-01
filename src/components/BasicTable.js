@@ -128,12 +128,16 @@ class BasicTable extends Component {
     switch(text) {
       case 'Update':
       this.edit(rowKey)
+      break;
       case 'Save':
       this.save(form,rowKey)
+      break;
       case 'Cancel':
       this.cancel()
+      break;
       case 'Delete':
       this.delete(rowKey)
+      break;
     }
   } 
 
