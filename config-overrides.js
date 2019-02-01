@@ -11,8 +11,9 @@ module.exports = function override(config, env) {
       "@primary-color": "#447de6",
       "@heading-color": "#0d0d11",
       "@body-background": "#eff2f7",
-      "@text-color": "rgb(121, 126, 152)",
-      "@text-color - secondary": "rgba(121, 126, 152, 0.82)",
+      // "@text-color": "rgb(121, 126, 152)",
+      "@text-color": "#616161",
+      "@text-color - secondary": "rgb(121, 126, 152)"
     },
     javascriptEnabled: true
   })(config, env);

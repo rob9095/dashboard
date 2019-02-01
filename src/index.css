@@ -37,7 +37,7 @@ body #root {
 }
 
 .stkd-content h2 {
-  color: rgba(121, 126, 152, 0.82)
+  /* color: rgba(121, 126, 152, 0.82) */
 }
 
 .contain {
@@ -399,7 +399,7 @@ a:focus {
 
 .ant-form-item {
   /* font-family: 'Roboto', sans-serif !important; */
-  margin-bottom: 1em !important;
+  /* margin-bottom: 1em !important; */
 }
 
 .ant-input {
