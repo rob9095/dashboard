@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Input, InputNumber, Popconfirm, Form } from "antd";
 import IconDropDown from './IconDropDown';
+import mockData from '../data/mockData';
 
 const FormItem = Form.Item;
 const EditableContext = React.createContext();
@@ -65,14 +66,7 @@ class BasicTable extends Component {
     super(props);
     this.state = {
       editingKey: '',
-      data: [
-        {"key":1,"first_name":"Cleon","last_name":"Brave","email":"cbrave0@nhs.uk","location":"51699 Melvin Way"},
-        {"key":2,"first_name":"Gwyneth","last_name":"Snell","email":"gsnell1@si.edu","location":"370 Village Green Center"},
-        {"key":3,"first_name":"Laurel","last_name":"Sparwell","email":"lsparwell2@psu.edu","location":"66 Raven Alley"},
-        {"key":4,"first_name":"Timmie","last_name":"Dumbar","email":"tdumbar3@about.me","location":"0912 Vera Drive"},
-        {"key":5,"first_name":"Buiron","last_name":"Benadette","email":"bbenadette4@tmall.com","location":"64 Calypso Parkway"},
-        {"key":6,"first_name":"John","last_name":"Turnwell","email":"jjturnwell23@tmailed.com","location":"186 Wayco Blvd"}
-      ],
+      data: mockData.tableData,
       columns: [{
         title: 'First Name',
         dataIndex: 'first_name',
@@ -120,9 +114,34 @@ class BasicTable extends Component {
             </EditableContext.Consumer>
           </div>
         ),
-      }]
+      }],
+      pagination: {
+        position: 'bottom',
+        current: 1,
+        total: 0,
+        defaultPageSize: 5,
+        pageSize: 5,
+        hideOnSinglePage: true,
+        showSizeChanger: true,
+        showQuickJumper: true,
+        pageSizeOptions: ['5','10','20','50','100','250'],
+        size: 'small',
+        onChange: (page, pageSize) => {
+          this.updatePagination(page, pageSize)
+        },
+        onShowSizeChange: (page, pageSize) => {
+          this.updatePagination(page, pageSize)
+        },
+      },
     }
   }
+
+  updatePagination = (page,pageSize) => this.setState({
+    pagination: {
+      page,
+      pageSize,
+    }
+  })
 
   handleSelect = ({text, id, rowKey, form}) => {
     switch(text) {
@@ -203,7 +222,7 @@ class BasicTable extends Component {
       <div className={this.props.contain ? 'stkd-content stkd-widget contain' : 'stkd-content stkd-widget'}>
         <Table
           components={components}
-          pagination={this.props.pagination}
+          pagination={this.state.pagination}
           columns={columns}
           dataSource={this.state.data}
           rowClassName="editable-row"

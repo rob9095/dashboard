@@ -18,6 +18,8 @@ import PieChartWidget from '../components/PieChartWidget';
 import TodoWidget from '../components/TodoWidget';
 import TicketListWidget from "../components/TicketListWidget";
 import TimeLineWidget from "../components/TimeLineWidget";
+import BasicWidget from './BasicWidget';
+import IconDropDown from '../components/IconDropDown'
 import theme from '../theme';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -185,6 +187,29 @@ class Dashboard extends Component {
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                   </Breadcrumb>
+                  <Row>
+                    <Col xs={24} sm={24} md={24} lg={8}>
+                      <BasicWidget
+                        title={'Page Views'}
+                        actions={(
+                          <IconDropDown
+                            icon={"ellipsis"}
+                            iconTheme={"outlined"}
+                            iconSize={"2rem"}
+                            dropDownPlacement={"bottomRight"}
+                            noBorder={true}
+                            options={[
+                              { id: 1, text: "Last 7 Days", icon: null, iconTheme: null },
+                              { id: 2, text: "Last 2 Weeks", icon: null, iconTheme: null },
+                              { id: 3, text: "Last Month", icon: null, iconTheme: null }
+                            ]}
+                          />
+                        )}
+                        content={'hi'}
+                        footer={'footer'}
+                      />
+                    </Col>                    
+                  </Row>
                   <Row>
                     <Col xs={24} sm={24} md={24} lg={8}>
                       <ActivityChartWidget
