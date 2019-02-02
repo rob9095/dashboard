@@ -1044,7 +1044,7 @@ i.sort-icon {
 }
 
 .stkd-sidebar.ant-layout-sider {
-  background: #183a4b;
+  background: #2b3a47;
 }
 
 .stkd-sidebar .ant-menu-dark {
@@ -1052,15 +1052,16 @@ i.sort-icon {
 }
 
 .stkd-sidebar .ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  background: #0d2e3e;
+  background:rgba(36, 49, 60, 0.45);
+  box-shadow: none;
 }
 
 .stkd-sidebar .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
-  background-color: #0d2e3e;
+  background-color: #24313c;
 }
 
 .ant-menu-dark .ant-menu-sub {
-  background: #0d2e3e !important;
+  background: rgba(36, 49, 60, 0.45) !important;
 }
 
 
