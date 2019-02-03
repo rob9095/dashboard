@@ -404,6 +404,7 @@ class Dashboard extends Component {
                       <BasicTable
                         pagination={false}
                         contain
+                        accentColor={theme.colors.main}
                       />
                     </Col>
                   </Row>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Pagination } from "antd";
+import { Button, Icon, Table, Input, InputNumber, Popconfirm, Form, Pagination } from "antd";
 import IconDropDown from './IconDropDown';
 import mockData from '../data/mockData';
 
@@ -61,12 +61,14 @@ class EditableCell extends React.Component {
   }
 }
 
+
 class BasicTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       editingKey: '',
+      searchText: '',
       sorter: {},
       data: mockData.tableData,
       columns: [{
@@ -76,13 +78,15 @@ class BasicTable extends Component {
         sorter: true,
         width: 150,
         editable: true,
+        ...this.getColumnSearchProps('first_name')
       }, {
         title: 'Last Name',
         dataIndex: 'last_name',
         key: 'last_name',
         sorter: true,
-        width: 150,
+        width: 50,
         editable: true,
+        ...this.getColumnSearchProps('last_name')
       }, {
         title: 'Address',
         dataIndex: 'location',
@@ -90,6 +94,7 @@ class BasicTable extends Component {
         sorter: true,
         width: 200,
         editable: true,
+        ...this.getColumnSearchProps('location')
       },{
         title: 'Action',
         key: 'action',
@@ -143,6 +148,59 @@ class BasicTable extends Component {
       rowSelection: {},
     }
   }
+
+  handleSearch = (selectedKeys, confirm) => {
+    confirm();
+    this.setState({ searchText: selectedKeys[0] });
+  }
+
+  handleReset = (clearFilters) => {
+    clearFilters();
+    this.setState({ searchText: '' });
+  }
+
+  getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({
+      setSelectedKeys, selectedKeys, confirm, clearFilters,
+    }) => (
+      <div className="stkd-content">
+        <Input
+          ref={node => { this.searchInput = node; }}
+          placeholder={`Search ${this.state.columns.find(c=>c.dataIndex === dataIndex).title}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => this.handleSearch(selectedKeys, confirm)}
+          style={{ width: 188, marginBottom: 8, display: 'block' }}
+        />
+        <Button
+          type="primary"
+          onClick={() => this.handleSearch(selectedKeys, confirm)}
+          icon="search"
+          size="small"
+          style={{ width: 90, marginRight: 8 }}
+        >
+          Search
+        </Button>
+        <Button
+          onClick={() => this.handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
+          Reset
+        </Button>
+      </div>
+    ),
+    filterIcon: filtered => <Icon type="search" style={{ color: filtered ? this.props.accentColor : undefined }} />,
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownVisibleChange: (visible) => {
+      if (visible) {
+        setTimeout(() => this.searchInput.select());
+      }
+    },
+    render: (text) => (
+      <span>{text}</span>
+    ),
+  })
 
   toggle = (key) => this.setState({[key]: !this.state[key]})
 
