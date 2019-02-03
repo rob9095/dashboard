@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form } from "antd";
+import { Table, Input, InputNumber, Popconfirm, Form, Pagination } from "antd";
 import IconDropDown from './IconDropDown';
 import mockData from '../data/mockData';
 
@@ -65,26 +65,31 @@ class BasicTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       editingKey: '',
       data: mockData.tableData,
       columns: [{
         title: 'First Name',
         dataIndex: 'first_name',
         key: 'first_name',
+        width: '25%',
         editable: true,
       }, {
         title: 'Last Name',
         dataIndex: 'last_name',
         key: 'last_name',
+        width: '25%',
         editable: true,
       }, {
         title: 'Address',
         dataIndex: 'location',
         key: 'location',
+        width: '30%',
         editable: true,
       },{
         title: 'Action',
         key: 'action',
+        width: '20%',
         render: (text, record) => (
           <div>
             <EditableContext.Consumer>
@@ -136,12 +141,24 @@ class BasicTable extends Component {
     }
   }
 
-  updatePagination = (page,pageSize) => this.setState({
-    pagination: {
+  toggle = (key) => this.setState({[key]: !this.state[key]})
+
+  updatePagination = (page,pageSize) => {
+    console.log({
       page,
       pageSize,
-    }
-  })
+    })
+    this.toggle('loading')
+    this.setState({
+      pagination: {
+        current: page,
+        pageSize,
+      },
+    })
+    setTimeout(()=>{
+      this.toggle('loading')
+    }, 500)
+  }
 
   handleSelect = ({text, id, rowKey, form}) => {
     switch(text) {
@@ -220,13 +237,17 @@ class BasicTable extends Component {
     });
     return(
       <div className={this.props.contain ? 'stkd-content stkd-widget contain' : 'stkd-content stkd-widget'}>
-        <Table
-          components={components}
-          pagination={this.state.pagination}
-          columns={columns}
-          dataSource={this.state.data}
-          rowClassName="editable-row"
-        />
+        <div className="stkd-table contain">
+          <Table
+            scroll={{y:240}}
+            loading={this.state.loading}
+            components={components}
+            columns={columns}
+            dataSource={this.state.data}
+            rowClassName="editable-row"
+            pagination={this.state.pagination}
+          />
+        </div>
       </div>
     )
   }

@@ -40,6 +40,10 @@ body #root {
   /* color: rgba(121, 126, 152, 0.82) */
 }
 
+.stkd-widget .widget-header .widget-actions button {
+  padding: 0px;
+}
+
 .contain {
   overflow: auto;
 }
@@ -934,6 +938,28 @@ input:checked + .stkd-slider:before {
 }
 
 /* Tables */
+
+.stkd-table .ant-pagination.ant-table-pagination {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.stkd-table .ant-table-fixed-header .ant-table-scroll .ant-table-header {
+  overflow: auto !important;
+  padding-bottom: 18px !important;
+}
+
+.stkd-table .ant-pagination-options {
+  display: flex;
+  margin: 16px 0;
+}
+
+.stkd-table .ant-pagination-options-quick-jumper {
+  display: flex;
+}
 
 .stkd-table.header:hover {
   cursor: pointer;
