@@ -46,7 +46,7 @@ const mockData = {
   {"key":45,"first_name":"Krystalle","last_name":"Birdseye","email":"kbirdseye18@alibaba.com","location":"827 Pine View Junction"},
   {"key":46,"first_name":"Stanislas","last_name":"Schindler","email":"sschindler19@mayoclinic.com","location":"44695 Veith Road"},
   {"key":47,"first_name":"Stanislaw","last_name":"Burkert","email":"sburkert1a@marketwatch.com","location":"10530 Clyde Gallagher Junction"},
-  {"key":48,"first_name":"Sarita","last_name":"enzley","email":"senzley1b@plala.or.jp","location":"30610 Bobwhite Way"},
+  {"key":48,"first_name":"Sarita","last_name":"Enzley","email":"senzley1b@plala.or.jp","location":"30610 Bobwhite Way"},
   {"key":49,"first_name":"Corinna","last_name":"Wickstead","email":"cwickstead1c@cnbc.com","location":"02 Schlimgen Place"},
   {"key":50,"first_name":"Reg","last_name":"Peschka","email":"rpeschka1d@thetimes.co.uk","location":"091 Johnson Road"},
   {"key":51,"first_name":"Arman","last_name":"Middlemist","email":"amiddlemist1e@discovery.com","location":"7785 Eagle Crest Place"},

@@ -948,8 +948,8 @@ input:checked + .stkd-slider:before {
 }
 
 .stkd-table .ant-table-fixed-header .ant-table-scroll .ant-table-header {
-  overflow: auto !important;
-  padding-bottom: 18px !important;
+  overflow: hidden !important;
+  margin-bottom: 0px !important;
 }
 
 .stkd-table .ant-pagination-options {
@@ -957,8 +957,17 @@ input:checked + .stkd-slider:before {
   margin: 16px 0;
 }
 
+.stkd-table th.ant-table-selection-column {
+  display: flex;
+  justify-content: center;
+}
+
 .stkd-table .ant-pagination-options-quick-jumper {
   display: flex;
+}
+
+.stkd-table .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  word-break: normal;
 }
 
 .stkd-table.header:hover {

@@ -67,29 +67,33 @@ class BasicTable extends Component {
     this.state = {
       loading: false,
       editingKey: '',
+      sorter: {},
       data: mockData.tableData,
       columns: [{
         title: 'First Name',
         dataIndex: 'first_name',
         key: 'first_name',
-        width: '25%',
+        sorter: true,
+        width: 150,
         editable: true,
       }, {
         title: 'Last Name',
         dataIndex: 'last_name',
         key: 'last_name',
-        width: '25%',
+        sorter: true,
+        width: 150,
         editable: true,
       }, {
         title: 'Address',
         dataIndex: 'location',
         key: 'location',
-        width: '30%',
+        sorter: true,
+        width: 200,
         editable: true,
       },{
         title: 'Action',
         key: 'action',
-        width: '20%',
+        width: 100,
         render: (text, record) => (
           <div>
             <EditableContext.Consumer>
@@ -97,7 +101,7 @@ class BasicTable extends Component {
                 <IconDropDown
                   icon={'ellipsis'}
                   iconTheme={'outlined'}
-                  dropDownPlacement={'bottomRight'}
+                  dropDownPlacement={'bottomCenter'}
                   iconSize={'1rem'}
                   noBorder
                   options={
@@ -122,8 +126,6 @@ class BasicTable extends Component {
       }],
       pagination: {
         position: 'bottom',
-        current: 1,
-        total: 0,
         defaultPageSize: 5,
         pageSize: 5,
         hideOnSinglePage: true,
@@ -138,16 +140,13 @@ class BasicTable extends Component {
           this.updatePagination(page, pageSize)
         },
       },
+      rowSelection: {},
     }
   }
 
   toggle = (key) => this.setState({[key]: !this.state[key]})
 
   updatePagination = (page,pageSize) => {
-    console.log({
-      page,
-      pageSize,
-    })
     this.toggle('loading')
     this.setState({
       pagination: {
@@ -212,6 +211,22 @@ class BasicTable extends Component {
     this.setState({ editingKey: key });
   }
 
+  handleTableChange = async (pagination,filters,sorter) => {
+    const { order, columnKey } = this.state.sorter
+    if (!sorter.columnKey) {
+      return
+    }
+    this.setState({
+      sorter,
+      data: this.state.data.sort((a,b)=>(
+        sorter.order === 'descend' ? 
+        (a[sorter.columnKey] < b[sorter.columnKey]) ? -1 : (a[sorter.columnKey] > b[sorter.columnKey]) ? 1 : 0
+        :
+        (a[sorter.columnKey] > b[sorter.columnKey]) ? -1 : (a[sorter.columnKey] < b[sorter.columnKey]) ? 1 : 0
+      ))
+    })
+  }
+
   render() {
     const components = {
       body: {
@@ -239,13 +254,15 @@ class BasicTable extends Component {
       <div className={this.props.contain ? 'stkd-content stkd-widget contain' : 'stkd-content stkd-widget'}>
         <div className="stkd-table contain">
           <Table
-            scroll={{y:240}}
+            scroll={{y:240 }}
             loading={this.state.loading}
             components={components}
             columns={columns}
             dataSource={this.state.data}
             rowClassName="editable-row"
             pagination={this.state.pagination}
+            rowSelection={this.state.rowSelection}
+            onChange={this.handleTableChange}
           />
         </div>
       </div>
