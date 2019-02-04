@@ -937,6 +937,28 @@ input:checked + .stkd-slider:before {
   transform: translateX(20px);
 }
 
+/* Mail App */
+.mail-app .mail-nav .menu-item {
+  font-size: 16px;
+  padding: 8px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.mail-app .mail-nav .menu-item i,
+.mail-app .mail-nav .ant-timeline-item-head {
+  font-size: 1.3rem;
+  margin-right: 10px;
+  position: relative;
+}
+
+.mail-app .mail-nav .menu-item .unread {
+  font-weight: 600;
+  position: absolute;
+  right: 20px;
+}
+
+
 /* Tables */
 
 .stkd-table .ant-pagination.ant-table-pagination {

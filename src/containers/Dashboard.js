@@ -21,6 +21,7 @@ import TimeLineWidget from "../components/TimeLineWidget";
 import BasicWidget from './BasicWidget';
 import IconDropDown from '../components/IconDropDown'
 import theme from '../theme';
+import MailApp from './MailApp';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const Color = require('color');
@@ -127,6 +128,10 @@ class Dashboard extends Component {
                 <Icon type="appstore" theme="outlined" />
                 <span>Dashboard</span>
               </Menu.Item>
+              <Menu.Item className="stkd-dark menu-item" key="mail-app">
+                <Icon type="mail" theme="outlined" />
+                <span>Email</span>
+              </Menu.Item>
               <SubMenu
                 className="stkd-dark menu-item"
                 key="orders"
@@ -181,6 +186,9 @@ class Dashboard extends Component {
               <Route exact path="/app/products" render={props => (
                 <ProductTable {...props} />
               )} />
+              <Route exact path="/app/mail-app" render={props => (
+                <MailApp {...props} />
+              )} />              
               <Route exact path="/app" render={props => (
                 <div>
                   <Breadcrumb style={{ margin: '16px 0' }}>
