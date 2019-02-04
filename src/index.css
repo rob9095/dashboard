@@ -961,6 +961,29 @@ input:checked + .stkd-slider:before {
 
 /* Tables */
 
+.stkd-table thead {
+  display: table;
+  table-layout: fixed;
+}
+
+.stkd-table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.stkd-table th.ant-table-selection-column span {
+  margin: 0 auto;
+  width: 16px;
+}
+
+.stkd-table tbody.ant-table-tbody {
+  display: block;
+  width: 100%;
+  table-layout: fixed;
+  overflow: auto;
+}
+
 .stkd-table .ant-pagination.ant-table-pagination {
   width: 100%;
   display: flex;
@@ -979,11 +1002,6 @@ input:checked + .stkd-slider:before {
   margin: 16px 0;
 }
 
-.stkd-table th.ant-table-selection-column {
-  display: flex;
-  justify-content: center;
-}
-
 .stkd-table .ant-pagination-options-quick-jumper {
   display: flex;
 }
@@ -997,9 +1015,9 @@ input:checked + .stkd-slider:before {
   background: #f3f0ff;
 }
 
-.ant-table table th {
+/* .ant-table table th {
   white-space: nowrap;
-}
+} */
 
 @media screen and (max-width: 1800px) {
   .ant-table table tr td.lg-cell {
@@ -1012,11 +1030,16 @@ input:checked + .stkd-slider:before {
 
 .ant-table table th span {
   display: flex;
+  align-items: center;
 }
 
-.ant-table table tr td {
-  white-space: nowrap;
+.ant-table table th.justify-content-center span {
+  justify-content: center;
 }
+
+/* .ant-table table tr td {
+  white-space: nowrap;
+} */
 
 i.sort-icon {
   margin-left: 7px;

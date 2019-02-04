@@ -99,8 +99,9 @@ class BasicTable extends Component {
         title: 'Action',
         key: 'action',
         width: 100,
+        className: 'justify-content-center',
         render: (text, record) => (
-          <div>
+          <div className="flex justify-content-center align-items-center">
             <EditableContext.Consumer>
             {form => (
                 <IconDropDown
