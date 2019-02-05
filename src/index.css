@@ -1016,6 +1016,21 @@ input:checked + .stkd-slider:before {
   margin-top: 12px;
 }
 
+.mail-app .mail-list .mail-search input {
+  border: 0px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.mail-app .mail-list .mail-search input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.mail-app .mail-list .mail-search .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border: 0px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
 /* Tables */
 
 .stkd-table thead {

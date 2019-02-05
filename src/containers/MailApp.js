@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Menu, List, Icon, Avatar } from 'antd';
+import { Row, Col, Button, Menu, List, Icon, Avatar, Input } from 'antd';
 import IconDropDown from '../components/IconDropDown';
 import theme from '../theme';
 import mockData from '../data/mockData';
@@ -29,7 +29,7 @@ class MailApp extends Component {
       >
         <Row
           gutter={0}
-          style={{ border: "2px solid red", height: "100%" }}
+          style={{ border: "2px solid #eee", height: "100%" }}
           type="flex"
         >
           <Col
@@ -39,7 +39,7 @@ class MailApp extends Component {
             md={12}
             lg={12}
             xl={6}
-            style={{ border: "2px solid red" }}
+            style={{ border: "2px solid #eee" }}
           >
             <div className="mail-nav-wrapper flex flex-col justify-content-center full-pad">
               <div
@@ -61,7 +61,13 @@ class MailApp extends Component {
                   ))}
                   <Menu.ItemGroup
                     title={
-                      <div className="flex align-items-center space-between" style={{padding: '0px 0px 0px 16px',fontSize: 16}}>
+                      <div
+                        className="flex align-items-center space-between"
+                        style={{
+                          padding: "0px 0px 0px 16px",
+                          fontSize: 16
+                        }}
+                      >
                         <span>Labels</span>
                         <Button className="no-border">
                           <Icon type="plus" />
@@ -84,25 +90,34 @@ class MailApp extends Component {
             </div>
           </Col>
           <Col
-            className="mail-list contain"
+            className="mail-list"
             xs={24}
             sm={12}
             md={12}
             lg={12}
             xl={6}
-            style={{ border: "2px solid red" }}
+            style={{ border: "2px solid #eee" }}
           >
-            <div className="mail-list-wrapper">
+            <div className="mail-list-wrapper flex flex-col" style={{height: '100%'}}>
+              <div className="mail-search">
+                <Input
+                  prefix={<Icon type="search" />}
+                  placeholder={"Search"}
+                />
+              </div>
               <List
+                className="contain"
                 itemLayout="vertical"
                 size="large"
                 dataSource={mockData.mailData}
                 renderItem={item => (
                   <List.Item
                     key={item.id}
-                    actions={item.file_name && (
-                      [<IconText type="paper-clip" text={item.file_name} />]
-                    )}
+                    actions={
+                      item.file_name && [
+                        <IconText type="paper-clip" text={item.file_name} />
+                      ]
+                    }
                     extra={
                       <IconDropDown
                         icon={"ellipsis"}
@@ -135,7 +150,7 @@ class MailApp extends Component {
                   >
                     <List.Item.Meta
                       avatar={<Avatar src={item.avatar} />}
-                      title={(
+                      title={
                         <div className="mail-title">
                           <span className="mail-author">
                             {`${item.first_name} ${item.last_name}`}
@@ -144,8 +159,12 @@ class MailApp extends Component {
                             {moment(new Date(item.date)).format("ddd, hA")}
                           </span>
                         </div>
-                        )}
-                      description={(<div className="mail-subject"><h5>{item.subject}</h5></div>)}
+                      }
+                      description={
+                        <div className="mail-subject">
+                          <h5>{item.subject}</h5>
+                        </div>
+                      }
                     />
                     {item.content
                       .split(" ")
@@ -165,7 +184,7 @@ class MailApp extends Component {
             md={24}
             lg={24}
             xl={12}
-            style={{ border: "2px solid red" }}
+            style={{ border: "2px solid #eee" }}
           >
             MAIL CONTENT
           </Col>
