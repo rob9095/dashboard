@@ -946,16 +946,21 @@ input:checked + .stkd-slider:before {
 }
 
 /* Mail App */
+
+.mail-app .mail-nav {
+  overflow: auto;
+}
+
 .mail-app .mail-nav .menu-item {
-  font-size: 16px;
-  padding: 8px 0px;
+  font-size: 14px;
+  height: 30px;
   display: flex;
   align-items: center;
 }
 
 .mail-app .mail-nav .menu-item i,
 .mail-app .mail-nav .ant-timeline-item-head {
-  font-size: 1.3rem;
+  font-size: 1rem;
   margin-right: 10px;
   position: relative;
 }
@@ -963,7 +968,7 @@ input:checked + .stkd-slider:before {
 .mail-app .mail-nav .menu-item .unread {
   font-weight: 600;
   position: absolute;
-  right: 20px;
+  right: 16px;
 }
 
 .mail-app .mail-nav .ant-menu-item-group-title {

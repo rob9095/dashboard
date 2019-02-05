@@ -37,7 +37,8 @@ class MailApp extends Component {
             xs={24}
             sm={12}
             md={12}
-            lg={6}
+            lg={12}
+            xl={6}
             style={{ border: "2px solid red" }}
           >
             <div className="mail-nav-wrapper flex flex-col justify-content-center full-pad">
@@ -60,7 +61,7 @@ class MailApp extends Component {
                   ))}
                   <Menu.ItemGroup
                     title={
-                      <div className="flex align-items-center space-between">
+                      <div className="flex align-items-center space-between" style={{padding: '0px 0px 0px 16px',fontSize: 16}}>
                         <span>Labels</span>
                         <Button className="no-border">
                           <Icon type="plus" />
@@ -87,7 +88,8 @@ class MailApp extends Component {
             xs={24}
             sm={12}
             md={12}
-            lg={6}
+            lg={12}
+            xl={6}
             style={{ border: "2px solid red" }}
           >
             <div className="mail-list-wrapper">
@@ -159,9 +161,10 @@ class MailApp extends Component {
           <Col
             className="mail-content"
             xs={24}
-            sm={12}
-            md={12}
-            lg={12}
+            sm={24}
+            md={24}
+            lg={24}
+            xl={12}
             style={{ border: "2px solid red" }}
           >
             MAIL CONTENT
