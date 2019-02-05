@@ -48,7 +48,7 @@ body #root {
   overflow: auto;
 }
 
-.contain::-webkit-scrollbar{
+/* .contain::-webkit-scrollbar{
   background-color: transparent;
   width: 10px;
 }
@@ -60,7 +60,7 @@ body #root {
 .contain::-webkit-scrollbar-thumb{
   background-color: rgba(89, 89, 89,.3);
   border-radius: 30px;
-}
+} */
 
 .icon {
   color: #716aca;
@@ -742,6 +742,14 @@ ul.ant-menu.stkd-menu.ant-menu-light.ant-menu-root.ant-menu-horizontal {
 }
 
 
+/* Button Overides */
+.ant-btn.no-border {
+  border: 0px;
+  box-shadow: none;
+  border-radius: 20px;
+}
+
+
 /* Reset Password Form */
 
 .reset-pass-form {
@@ -958,6 +966,50 @@ input:checked + .stkd-slider:before {
   right: 20px;
 }
 
+.mail-app .mail-nav .ant-menu-item-group-title {
+  padding: 10px 0px;
+}
+
+.mail-app .mail-list .ant-list-vertical .ant-list-item-extra {
+  position: absolute;
+  right: 0px;
+}
+
+.mail-app .mail-list .ant-list-item {
+  padding: 24px 12px;
+  cursor: pointer;
+}
+
+.mail-app .mail-list .ant-list-item:hover {
+  background: rgba(0, 0, 0, .03);
+}
+
+.mail-app .mail-list .ant-list-item .mail-title .mail-date {
+  font-size: 10px;
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.mail-app .mail-list .ant-list-item .ant-list-item-meta-title {
+  margin-bottom: 0px;
+}
+
+.mail-app .mail-list .ant-list-item .ant-list-item-meta {
+  margin-bottom: 5px;
+}
+
+.mail-app .mail-list .ant-list-item .ant-list-item-content {
+  margin-bottom: 0px;
+}
+
+.mail-app .mail-list .ant-list-item .mail-subject {
+  text-transform: capitalize;
+  font-size: 15px;
+}
+
+.mail-app .mail-list .ant-list-item .ant-list-item-action {
+  margin-top: 12px;
+}
 
 /* Tables */
 
