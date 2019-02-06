@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button, Menu, List, Icon, Avatar, Input } from "antd";
-import IconDropDown from "../components/IconDropDown";
+import { Row, Col, Button, Menu, Icon, Avatar } from "antd";
 import theme from "../theme";
 import mockData from "../data/mockData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,21 +9,16 @@ import {
   faAngleDown,
   faLongArrowAltRight,
 } from "@fortawesome/free-solid-svg-icons";
+import MailList from "../components/MailList";
 
 const ButtonGroup = Button.Group;
 const moment = require("moment");
-
-const IconText = ({ type, text }) => (
-  <span className="mail-attachment">
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
 
 class MailApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: mockData.mailData,
       navList: [
         { id: 1, text: "Inbox", icon: "inbox", unread: 4 },
         { id: 2, text: "Drafts", icon: "edit" },
@@ -44,7 +38,7 @@ class MailApp extends Component {
     return (
       <div
         className="stkd-content stkd-widget mail-app"
-        style={{ height: "calc(100vh - 170px)" }}
+        style={{ height: "calc(100vh - 150px)" }}
       >
         <Row
           gutter={0}
@@ -54,10 +48,10 @@ class MailApp extends Component {
           <Col
             className="mail-nav"
             xs={24}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={6}
+            sm={8}
+            md={8}
+            lg={8}
+            xl={5}
             style={{ border: "2px solid #eee" }}
           >
             <div className="mail-nav-wrapper flex flex-col justify-content-center full-pad contain">
@@ -111,101 +105,22 @@ class MailApp extends Component {
           <Col
             className="mail-list"
             xs={24}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={6}
+            sm={16}
+            md={16}
+            lg={16}
+            xl={7}
             style={{ border: "2px solid #eee" }}
           >
-            <div
-              className="mail-list-wrapper flex flex-col"
-              style={{ height: "100%" }}
-            >
-              <div className="mail-search">
-                <Input
-                  prefix={<Icon type="search" />}
-                  placeholder={"Search"}
-                />
-              </div>
-              <List
-                className="contain"
-                itemLayout="vertical"
-                size="large"
-                dataSource={mockData.mailData}
-                renderItem={item => (
-                  <List.Item
-                    key={item.id}
-                    actions={
-                      item.file_name && [
-                        <IconText type="paper-clip" text={item.file_name} />
-                      ]
-                    }
-                    extra={
-                      <IconDropDown
-                        icon={"ellipsis"}
-                        iconTheme={"outlined"}
-                        iconSize={"1.2rem"}
-                        dropDownPlacement={"bottomRight"}
-                        noBorder={true}
-                        backgroundColor={'transparent'}
-                        options={[
-                          {
-                            id: 1,
-                            text: "Last 7 Days",
-                            icon: null,
-                            iconTheme: null
-                          },
-                          {
-                            id: 2,
-                            text: "Last 2 Weeks",
-                            icon: null,
-                            iconTheme: null
-                          },
-                          {
-                            id: 3,
-                            text: "Last Month",
-                            icon: null,
-                            iconTheme: null
-                          }
-                        ]}
-                      />
-                    }
-                  >
-                    <List.Item.Meta
-                      avatar={<Avatar src={item.avatar} />}
-                      title={
-                        <div className="mail-title">
-                          <span className="mail-author">
-                            {`${item.first_name} ${item.last_name}`}
-                          </span>
-                          <span className="mail-date">
-                            {moment(new Date(item.date)).format("ddd, hA")}
-                          </span>
-                        </div>
-                      }
-                      description={
-                        <div className="mail-subject">
-                          <h5>{item.subject}</h5>
-                        </div>
-                      }
-                    />
-                    {item.content
-                      .split(" ")
-                      .filter((w, i) => i <= 15)
-                      .map((w, i, a) =>
-                        i === a.length - 1 ? w + "..." : w + " "
-                      )}
-                  </List.Item>
-                )}
-              />
-            </div>
+            <MailList
+              data={this.state.data}
+            />
           </Col>
           <Col
             className="mail-content"
-            xs={24}
-            sm={24}
-            md={24}
-            lg={24}
+            xs={0}
+            sm={0}
+            md={0}
+            lg={0}
             xl={12}
             style={{ border: "2px solid #eee" }}
           >
