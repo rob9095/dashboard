@@ -1,9 +1,17 @@
-import React, { Component } from 'react';
-import { Row, Col, Button, Menu, List, Icon, Avatar, Input } from 'antd';
-import IconDropDown from '../components/IconDropDown';
-import theme from '../theme';
-import mockData from '../data/mockData';
+import React, { Component } from "react";
+import { Row, Col, Card, Button, Menu, List, Icon, Avatar, Input } from "antd";
+import IconDropDown from "../components/IconDropDown";
+import theme from "../theme";
+import mockData from "../data/mockData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faReply,
+  faReplyAll,
+  faAngleDown,
+  faLongArrowAltRight
+} from "@fortawesome/free-solid-svg-icons";
 
+const ButtonGroup = Button.Group;
 const moment = require("moment");
 
 const IconText = ({ type, text }) => (
@@ -15,11 +23,22 @@ const IconText = ({ type, text }) => (
 
 class MailApp extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      navList: [{id:1,text:'Inbox',icon: 'inbox',unread: 4},{id:2,text:'Drafts',icon:'edit'},{id:3,text:'Important',icon: 'flag',unread: 10},{id:4,text:'Sent',icon:'export'},{id:5,text:'Deleted',icon:'delete'}],
-      labelList: [{id:6,text:'Personal',color: theme.colors.main,unread: 14},{id:7,text:'Family',color:theme.colors.purple, unread: 18},{id:8,text:'Friends',color:theme.colors.orange,unread: 10},{id:9,text:'Work',color:theme.colors.green,unread: 21},],
-    }
+      navList: [
+        { id: 1, text: "Inbox", icon: "inbox", unread: 4 },
+        { id: 2, text: "Drafts", icon: "edit" },
+        { id: 3, text: "Important", icon: "flag", unread: 10 },
+        { id: 4, text: "Sent", icon: "export" },
+        { id: 5, text: "Deleted", icon: "delete" }
+      ],
+      labelList: [
+        { id: 6, text: "Personal", color: theme.colors.main, unread: 14 },
+        { id: 7, text: "Family", color: theme.colors.purple, unread: 18 },
+        { id: 8, text: "Friends", color: theme.colors.orange, unread: 10 },
+        { id: 9, text: "Work", color: theme.colors.green, unread: 21 }
+      ]
+    };
   }
   render() {
     return (
@@ -98,7 +117,10 @@ class MailApp extends Component {
             xl={6}
             style={{ border: "2px solid #eee" }}
           >
-            <div className="mail-list-wrapper flex flex-col" style={{height: '100%'}}>
+            <div
+              className="mail-list-wrapper flex flex-col"
+              style={{ height: "100%" }}
+            >
               <div className="mail-search">
                 <Input
                   prefix={<Icon type="search" />}
@@ -186,7 +208,100 @@ class MailApp extends Component {
             xl={12}
             style={{ border: "2px solid #eee" }}
           >
-            MAIL CONTENT
+            <div className="mail-content half-pad">
+              <div className="mail-content-header flex space-between align-items-center">
+                <span>
+                  {moment(new Date(mockData.mailData[0].date)).format(
+                    "dddd, MMMM Do YYYY, h:mm A"
+                  )}
+                </span>
+                <div className="flex align-items-center">
+                  <ButtonGroup>
+                    <Button>
+                      <FontAwesomeIcon icon={faReply} />
+                    </Button>
+                    <Button>
+                      <FontAwesomeIcon icon={faReplyAll} />
+                    </Button>
+                    <Button>
+                      <FontAwesomeIcon icon={faLongArrowAltRight} />
+                    </Button>
+                    <Button>
+                      <FontAwesomeIcon icon={faAngleDown} />
+                    </Button>
+                  </ButtonGroup>
+                </div>
+              </div>
+              <div className="mail-from flex align-items-center">
+                <div className="mail-from-avatar">
+                  <Avatar src={mockData.mailData[0].avatar} />
+                </div>
+                <div className="half-pad">
+                  <div className="mail-from-details flex flex-col">
+                    <span className="mail-from-contact flex">
+                      <h4>{mockData.mailData[0].first_name + " " + mockData.mailData[0].last_name}</h4>
+                      <span style={{marginLeft: 10}}>{"<"}{mockData.mailData[0].email_address}{">"}</span>
+                    </span>
+                    <span className="mail-to-contact">
+                      to
+                      <strong> me </strong>
+                      <FontAwesomeIcon size={"xs"} icon={faAngleDown} />
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <h1 style={{textTransform: 'capitalize'}}>{mockData.mailData[0].subject}</h1>
+              <p style={{margin: '24px 0px 34px 0px', lineHeight: '25px'}}>{mockData.mailData[0].content}</p>
+              <div
+                className="flex align-items-center"
+                style={{
+                  padding: "0px 10px 0px 10px",
+                  borderRadius: 5,
+                  border: "1px solid #d9d9d9",
+                  maxWidth: "200px"
+                }}
+              >
+                <div>
+                  <Icon type="paper-clip" style={{ fontSize: "2rem" }} />
+                </div>
+                <div className="half-pad">
+                  <div className="file-info flex flex-col">
+                    <h4 className="file-name">filename.png</h4>
+                    <span className="file-size" style={{ fontSize: 12 }}>
+                      78 kb
+                    </span>
+                  </div>
+                  <div
+                    className="file-options"
+                    style={{ marginTop: ".5em" }}
+                  >
+                    <Icon
+                      type="download"
+                      style={{ marginRight: 10, fontSize: "1rem" }}
+                    />
+                    <Icon
+                      type="eye"
+                      style={{ marginRight: 10, fontSize: "1rem" }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="flex align-items center"
+                style={{ marginTop: 24 }}
+              >
+                <Button
+                  type="primary"
+                  size="large"
+                  style={{ fontWeight: 600, marginRight: 10 }}
+                >
+                  <FontAwesomeIcon icon={faReply} /> Reply
+                </Button>
+                <Button size="large" style={{ fontWeight: "bold" }}>
+                  <FontAwesomeIcon icon={faLongArrowAltRight} /> Foward
+                </Button>
+              </div>
+            </div>
           </Col>
         </Row>
       </div>
@@ -194,4 +309,4 @@ class MailApp extends Component {
   }
 }
 
-export default MailApp
+export default MailApp;
