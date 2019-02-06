@@ -8,7 +8,7 @@ import {
   faReply,
   faReplyAll,
   faAngleDown,
-  faLongArrowAltRight
+  faLongArrowAltRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 const ButtonGroup = Button.Group;
@@ -60,7 +60,7 @@ class MailApp extends Component {
             xl={6}
             style={{ border: "2px solid #eee" }}
           >
-            <div className="mail-nav-wrapper flex flex-col justify-content-center full-pad">
+            <div className="mail-nav-wrapper flex flex-col justify-content-center full-pad contain">
               <div
                 className="flex align-items-center justify-content-center"
                 style={{ padding: "0px 14px 14px 14px" }}
@@ -211,7 +211,7 @@ class MailApp extends Component {
           >
             <div className="mail-content half-pad">
               <div className="mail-content-header flex space-between align-items-center">
-                <span>
+                <span style={{ fontSize: 12 }}>
                   {moment(new Date(mockData.mailData[0].date)).format(
                     "dddd, MMMM Do YYYY, h:mm A"
                   )}
