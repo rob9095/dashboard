@@ -46,6 +46,7 @@ class PieChartWidget extends Component {
                 iconSize={'2rem'}
                 dropDownPlacement={'bottomRight'}
                 noBorder={true}
+                buttonStyles={{ paddingRight: 0 }}
                 options={
                   [
                     { id: 1, text: "Today", icon: null, iconTheme: null },

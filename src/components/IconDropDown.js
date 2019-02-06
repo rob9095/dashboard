@@ -14,16 +14,16 @@ const IconDropDown = (props) => {
       )}
     </Menu>
   );
-  const styles = {
-    background: props.backgroundColor,
-  }
   return (
-    <div style={{ marginBottom: '.5em' }}>
-      <Dropdown overlay={menu} placement={props.dropDownPlacement}>
+      <Dropdown
+        overlay={menu}
+        placement={props.dropDownPlacement}
+        style={{ marginBottom: ".5em" }}
+      >
         <Button
           size={props.size}
-          className={props.noBorder ? "no-border flex-i" : "flex-i"}
-          style={styles}
+          className={props.noBorder ? "no-border" : null}
+          style={props.buttonStyles}
         >
           {props.text}
           {props.icon && (
@@ -31,14 +31,13 @@ const IconDropDown = (props) => {
               type={props.icon}
               theme={props.iconTheme}
               style={{
-                fontSize: props.iconSize,
+                fontSize: props.iconSize
               }}
             />
           )}
         </Button>
       </Dropdown>
-    </div>
-  )
+  );
 }
 
 export default IconDropDown;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Menu, Icon, Avatar } from "antd";
+import { Row, Col, Button, Menu, Icon, Avatar, Dropdown } from "antd";
 import theme from "../theme";
 import mockData from "../data/mockData";
+import IconDropDown from '../components/IconDropDown';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faReply,
@@ -10,6 +11,14 @@ import {
   faLongArrowAltRight,
 } from "@fortawesome/free-solid-svg-icons";
 import MailList from "../components/MailList";
+
+const menu = (
+  <Menu>
+    <Menu.Item key="1">1st item</Menu.Item>
+    <Menu.Item key="2">2nd item</Menu.Item>
+    <Menu.Item key="3">3rd item</Menu.Item>
+  </Menu>
+);
 
 const ButtonGroup = Button.Group;
 const moment = require("moment");
@@ -111,9 +120,7 @@ class MailApp extends Component {
             xl={7}
             style={{ border: "2px solid #eee" }}
           >
-            <MailList
-              data={this.state.data}
-            />
+            <MailList data={this.state.data} />
           </Col>
           <Col
             className="mail-content"
@@ -132,7 +139,7 @@ class MailApp extends Component {
                   )}
                 </span>
                 <div className="flex align-items-center">
-                  <ButtonGroup>
+                  {/* <ButtonGroup>
                     <Button>
                       <FontAwesomeIcon icon={faReply} />
                     </Button>
@@ -145,6 +152,45 @@ class MailApp extends Component {
                     <Button>
                       <FontAwesomeIcon icon={faAngleDown} />
                     </Button>
+                  </ButtonGroup> */}
+                  <ButtonGroup>
+                    <Button>
+                      <Icon type="left" />
+                    </Button>
+                    <Button>
+                      <Icon type="right" />
+                    </Button>
+                    {/* <Dropdown overlay={menu} placement={"bottomRight"}>
+                      <Button>
+                        <Icon type="down" style={{fontSize: 15}} />
+                      </Button>
+                    </Dropdown> */}
+                    <IconDropDown
+                      icon={"down"}
+                      iconTheme={"outlined"}
+                      iconSize={"15px"}
+                      dropDownPlacement={"bottomRight"}
+                      options={[
+                        {
+                          id: 1,
+                          text: "Reply",
+                          icon: null,
+                          iconTheme: null
+                        },
+                        {
+                          id: 2,
+                          text: "Foward",
+                          icon: null,
+                          iconTheme: null
+                        },
+                        {
+                          id: 3,
+                          text: "Delete",
+                          icon: null,
+                          iconTheme: null
+                        }
+                      ]}
+                    />
                   </ButtonGroup>
                 </div>
               </div>
@@ -155,8 +201,16 @@ class MailApp extends Component {
                 <div className="half-pad">
                   <div className="mail-from-details flex flex-col">
                     <span className="mail-from-contact flex">
-                      <h4>{mockData.mailData[0].first_name + " " + mockData.mailData[0].last_name}</h4>
-                      <span style={{marginLeft: 10}}>{"<"}{mockData.mailData[0].email_address}{">"}</span>
+                      <h4>
+                        {mockData.mailData[0].first_name +
+                          " " +
+                          mockData.mailData[0].last_name}
+                      </h4>
+                      <span style={{ marginLeft: 10 }}>
+                        {"<"}
+                        {mockData.mailData[0].email_address}
+                        {">"}
+                      </span>
                     </span>
                     <span className="mail-to-contact">
                       to
@@ -166,8 +220,14 @@ class MailApp extends Component {
                   </div>
                 </div>
               </div>
-              <h1 style={{textTransform: 'capitalize'}}>{mockData.mailData[0].subject}</h1>
-              <p style={{margin: '24px 0px 34px 0px', lineHeight: '25px'}}>{mockData.mailData[0].content}</p>
+              <h1 style={{ textTransform: "capitalize" }}>
+                {mockData.mailData[0].subject}
+              </h1>
+              <p
+                style={{ margin: "24px 0px 34px 0px", lineHeight: "25px" }}
+              >
+                {mockData.mailData[0].content}
+              </p>
               <div
                 className="flex align-items-center"
                 style={{

@@ -12,6 +12,7 @@ const TimeLineWidget = props => (
         iconSize={"2rem"}
         dropDownPlacement={"bottomRight"}
         noBorder={true}
+        buttonStyles={{ paddingRight: 0 }}
         options={[
           { id: 1, text: "Last 7 Days", icon: null, iconTheme: null },
           { id: 2, text: "Last 2 Weeks", icon: null, iconTheme: null },
