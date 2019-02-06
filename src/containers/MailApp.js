@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Menu, Icon, Avatar, Tag } from "antd";
+import { Row, Col, Button, Menu, Icon, Avatar, Tag, Tooltip } from "antd";
 import theme from "../theme";
 import mockData from "../data/mockData";
 import IconDropDown from '../components/IconDropDown';
@@ -29,10 +29,10 @@ class MailApp extends Component {
         { id: 6, text: "Deleted", icon: "delete" }
       ],
       labelList: [
-        { id: 7, text: "Personal", color: theme.colors.main, unread: 14 },
-        { id: 8, text: "Family", color: theme.colors.purple, unread: 18 },
-        { id: 9, text: "Friends", color: theme.colors.orange, unread: 10 },
-        { id: 10, text: "Work", color: theme.colors.green, unread: 21 }
+        { id: 7, text: "Personal", color: theme.colors.main, icon: "user", unread: 14 },
+        { id: 8, text: "Family", color: theme.colors.purple, icon: "home", unread: 18 },
+        { id: 9, text: "Friends", color: theme.colors.orange, icon: "team", unread: 10 },
+        { id: 10, text: "Work", color: theme.colors.green, icon: "laptop", unread: 21 }
       ]
     };
   }
@@ -56,10 +56,10 @@ class MailApp extends Component {
             xl={5}
             style={{ border: "2px solid #eee" }}
           >
-            <div className="mail-nav-wrapper flex flex-col justify-content-center full-pad contain">
+            <div className="mail-nav-wrapper flex flex-col justify-content-center contain full-pad" style={{paddingTop: 0}}>
               <div
                 className="flex align-items-center justify-content-center"
-                style={{ padding: "0px 14px 14px 14px" }}
+                style={{height: 60}}
               >
                 <Button block type="primary" size="large">
                   New Message
@@ -128,12 +128,16 @@ class MailApp extends Component {
               <div className="mail-content-header flex space-between align-items-center" style={{minHeight: 40}}>
                 <div>
                   <ButtonGroup>
-                    <Button>
-                      <Icon type="star" />
-                    </Button>
-                    <Button>
-                      <Icon type="warning" />
-                    </Button>
+                    <Tooltip title={"Important"}>
+                      <Button>
+                        <Icon type="star" />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title={"Report Spam"}>
+                      <Button>
+                        <Icon type="warning" />
+                      </Button>
+                    </Tooltip>
                     <IconDropDown
                       icon={"folder-open"}
                       iconTheme={"outlined"}
@@ -142,14 +146,14 @@ class MailApp extends Component {
                         {
                           id: 5,
                           text: "Move to",
-                          icon: 'retweet',
+                          icon: 'folder-add',
                           iconTheme: null,
-                          subMenuOptions: [{ id: 1, text: 'Unread' }, { id: 2, text: 'Important' }, { id: 3, text: 'Spam' }],
+                          subMenuOptions: [{ id: 1, text: 'Unread', icon: 'eye' }, { id: 2, text: 'Important', icon: 'star', }, { id: 3, text: 'Spam', icon: 'warning' }],
                         },
                         {
                           id: 6,
                           text: "Label as",
-                          icon: 'folder-add',
+                          icon: 'plus-circle',
                           iconTheme: null,
                           subMenuOptions: this.state.labelList,
                         },
@@ -174,12 +178,16 @@ class MailApp extends Component {
                     </Button>
                   </ButtonGroup> */}
                   <ButtonGroup>
-                    <Button>
-                      <Icon type="left" />
-                    </Button>
-                    <Button>
-                      <Icon type="right" />
-                    </Button>
+                    <Tooltip title={"Older"}>
+                      <Button>
+                        <Icon type="left" />
+                      </Button>
+                    </Tooltip>
+                    <Tooltip title={"Newer"}>
+                      <Button>
+                        <Icon type="right" />
+                      </Button>
+                    </Tooltip>
                     <IconDropDown
                       icon={"down"}
                       iconTheme={"outlined"}
