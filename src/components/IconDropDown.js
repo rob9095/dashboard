@@ -1,16 +1,57 @@
 import React from 'react';
 import { Menu, Dropdown, Icon, Button } from 'antd';
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 const IconDropDown = (props) => {
   const menu = (
     <Menu>
       {props.options.map(item =>
-        <Menu.Item key={item.id} onClick={() => props.onSelect && props.onSelect({text:item.text, id: item.id, rowKey: item.rowKey})}>
-          {item.icon && (
-            <Icon type={item.icon} theme={item.iconTheme} />
-          )}
-          {item.text}
-        </Menu.Item>
+        item.subMenuOptions ? (
+          <SubMenu
+            key={item.id}
+            title={
+              <span>
+                <Icon type={item.icon} theme={item.iconTheme} style={{marginRight: 8}} />
+                {item.text}
+              </span>
+            }
+          >
+            {item.subMenuOptions.map(subItem => (
+              <Menu.Item
+                key={subItem.id}
+                onClick={() =>
+                  props.onSelect &&
+                  props.onSelect({
+                    text: subItem.text,
+                    id: subItem.id,
+                    rowKey: subItem.rowKey
+                  })
+                }
+              >
+                {subItem.icon && (
+                  <Icon type={subItem.icon} theme={subItem.iconTheme} />
+                )}
+                {subItem.text}
+              </Menu.Item>
+            ))}
+          </SubMenu>
+        ) : (
+          <Menu.Item
+            key={item.id}
+            onClick={() =>
+              props.onSelect &&
+              props.onSelect({
+                text: item.text,
+                id: item.id,
+                rowKey: item.rowKey
+              })
+            }
+          >
+            {item.icon && <Icon type={item.icon} theme={item.iconTheme} />}
+            {item.text}
+          </Menu.Item>
+        )
       )}
     </Menu>
   );

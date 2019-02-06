@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Menu, Icon, Avatar, Dropdown } from "antd";
+import { Row, Col, Button, Menu, Icon, Avatar, Tag } from "antd";
 import theme from "../theme";
 import mockData from "../data/mockData";
 import IconDropDown from '../components/IconDropDown';
@@ -12,14 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import MailList from "../components/MailList";
 
-const menu = (
-  <Menu>
-    <Menu.Item key="1">1st item</Menu.Item>
-    <Menu.Item key="2">2nd item</Menu.Item>
-    <Menu.Item key="3">3rd item</Menu.Item>
-  </Menu>
-);
-
 const ButtonGroup = Button.Group;
 const moment = require("moment");
 
@@ -30,16 +22,17 @@ class MailApp extends Component {
       data: mockData.mailData,
       navList: [
         { id: 1, text: "Inbox", icon: "inbox", unread: 4 },
-        { id: 2, text: "Drafts", icon: "edit" },
-        { id: 3, text: "Important", icon: "flag", unread: 10 },
+        { id: 2, text: "Drafts", icon: "save" },
+        { id: 3, text: "Important", icon: "star", unread: 10 },
         { id: 4, text: "Sent", icon: "export" },
-        { id: 5, text: "Deleted", icon: "delete" }
+        { id: 5, text: "Spam", icon: "warning" },
+        { id: 6, text: "Deleted", icon: "delete" }
       ],
       labelList: [
-        { id: 6, text: "Personal", color: theme.colors.main, unread: 14 },
-        { id: 7, text: "Family", color: theme.colors.purple, unread: 18 },
-        { id: 8, text: "Friends", color: theme.colors.orange, unread: 10 },
-        { id: 9, text: "Work", color: theme.colors.green, unread: 21 }
+        { id: 7, text: "Personal", color: theme.colors.main, unread: 14 },
+        { id: 8, text: "Family", color: theme.colors.purple, unread: 18 },
+        { id: 9, text: "Friends", color: theme.colors.orange, unread: 10 },
+        { id: 10, text: "Work", color: theme.colors.green, unread: 21 }
       ]
     };
   }
@@ -132,12 +125,39 @@ class MailApp extends Component {
             style={{ border: "2px solid #eee" }}
           >
             <div className="mail-content half-pad">
-              <div className="mail-content-header flex space-between align-items-center">
-                <span style={{ fontSize: 12 }}>
-                  {moment(new Date(mockData.mailData[0].date)).format(
-                    "dddd, MMMM Do YYYY, h:mm A"
-                  )}
-                </span>
+              <div className="mail-content-header flex space-between align-items-center" style={{minHeight: 40}}>
+                <div>
+                  <ButtonGroup>
+                    <Button>
+                      <Icon type="star" />
+                    </Button>
+                    <Button>
+                      <Icon type="warning" />
+                    </Button>
+                    <IconDropDown
+                      icon={"folder-open"}
+                      iconTheme={"outlined"}
+                      iconSize={"16px"}
+                      options={[
+                        {
+                          id: 5,
+                          text: "Move to",
+                          icon: 'retweet',
+                          iconTheme: null,
+                          subMenuOptions: [{ id: 1, text: 'Unread' }, { id: 2, text: 'Important' }, { id: 3, text: 'Spam' }],
+                        },
+                        {
+                          id: 6,
+                          text: "Label as",
+                          icon: 'folder-add',
+                          iconTheme: null,
+                          subMenuOptions: this.state.labelList,
+                        },
+                      ]}
+                    />
+                  </ButtonGroup>
+                </div>
+                <Tag color={theme.colors.main}>Inbox</Tag>
                 <div className="flex align-items-center">
                   {/* <ButtonGroup>
                     <Button>
@@ -160,39 +180,59 @@ class MailApp extends Component {
                     <Button>
                       <Icon type="right" />
                     </Button>
-                    {/* <Dropdown overlay={menu} placement={"bottomRight"}>
-                      <Button>
-                        <Icon type="down" style={{fontSize: 15}} />
-                      </Button>
-                    </Dropdown> */}
                     <IconDropDown
                       icon={"down"}
                       iconTheme={"outlined"}
-                      iconSize={"15px"}
+                      iconSize={"16px"}
                       dropDownPlacement={"bottomRight"}
                       options={[
                         {
                           id: 1,
                           text: "Reply",
-                          icon: null,
+                          icon: 'vertical-right',
                           iconTheme: null
                         },
                         {
                           id: 2,
-                          text: "Foward",
-                          icon: null,
+                          text: "Reply All",
+                          icon: 'double-left',
                           iconTheme: null
                         },
                         {
                           id: 3,
+                          text: "Foward",
+                          icon: 'arrow-right',
+                          iconTheme: null
+                        },
+                        {
+                          id: 4,
+                          text: "Print",
+                          icon: 'printer',
+                          iconTheme: null
+                        },
+                        {
+                          id: 5,
+                          text: "Save Draft",
+                          icon: 'save',
+                          iconTheme: null
+                        },
+                        {
+                          id: 6,
                           text: "Delete",
-                          icon: null,
+                          icon: 'delete',
                           iconTheme: null
                         }
                       ]}
                     />
                   </ButtonGroup>
                 </div>
+              </div>
+              <div className="flex align-items-center space-between" style={{marginTop: 10}}>
+                <span style={{ fontSize: 12 }}>
+                  {moment(new Date(mockData.mailData[0].date)).format(
+                    "dddd, MMMM Do YYYY, h:mm A"
+                  )}
+                </span>
               </div>
               <div className="mail-from flex align-items-center">
                 <div className="mail-from-avatar">
@@ -238,7 +278,7 @@ class MailApp extends Component {
                 }}
               >
                 <div>
-                  <Icon type="paper-clip" style={{ fontSize: "2rem" }} />
+                  <Icon type="file-text" style={{ fontSize: "2rem" }} />
                 </div>
                 <div className="half-pad">
                   <div className="file-info flex flex-col">
@@ -251,14 +291,16 @@ class MailApp extends Component {
                     className="file-options"
                     style={{ marginTop: ".5em" }}
                   >
+                  <Button className="no-border" style={{fontSize: "1rem", padding: 5,marginRight: 5}}>
                     <Icon
                       type="download"
-                      style={{ marginRight: 10, fontSize: "1rem" }}
                     />
+                  </Button>
+                  <Button className="no-border" style={{fontSize: "1rem", padding: 5,marginRight: 5}}>
                     <Icon
                       type="eye"
-                      style={{ marginRight: 10, fontSize: "1rem" }}
                     />
+                  </Button>
                   </div>
                 </div>
               </div>
