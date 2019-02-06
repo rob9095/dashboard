@@ -147,6 +147,7 @@ class MailApp extends Component {
                         iconSize={"1.2rem"}
                         dropDownPlacement={"bottomRight"}
                         noBorder={true}
+                        backgroundColor={'transparent'}
                         options={[
                           {
                             id: 1,
