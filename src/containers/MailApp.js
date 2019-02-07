@@ -1,31 +1,36 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Menu, Icon } from "antd";
+import { Row, Col } from "antd";
 import theme from "../theme";
 import mockData from "../data/mockData";
 import MailList from "../components/MailList";
 import MailContent from "../components/MailContent";
+import MailNav from "../components/MailNav";
 
 class MailApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentNavItem: {},
       data: mockData.mailData,
       navList: [
-        { id: 1, text: "Inbox", icon: "inbox", unread: 4},
-        { id: 2, text: "Drafts", icon: "save" },
-        { id: 3, text: "Important", icon: "star", unread: 10 },
-        { id: 4, text: "Sent", icon: "export" },
-        { id: 5, text: "Spam", icon: "warning" },
-        { id: 6, text: "Deleted", icon: "delete" }
+        { id: '1', text: "Inbox", icon: "inbox"},
+        { id: '2', text: "Drafts", icon: "save" },
+        { id: '3', text: "Important", icon: "star"},
+        { id: '4', text: "Sent", icon: "export" },
+        { id: '5', text: "Spam", icon: "warning" },
+        { id: '6', text: "Deleted", icon: "delete" },
+        { id: '7', text: "Personal", color: theme.colors.main, icon: "user", isLabel: true },
+        { id: '8', text: "Family", color: theme.colors.purple, icon: "home", isLabel: true },
+        { id: '9', text: "Friends", color: theme.colors.orange, icon: "team", isLabel: true },
+        { id: '10', text: "Work", color: theme.colors.green, icon: "laptop", isLabel: true }
       ],
-      labelList: [
-        { id: 7, text: "Personal", color: theme.colors.main, icon: "user", unread: 14 },
-        { id: 8, text: "Family", color: theme.colors.purple, icon: "home", unread: 18 },
-        { id: 9, text: "Friends", color: theme.colors.orange, icon: "team", unread: 10 },
-        { id: 10, text: "Work", color: theme.colors.green, icon: "laptop", unread: 21 }
-      ]
     };
   }
+
+  componentDidMount() {
+    this.handleMailNavMenuClick('Inbox','1')
+  }
+
   handleNewMail = (id) => {
     const mailItem = this.state.data.find(item => item.id === id)
     mailItem.unread = false;
@@ -33,6 +38,17 @@ class MailApp extends Component {
     this.setState({
       mailItem,
       data,
+    })
+  }
+  handleMailNavMenuClick = (text,id,isLabel) => {
+    text = text.toLowerCase()
+    const prop = isLabel ? 'label' : 'folder'
+    this.setState({
+      currentNavItem: {
+        text,
+        id,
+      },
+      navData: this.state.data.filter(m=>m[prop] === text),
     })
   }
   render() {
@@ -55,59 +71,13 @@ class MailApp extends Component {
             xl={5}
             style={{ border: "2px solid #eee" }}
           >
-            <div className="mail-nav-wrapper flex flex-col justify-content-center contain full-pad" style={{paddingTop: 0}}>
-              <div
-                className="flex align-items-center justify-content-center"
-                style={{height: 60}}
-              >
-                <Button block type="primary">
-                  New Message
-                </Button>
-              </div>
-              <div>
-                <Menu style={{ border: "none" }}>
-                  {this.state.navList.map(item => (
-                    <Menu.Item key={item.id} className="menu-item">
-                      <Icon type={item.icon} />
-                      {item.text}
-                      <span className="unread">
-                        {this.state.data.filter(m => m.unread === true && m.folder === item.text.toLowerCase()).length > 0 ?
-                          this.state.data.filter(m => m.unread === true && m.folder === item.text.toLowerCase()).length
-                        :
-                          null
-                        }
-                      </span>
-                    </Menu.Item>
-                  ))}
-                  <Menu.ItemGroup
-                    title={
-                      <div
-                        className="flex align-items-center space-between"
-                        style={{
-                          padding: "0px 0px 0px 16px",
-                          fontSize: 16
-                        }}
-                      >
-                        <span>Labels</span>
-                        <Button className="no-border">
-                          <Icon type="plus" />
-                        </Button>
-                      </div>
-                    }
-                  />
-                  {this.state.labelList.map(item => (
-                    <Menu.Item className="menu-item" key={item.id}>
-                      <div
-                        style={{ borderColor: item.color }}
-                        className="ant-timeline-item-head"
-                      />
-                      {item.text}
-                      <span className="unread">{item.unread}</span>
-                    </Menu.Item>
-                  ))}
-                </Menu>
-              </div>
-            </div>
+            <MailNav
+              data={this.state.data}
+              labelList={this.state.navList.filter(m =>m.isLabel)}
+              navList={this.state.navList.filter(m =>!m.isLabel)}
+              onMenuClick={this.handleMailNavMenuClick}
+              currentNavItem={this.state.currentNavItem}
+            />
           </Col>
           <Col
             className="mail-list"
@@ -121,7 +91,7 @@ class MailApp extends Component {
             <MailList
               mailItem={this.state.mailItem}
               onNewMail={this.handleNewMail}
-              data={this.state.data}
+              data={this.state.navData ? this.state.navData : this.state.data}
             />
           </Col>
             {this.state.mailItem && (
@@ -136,7 +106,7 @@ class MailApp extends Component {
               >
                 <MailContent
                   mailItem={this.state.mailItem}
-                  labelList={this.state.labelList}
+                  labelList={this.state.navList.filter(m=>m.isLabel === true)}
                 />
               </Col>
             )}

@@ -1063,13 +1063,6 @@ input:checked + .stkd-slider:before {
   font-weight: 600 !important;
 }
 
-/* Mail App Mail Content */
-.mail-content-tags .ant-tag {
-  height: 18px;
-  line-height: 16px;
-  padding: 0px 2px;
-}
-
 /* Tables */
 
 .stkd-table thead {
