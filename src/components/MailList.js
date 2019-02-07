@@ -69,6 +69,7 @@ class MailList extends Component {
           className="contain"
           itemLayout="vertical"
           size="large"
+          style={{height: '100%'}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => (
             <List.Item
