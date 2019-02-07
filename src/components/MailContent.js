@@ -78,6 +78,7 @@ class MailContent extends Component {
     }
   }
   render() {
+    const mailLabel = this.props.labelList.find(l=>l.text.toLowerCase() === this.props.mailItem.label)
     return (
       <div className="mail-content half-pad contain" style={{paddingTop: 0}}>
         <div
@@ -88,18 +89,26 @@ class MailContent extends Component {
             {this.props.mailItem.subject}
           </h2>
           <div className="flex align-items-center">
-            <Button className="no-border">
-              <Icon type="up" />
-            </Button>
-            <Button className="no-border">
-              <Icon type="down" />
-            </Button>
-            <Button className="no-border">
-              <Icon type="arrow-up" style={{transform: 'rotate(45deg)'}} />
-            </Button>
-            <Button className="no-border">
-              <Icon type="close" />
-            </Button>             
+            <Tooltip title={"Older"}>
+              <Button className="no-border">
+                <Icon type="up" />
+              </Button>
+            </Tooltip>
+            <Tooltip title={"Newer"}>
+              <Button className="no-border">
+                <Icon type="down" />
+              </Button>
+            </Tooltip>
+            <Tooltip title={"Expand"}>
+              <Button className="no-border">
+                <Icon type="arrow-up" style={{ transform: 'rotate(45deg)' }} />
+              </Button>
+            </Tooltip>
+            <Tooltip title={"Close"}>
+              <Button className="no-border">
+                <Icon type="close" />
+              </Button>
+            </Tooltip>             
           </div>
         </div>
         <div className="flex space-between align-items-center" style={{height: 40}}>
@@ -148,13 +157,13 @@ class MailContent extends Component {
             )}
           </div>
           <div className="flex align-items-center">
-            <Tooltip title={"Reply"}>
+            <Tooltip title={"Reply"} placement="bottom">
               <Button className="no-border">
-                <ReplyAllIcon />
+                <ReplyIcon />
               </Button>
             </Tooltip>
             <Divider type="vertical" style={{ margin: 0, width: 2 }} />
-            <Tooltip title={"Reply All"}>
+            <Tooltip title={"Reply All"} placement="bottom">
               <Button className="no-border">
                 <ReplyAllIcon />
               </Button>
@@ -175,12 +184,18 @@ class MailContent extends Component {
                 },
                 {
                   id: 2,
+                  text: "Forward",
+                  icon: "arrow-right",
+                  iconTheme: null
+                },
+                {
+                  id: 3,
                   text: "Print",
                   icon: "printer",
                   iconTheme: null
                 },
                 {
-                  id: 3,
+                  id: 4,
                   text: "Move to",
                   icon: "folder-add",
                   iconTheme: null,
@@ -190,14 +205,14 @@ class MailContent extends Component {
                   ]
                 },
                 {
-                  id: 4,
+                  id: 5,
                   text: "Label as",
                   icon: "plus-circle",
                   iconTheme: null,
                   subMenuOptions: this.props.labelList
                 },
                 {
-                  id: 5,
+                  id: 6,
                   text: "Delete",
                   icon: "delete",
                   iconTheme: null
@@ -208,12 +223,16 @@ class MailContent extends Component {
         </div>
         <div className="flex align-items-center">
           <div className="mail-content-tags">
-            <Tag color={theme.colors.main} closable>Inbox</Tag>
-            <Tag color={theme.colors.green} closable>Work</Tag>
+            <Tag color={theme.colors.main}>Inbox</Tag>
+            {mailLabel && (
+              <Tag color={mailLabel.color} closable>{mailLabel.text}</Tag>
+            )}
             <Divider type="vertical" style={{ margin: 0, width: 2 }} />
-            <Button className="no-border" style={{ padding: '0px 8px' }}>
-              <Icon type="plus-circle" />
-            </Button>
+            <Tooltip title={"Add Label"} placement="bottom">
+              <Button className="no-border" style={{ padding: '0px 8px' }}>
+                <Icon type="plus-circle" />
+              </Button>
+            </Tooltip>
           </div>
         </div>
         <div className="mail-from flex align-items-center">
@@ -223,14 +242,15 @@ class MailContent extends Component {
             ) : (
               <Avatar
                 style={{
-                  background:
-                    theme.colors[
-                      Object.keys(theme.colors)[
-                        Math.floor(
-                          Math.random() * Object.keys(theme.colors).length
-                        )
-                      ]
-                    ]
+                  // background:
+                  //   theme.colors[
+                  //     Object.keys(theme.colors)[
+                  //       Math.floor(
+                  //         Math.random() * Object.keys(theme.colors).length
+                  //       )
+                  //     ]
+                  //   ]
+                  background: mailLabel && mailLabel.color,
                 }}
               >
                 {this.props.mailItem.first_name[0] +
@@ -321,13 +341,14 @@ class MailContent extends Component {
         <div className="flex align-items center" style={{ marginTop: 24 }}>
           <Button
             type="primary"
-            size="large"
             style={{ fontWeight: 600, marginRight: 10 }}
           >
-            <FontAwesomeIcon icon={faReply} /> Reply
+            <ReplyIcon />
+            <span style={{marginLeft: 5}}>Reply</span>
           </Button>
-          <Button size="large" style={{ fontWeight: "bold" }}>
-            <FontAwesomeIcon icon={faLongArrowAltRight} /> Foward
+          <Button style={{ fontWeight: 600 }}>
+            <span>Foward</span>
+            <Icon type="arrow-right" style={{ marginLeft: 5 }} />
           </Button>
         </div>
       </div>

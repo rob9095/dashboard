@@ -60,7 +60,7 @@ class MailApp extends Component {
                 className="flex align-items-center justify-content-center"
                 style={{height: 60}}
               >
-                <Button block type="primary" size="large">
+                <Button block type="primary">
                   New Message
                 </Button>
               </div>

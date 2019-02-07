@@ -1013,6 +1013,7 @@ input:checked + .stkd-slider:before {
   font-size: 10px;
   margin-left: 10px;
   color: rgba(0, 0, 0, 0.45);
+  font-weight: 500;
 }
 
 .mail-app .mail-list .ant-list-item .ant-list-item-meta-title {
