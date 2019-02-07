@@ -11,7 +11,7 @@ class MailApp extends Component {
     this.state = {
       data: mockData.mailData,
       navList: [
-        { id: 1, text: "Inbox", icon: "inbox", unread: 4 },
+        { id: 1, text: "Inbox", icon: "inbox", unread: 4},
         { id: 2, text: "Drafts", icon: "save" },
         { id: 3, text: "Important", icon: "star", unread: 10 },
         { id: 4, text: "Sent", icon: "export" },
@@ -27,8 +27,12 @@ class MailApp extends Component {
     };
   }
   handleNewMail = (id) => {
+    const mailItem = this.state.data.find(item => item.id === id)
+    mailItem.unread = false;
+    const data = this.state.data.map(m=>m.id === 1 ? {...m,unread: false} : m)
     this.setState({
-      mailItem: this.state.data.find(item=>item.id === id)
+      mailItem,
+      data,
     })
   }
   render() {
@@ -66,7 +70,13 @@ class MailApp extends Component {
                     <Menu.Item key={item.id} className="menu-item">
                       <Icon type={item.icon} />
                       {item.text}
-                      <span className="unread">{item.unread}</span>
+                      <span className="unread">
+                        {this.state.data.filter(m => m.unread === true && m.folder === item.text.toLowerCase()).length > 0 ?
+                          this.state.data.filter(m => m.unread === true && m.folder === item.text.toLowerCase()).length
+                        :
+                          null
+                        }
+                      </span>
                     </Menu.Item>
                   ))}
                   <Menu.ItemGroup

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List, Icon, Avatar, Input } from "antd";
 import IconDropDown from "../components/IconDropDown";
+import theme from "../theme";
+const Color = require('color');
 const moment = require("moment");
 
 const IconText = ({ type, text }) => (
@@ -9,6 +11,15 @@ const IconText = ({ type, text }) => (
     {text}
   </span>
 );
+
+const styles = {
+  itemSelected: {
+    background: Color(theme.colors.main).fade(.9).string()
+  },
+  itemHover: {
+    background: Color(theme.colors.main).fade(.9).string(),
+  },
+}
 
 class MailList extends Component {
   constructor(props) {
@@ -64,6 +75,7 @@ class MailList extends Component {
               onClick={()=>this.props.onNewMail(item.id)}
               key={item.id}
               className={item.unread ? 'unread' : null}
+              style={this.props.mailItem && (item.id === this.props.mailItem.id ? styles.itemHover : null)}
               actions={
                 item.attachments && (
                   item.attachments.map(a=>(
@@ -121,7 +133,7 @@ class MailList extends Component {
               />
               {item.content
                 .split(" ")
-                .filter((w, i) => i <= 15)
+                .filter((w, i) => i <= 25)
                 .map((w, i, a) =>
                   i === a.length - 1 ? w + "..." : w + " "
                 )}

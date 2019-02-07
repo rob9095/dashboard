@@ -9,7 +9,6 @@ import {
   faAngleDown,
   faLongArrowAltRight
 } from "@fortawesome/free-solid-svg-icons";
-import Item from 'antd/lib/list/Item';
 
 const ButtonGroup = Button.Group;
 const moment = require("moment");
@@ -23,7 +22,7 @@ class MailContent extends Component {
   }
   render() {
     return (
-      <div className="mail-content half-pad">
+      <div className="mail-content half-pad contain">
         <div
           className="mail-content-header flex space-between align-items-center"
           style={{ minHeight: 40 }}
@@ -156,7 +155,11 @@ class MailContent extends Component {
             {this.props.mailItem.avatar ?
               <Avatar src={this.props.mailItem.avatar} />
             :
-              <Avatar>{this.props.mailItem.first_name[0]+this.props.last_name[0]}</Avatar>
+              <Avatar
+                style={{background: theme.colors[Object.keys(theme.colors)[Math.floor(Math.random() * Object.keys(theme.colors).length)]]}}
+              >
+              {this.props.mailItem.first_name[0]+this.props.mailItem.last_name[0]}
+              </Avatar>
             }
           </div>
           <div className="half-pad">

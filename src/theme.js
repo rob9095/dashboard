@@ -11,7 +11,7 @@ const theme = {
     // orange: Color(main).mix(Color("orange")).string(),
     // purple: Color(main).mix(Color("purple")).string(),
     grey: 'rgba(121, 126, 152, 0.82)',
-  }
+  },
 }
 
 export default theme;
