@@ -61,13 +61,15 @@ class MailList extends Component {
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => (
             <List.Item
+              onClick={()=>this.props.onNewMail(item.id)}
               key={item.id}
               className={item.unread ? 'unread' : null}
               actions={
-                item.file_name && [
-                  <IconText type="paper-clip" text={item.file_name} />
-                ]
-              }
+                item.attachments && (
+                  item.attachments.map(a=>(
+                    <IconText key={a.name + item.id} type="paper-clip" text={a.name} />
+                  ))
+                )}
               extra={
                 <IconDropDown
                   icon={"ellipsis"}

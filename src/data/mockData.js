@@ -24,7 +24,7 @@ const mockData = {
     "email_address": "amagnar2@fda.gov",
     "content": "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
     "avatar": "https://robohash.org/laboreeosperspiciatis.bmp?size=50x50&set=set1",
-    "file_name": "In.mp3",
+    "attachments": [{name:"Indis.mp3", size: 2520},{name:"worksheet.csv", size: 14852}],
     "date": "2019-01-17T22:45:42Z",
     "subject": "faucibus"
   }, {
@@ -70,7 +70,7 @@ const mockData = {
     "email_address": "mocarroll7@smh.com.au",
     "content": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.",
     "avatar": "https://robohash.org/cumaid.bmp?size=50x50&set=set1",
-    "file_name": "LobortisLigulaSit.pdf",
+    "attachments": [{name:"LoboSit.pdf",size: 7810}],
     "date": "2019-01-17T16:03:08Z",
     "subject": "amet"
   }, {
@@ -404,7 +404,7 @@ const mockData = {
     "email_address": "awaddicor18@ameblo.jp",
     "content": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
     "avatar": "https://robohash.org/similiqueeumsint.png?size=50x50&set=set1",
-    "file_name": "Gravida.ppt",
+    "attachments": [{name:"Gravida.ppt",size:1835}],
     "date": "2019-01-15T18:47:21Z",
     "subject": "pellentesque eget nunc"
   }, {
