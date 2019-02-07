@@ -77,12 +77,6 @@ body #root {
   align-items: center;
 }
 
-.ant-btn.no-border {
-  border: none;
-  box-shadow: none;
-  border-radius: 20px;
-}
-
 .flex {
   display: flex;
 }
@@ -157,6 +151,18 @@ body #root {
 
 .border-bottom {
   border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+/* Button Override */
+.ant-btn.no-border {
+  border: none;
+  box-shadow: none;
+  border-radius: 20px;
+  padding: 0px 10px;
+}
+
+.ant-btn.no-border:not(:last-child) {
+  margin-right: 5px;
 }
 
 
@@ -747,15 +753,6 @@ ul.ant-menu.stkd-menu.ant-menu-light.ant-menu-root.ant-menu-horizontal {
   }
 }
 
-
-/* Button Overides */
-.ant-btn.no-border {
-  border: 0px;
-  box-shadow: none;
-  border-radius: 20px;
-}
-
-
 /* Reset Password Form */
 
 .reset-pass-form {
@@ -1063,6 +1060,13 @@ input:checked + .stkd-slider:before {
 
 .mail-list .ant-list-item.unread .mail-title, .mail-list .ant-list-item.unread .mail-subject h5 {
   font-weight: 600 !important;
+}
+
+/* Mail App Mail Content */
+.mail-content-tags .ant-tag {
+  height: 18px;
+  line-height: 16px;
+  padding: 0px 2px;
 }
 
 /* Tables */
