@@ -50,7 +50,6 @@ class MailContent extends Component {
                     icon: "folder-add",
                     iconTheme: null,
                     subMenuOptions: [
-                      { id: 1, text: "Unread", icon: "eye" },
                       { id: 2, text: "Important", icon: "star" },
                       { id: 3, text: "Spam", icon: "warning" }
                     ]
@@ -119,14 +118,14 @@ class MailContent extends Component {
                   },
                   {
                     id: 4,
-                    text: "Print",
-                    icon: "printer",
+                    text: "Mark Unread",
+                    icon: "eye",
                     iconTheme: null
                   },
                   {
                     id: 5,
-                    text: "Save Draft",
-                    icon: "save",
+                    text: "Print",
+                    icon: "printer",
                     iconTheme: null
                   },
                   {

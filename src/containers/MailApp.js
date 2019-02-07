@@ -136,6 +136,7 @@ class MailApp extends Component {
               >
                 <MailContent
                   mailItem={this.state.mailItem}
+                  labelList={this.state.labelList}
                 />
               </Col>
             )}

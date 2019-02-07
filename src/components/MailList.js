@@ -17,7 +17,7 @@ const styles = {
     background: Color(theme.colors.main).fade(.9).string()
   },
   itemHover: {
-    background: Color(theme.colors.main).fade(.9).string(),
+    background: Color(theme.colors.main).alpha(.1).fade(.5).string(),
   },
 }
 
