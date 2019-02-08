@@ -251,15 +251,7 @@ class MailContent extends Component {
             ) : (
               <Avatar
                 style={{
-                  // background:
-                  //   theme.colors[
-                  //     Object.keys(theme.colors)[
-                  //       Math.floor(
-                  //         Math.random() * Object.keys(theme.colors).length
-                  //       )
-                  //     ]
-                  //   ]
-                  background: mailLabel && mailLabel.color,
+                  background: this.props.mailItem.color,
                 }}
               >
                 {this.props.mailItem.first_name[0] +

@@ -12,7 +12,10 @@ class MailApp extends Component {
     this.state = {
       breakpoint: 992,
       currentNavItem: {},
-      data: mockData.mailData,
+      data: mockData.mailData.map(m => ({
+        ...m,
+        color: theme.colors[Object.keys(theme.colors)[Math.floor(Math.random() * Object.keys(theme.colors).length)]]
+      })),
       navList: [
         { id: '1', text: "Inbox", icon: "inbox"},
         { id: '2', text: "Drafts", icon: "save" },
@@ -55,12 +58,12 @@ class MailApp extends Component {
   
   render() {
     return (
-      <div className="stkd-widget" style={{ margin: "10px auto" }}>
+      <div className="stkd-widget" style={{ width: "100%"}}>
         <div
           className="mail-app flex"
-          style={{ height: "100%", background: "#fff" }}
+          style={{ height: "100%", background: "#fff", width: "100%" }}
         >
-          <div className="flex" style={{ height: "100%" }}>
+          <div className="flex" style={{ height: "100%", width: "100%" }}>
             <div
               style={{
                 borderRight: "2px solid #eee",

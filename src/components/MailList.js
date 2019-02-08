@@ -53,7 +53,7 @@ class MailList extends Component {
     return (
       <div
         className="mail-list-wrapper flex flex-col"
-        style={{ height: "100%" }}
+        style={{ height: "100%", width: "100%" }}
       >
         <div className="mail-search">
           <Input
@@ -132,12 +132,12 @@ class MailList extends Component {
                   </div>
                 }
               />
-              {item.content
-                .split(" ")
+              {item.content}
+                {/* .split(" ")
                 .filter((w, i) => i <= 25)
                 .map((w, i, a) =>
                   i === a.length - 1 ? w + "..." : w + " "
-                )}
+                )} */}
             </List.Item>
           )}
         />

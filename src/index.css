@@ -154,14 +154,14 @@ body #root {
 }
 
 /* Button Override */
-.ant-btn.no-border {
+.ant-btn.no-border, .no-border .ant-btn[disabled] {
   border: none;
   box-shadow: none;
   border-radius: 20px;
   padding: 0px 10px;
 }
 
-.ant-btn.no-border:not(:last-child) {
+.ant-btn.no-border:not(:last-child), span.no-border:not(:last-child) {
   margin-right: 5px;
 }
 
@@ -1027,6 +1027,8 @@ input:checked + .stkd-slider:before {
 
 .mail-app .mail-list .ant-list-item .ant-list-item-content {
   margin-bottom: 0px;
+  overflow: hidden;
+  max-height: 40px;
 }
 
 .mail-app .mail-list .ant-list-item .mail-subject {
