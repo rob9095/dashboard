@@ -55,12 +55,67 @@ class MailApp extends Component {
   
   render() {
     return (
-      <div className="stkd-widget">
+      <div className="stkd-widget" style={{ margin: "10px auto" }}>
         <div
-        className="mail-app flex"
-        style={{ height: "100%", background: '#fff', }}
-      >
-        <Row
+          className="mail-app flex"
+          style={{ height: "100%", background: "#fff" }}
+        >
+          <div className="flex" style={{ height: "100%" }}>
+            <div
+              style={{
+                borderRight: "2px solid #eee",
+                minWidth: this.props.clientWidth < this.state.breakpoint ? 60 : 300
+              }}
+              className="mail-nav"
+            >
+              <MailNav
+                data={this.state.data}
+                labelList={this.state.navList.filter(m => m.isLabel)}
+                navList={this.state.navList.filter(m => !m.isLabel)}
+                onMenuClick={this.handleMailNavMenuClick}
+                currentNavItem={this.state.currentNavItem}
+                showDrawer={this.props.clientWidth < this.state.breakpoint}
+              />
+            </div>
+            <div
+              style={{
+                borderRight: "2px solid #eee",
+                borderLeft: "2px solid #eee",
+                display: this.props.clientWidth < this.state.breakpoint && this.state.mailItem ? 'none' : 'inherit',
+              }}
+              className="mail-list"
+            >
+              <MailList
+                mailItem={this.state.mailItem}
+                onNewMail={this.handleNewMail}
+                data={this.state.data.filter(
+                  item =>
+                    item[this.state.currentNavItem.prop] ===
+                    this.state.currentNavItem.text
+                )}
+              />
+            </div>
+            {this.state.mailItem && (
+              <div
+                style={{ borderLeft: "2px solid #eee" }}
+                className="mail-content"
+              >
+                <MailContent
+                  mailItem={this.state.mailItem}
+                  labelList={this.state.navList.filter(
+                    m => m.isLabel === true
+                  )}
+                  onNewMail={this.handleNewMail}
+                  data={this.state.data.filter(
+                    item =>
+                      item[this.state.currentNavItem.prop] ===
+                      this.state.currentNavItem.text
+                  )}
+                />
+              </div>
+            )}
+          </div>
+          {/* <Row
           gutter={0}
           style={{height: "100%" }}
           type="flex"
@@ -71,7 +126,7 @@ class MailApp extends Component {
             sm={2}
             md={2}
             lg={this.state.mailItem ? 6 : 8}
-            xl={5}
+            xl={4}
             style={{ borderRight: "2px solid #eee" }}
           >
             <MailNav
@@ -89,7 +144,7 @@ class MailApp extends Component {
             sm={this.state.mailItem ? 0 : 22}
             md={this.state.mailItem ? 0 : 22}
             lg={this.state.mailItem ? 0 : 16}
-            xl={this.state.mailItem ? 7 : 19}
+            xl={this.state.mailItem ? 8 : 20}
             style={{ borderRight: "2px solid #eee", borderLeft: "2px solid #eee" }}
           >
             <MailList
@@ -116,8 +171,8 @@ class MailApp extends Component {
                 />
               </Col>
             )}
-        </Row>
-      </div>
+        </Row> */}
+        </div>
       </div>
     );
   }
