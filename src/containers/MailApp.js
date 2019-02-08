@@ -58,7 +58,7 @@ class MailApp extends Component {
   
   render() {
     return (
-      <div className="stkd-widget" style={{ width: "100%"}}>
+      <div className="stkd-widget" style={{ width: "100%" }}>
         <div
           className="mail-app flex"
           style={{ height: "100%", background: "#fff", width: "100%" }}
@@ -67,7 +67,8 @@ class MailApp extends Component {
             <div
               style={{
                 borderRight: "2px solid #eee",
-                minWidth: this.props.clientWidth < this.state.breakpoint ? 60 : 300
+                minWidth:
+                  this.props.clientWidth < this.state.breakpoint ? 60 : 300
               }}
               className="mail-nav"
             >
@@ -84,8 +85,12 @@ class MailApp extends Component {
               style={{
                 borderRight: "2px solid #eee",
                 borderLeft: "2px solid #eee",
-                display: this.props.clientWidth < this.state.breakpoint && this.state.mailItem ? 'none' : 'inherit',
-                width: this.state.mailItem ? '60%' : '100%'
+                display:
+                  this.props.clientWidth < this.state.breakpoint &&
+                  this.state.mailItem
+                    ? "none"
+                    : "inherit",
+                width: this.state.mailItem ? "60%" : "100%"
               }}
               className="mail-list"
             >
@@ -103,14 +108,17 @@ class MailApp extends Component {
               <div
                 style={{
                   borderLeft: "2px solid #eee",
-                  width: '100%',
+                  width: "100%"
                 }}
                 className="mail-content"
               >
                 <MailContent
                   mailItem={this.state.mailItem}
                   labelList={this.state.navList.filter(
-                    m => m.isLabel === true
+                    m => m.isLabel
+                  )}
+                  navList={this.state.navList.filter(
+                    m => !m.isLabel
                   )}
                   onNewMail={this.handleNewMail}
                   data={this.state.data.filter(

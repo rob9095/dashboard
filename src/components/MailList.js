@@ -57,7 +57,7 @@ class MailList extends Component {
       >
         <div className="mail-search">
           <Input
-            prefix={<Icon type="search" />}
+            prefix={(<Icon type="search" />)}
             suffix={this.state.searchVal ? <Icon className="search-close" type="close-circle" onClick={this.clearSearch} /> : null}
             placeholder="Search"
             value={this.state.searchVal}

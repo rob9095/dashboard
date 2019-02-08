@@ -232,9 +232,15 @@ class MailContent extends Component {
         </div>
         <div className="flex align-items-center">
           <div className="mail-content-tags">
-            <Tag color={theme.colors.main}>Inbox</Tag>
+            <Tag style={{textTransform: 'capitalize'}}>
+              <Icon style={{marginRight: 3}} type={this.props.navList.find(i=>i.text.toLowerCase() === this.props.mailItem.folder).icon} />
+              {this.props.mailItem.folder}
+            </Tag>
             {mailLabel && (
-              <Tag color={mailLabel.color} closable>{mailLabel.text}</Tag>
+              <Tag color={mailLabel.color} closable>
+                <Icon style={{marginRight: 3}} type={mailLabel.icon} />
+                {mailLabel.text}
+              </Tag>
             )}
             <Divider type="vertical" style={{ margin: 0, width: 2 }} />
             <Tooltip title={"Add Label"} placement="bottom">
