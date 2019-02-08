@@ -82,6 +82,7 @@ class MailApp extends Component {
                 borderRight: "2px solid #eee",
                 borderLeft: "2px solid #eee",
                 display: this.props.clientWidth < this.state.breakpoint && this.state.mailItem ? 'none' : 'inherit',
+                width: this.state.mailItem ? '60%' : '100%'
               }}
               className="mail-list"
             >
@@ -97,7 +98,10 @@ class MailApp extends Component {
             </div>
             {this.state.mailItem && (
               <div
-                style={{ borderLeft: "2px solid #eee" }}
+                style={{
+                  borderLeft: "2px solid #eee",
+                  width: '100%',
+                }}
                 className="mail-content"
               >
                 <MailContent
