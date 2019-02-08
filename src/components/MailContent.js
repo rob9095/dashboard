@@ -78,6 +78,7 @@ class MailContent extends Component {
     }
   }
   render() {
+    const mailIndex = this.props.data.findIndex(m=>m.id === this.props.mailItem.id)
     const mailLabel = this.props.labelList.find(l=>l.text.toLowerCase() === this.props.mailItem.label)
     return (
       <div className="mail-content half-pad contain" style={{paddingTop: 0}}>
@@ -90,12 +91,20 @@ class MailContent extends Component {
           </h2>
           <div className="flex align-items-center">
             <Tooltip title={"Older"}>
-              <Button className="no-border">
+              <Button 
+                onClick={()=>this.props.onNewMail(this.props.data[mailIndex - 1].id)}
+                disabled={mailIndex === 0 ? true : false}
+                className="no-border"
+              >
                 <Icon type="up" />
               </Button>
             </Tooltip>
             <Tooltip title={"Newer"}>
-              <Button className="no-border">
+              <Button 
+                onClick={()=>this.props.onNewMail(this.props.data[mailIndex + 1].id)}
+                disabled={mailIndex === this.props.data.length - 1 ? true : false}
+                className="no-border"
+              >
                 <Icon type="down" />
               </Button>
             </Tooltip>

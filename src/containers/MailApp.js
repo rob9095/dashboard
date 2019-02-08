@@ -33,9 +33,8 @@ class MailApp extends Component {
   }
 
   handleNewMail = (id) => {
-    const mailItem = this.state.data.find(item => item.id === id)
-    mailItem.unread = false;
-    const data = this.state.data.map(m=>m.id === 1 ? {...m,unread: false} : m)
+    const data = this.state.data.map(m=>m.id === id ? {...m,unread: false} : m)
+    const mailItem = data.find(item => item.id === id)
     this.setState({
       mailItem,
       data,
@@ -49,10 +48,11 @@ class MailApp extends Component {
       currentNavItem: {
         text,
         id,
+        prop,
       },
-      navData: this.state.data.filter(m=>m[prop] === text),
     })
   }
+  
   render() {
     return (
       <div className="stkd-widget">
@@ -95,7 +95,7 @@ class MailApp extends Component {
             <MailList
               mailItem={this.state.mailItem}
               onNewMail={this.handleNewMail}
-              data={this.state.navData ? this.state.navData : this.state.data}
+              data={this.state.data.filter(item=>item[this.state.currentNavItem.prop] === this.state.currentNavItem.text)}
             />
           </Col>
             {this.state.mailItem && (
@@ -111,6 +111,8 @@ class MailApp extends Component {
                 <MailContent
                   mailItem={this.state.mailItem}
                   labelList={this.state.navList.filter(m=>m.isLabel === true)}
+                  onNewMail={this.handleNewMail}
+                  data={this.state.data.filter(item=>item[this.state.currentNavItem.prop] === this.state.currentNavItem.text)}
                 />
               </Col>
             )}
