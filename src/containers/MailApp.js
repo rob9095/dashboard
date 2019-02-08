@@ -79,7 +79,7 @@ class MailApp extends Component {
               navList={this.state.navList.filter(m =>!m.isLabel)}
               onMenuClick={this.handleMailNavMenuClick}
               currentNavItem={this.state.currentNavItem}
-              showDrawer={this.props.clientWidth <= this.state.breakpoint}
+              showDrawer={this.props.clientWidth <= this.state.breakpoint || this.state.mailItem && this.props.clientWidth >= this.state.breakpoint}
             />
           </Col>
           <Col
@@ -103,7 +103,7 @@ class MailApp extends Component {
                 xs={20}
                 sm={22}
                 md={22}
-                lg={16}
+                lg={22}
                 xl={12}
                 style={{ border: "2px solid #eee" }}
               >

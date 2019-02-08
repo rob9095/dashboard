@@ -75,7 +75,7 @@ class MailNav extends Component {
     return (
       <div className={this.props.showDrawer ? 'no-pad contain' : 'full-pad contain'} style={{ paddingTop: 0 }}>
         {this.props.showDrawer ? (
-          <div className="flex half-pad align-items-center" style={{ height: 60 }}>
+          <div className="flex half-pad align-items-center justify-content-center" style={{ height: 60 }}>
             <Button onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">
               <Icon type="menu" style={{ fontSize: "1.30rem" }} />
             </Button>
