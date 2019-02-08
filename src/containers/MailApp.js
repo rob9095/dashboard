@@ -10,6 +10,7 @@ class MailApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      breakpoint: 992,
       currentNavItem: {},
       data: mockData.mailData,
       navList: [
@@ -40,6 +41,7 @@ class MailApp extends Component {
       data,
     })
   }
+
   handleMailNavMenuClick = (text,id,isLabel) => {
     text = text.toLowerCase()
     const prop = isLabel ? 'label' : 'folder'
@@ -64,10 +66,10 @@ class MailApp extends Component {
         >
           <Col
             className="mail-nav"
-            xs={24}
-            sm={8}
-            md={8}
-            lg={8}
+            xs={4}
+            sm={2}
+            md={2}
+            lg={this.state.mailItem ? 2 : 8}
             xl={5}
             style={{ border: "2px solid #eee" }}
           >
@@ -77,14 +79,15 @@ class MailApp extends Component {
               navList={this.state.navList.filter(m =>!m.isLabel)}
               onMenuClick={this.handleMailNavMenuClick}
               currentNavItem={this.state.currentNavItem}
+              showDrawer={this.props.clientWidth <= this.state.breakpoint}
             />
           </Col>
           <Col
             className="mail-list"
-            xs={24}
-            sm={16}
-            md={16}
-            lg={16}
+            xs={this.state.mailItem ? 0 : 20}
+            sm={this.state.mailItem ? 0 : 22}
+            md={this.state.mailItem ? 0 : 22}
+            lg={this.state.mailItem ? 0 : 16}
             xl={this.state.mailItem ? 7 : 19}
             style={{ border: "2px solid #eee" }}
           >
@@ -97,10 +100,10 @@ class MailApp extends Component {
             {this.state.mailItem && (
               <Col
                 className="mail-content"
-                xs={0}
-                sm={0}
-                md={0}
-                lg={0}
+                xs={20}
+                sm={22}
+                md={22}
+                lg={16}
                 xl={12}
                 style={{ border: "2px solid #eee" }}
               >

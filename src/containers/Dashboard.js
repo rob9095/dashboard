@@ -187,7 +187,7 @@ class Dashboard extends Component {
                 <ProductTable {...props} />
               )} />
               <Route exact path="/app/mail-app" render={props => (
-                <MailApp {...props} />
+                <MailApp clientWidth={this.state.clientWidth} {...props} />
               )} />              
               <Route exact path="/app" render={props => (
                 <div>
