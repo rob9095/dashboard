@@ -114,7 +114,7 @@ class MailContent extends Component {
               </Button>
             </Tooltip>
             <Tooltip title={"Close"}>
-              <Button className="no-border">
+              <Button onClick={()=>this.props.onNewMail(null)} className="no-border">
                 <Icon type="close" />
               </Button>
             </Tooltip>             
