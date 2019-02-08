@@ -190,7 +190,7 @@ class Dashboard extends Component {
                 <MailApp clientWidth={this.state.clientWidth} {...props} />
               )} />              
               <Route exact path="/app" render={props => (
-                <div>
+                <div className="full-pad">
                   <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>

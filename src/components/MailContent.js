@@ -260,7 +260,7 @@ class MailContent extends Component {
           </div>
           <div className="half-pad">
             <div className="mail-from-details flex flex-col">
-              <span className="mail-from-contact flex">
+              <span className="mail-from-contact flex flex-wrap">
                 <h4>
                   {this.props.mailItem.first_name +
                     " " +

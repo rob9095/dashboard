@@ -55,13 +55,14 @@ class MailApp extends Component {
   }
   render() {
     return (
-      <div
-        className="stkd-content stkd-widget mail-app"
-        style={{ height: "calc(100vh - 150px)" }}
+      <div className="stkd-widget">
+        <div
+        className="mail-app flex"
+        style={{ height: "100%", background: '#fff', }}
       >
         <Row
           gutter={0}
-          style={{ border: "2px solid #eee", height: "100%" }}
+          style={{height: "100%" }}
           type="flex"
         >
           <Col
@@ -69,9 +70,9 @@ class MailApp extends Component {
             xs={4}
             sm={2}
             md={2}
-            lg={this.state.mailItem ? 2 : 8}
+            lg={this.state.mailItem ? 6 : 8}
             xl={5}
-            style={{ border: "2px solid #eee" }}
+            style={{ borderRight: "2px solid #eee" }}
           >
             <MailNav
               data={this.state.data}
@@ -79,7 +80,7 @@ class MailApp extends Component {
               navList={this.state.navList.filter(m =>!m.isLabel)}
               onMenuClick={this.handleMailNavMenuClick}
               currentNavItem={this.state.currentNavItem}
-              showDrawer={this.props.clientWidth <= this.state.breakpoint || this.state.mailItem && this.props.clientWidth >= this.state.breakpoint}
+              showDrawer={this.props.clientWidth <= this.state.breakpoint}
             />
           </Col>
           <Col
@@ -89,7 +90,7 @@ class MailApp extends Component {
             md={this.state.mailItem ? 0 : 22}
             lg={this.state.mailItem ? 0 : 16}
             xl={this.state.mailItem ? 7 : 19}
-            style={{ border: "2px solid #eee" }}
+            style={{ borderRight: "2px solid #eee", borderLeft: "2px solid #eee" }}
           >
             <MailList
               mailItem={this.state.mailItem}
@@ -103,9 +104,9 @@ class MailApp extends Component {
                 xs={20}
                 sm={22}
                 md={22}
-                lg={22}
+                lg={18}
                 xl={12}
-                style={{ border: "2px solid #eee" }}
+                style={{ borderLeft: "2px solid #eee" }}
               >
                 <MailContent
                   mailItem={this.state.mailItem}
@@ -114,6 +115,7 @@ class MailApp extends Component {
               </Col>
             )}
         </Row>
+      </div>
       </div>
     );
   }
