@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Dropdown, Icon, Button } from 'antd';
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 
 const IconDropDown = (props) => {
   const menu = (

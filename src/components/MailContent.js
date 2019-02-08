@@ -77,6 +77,32 @@ class MailContent extends Component {
       
     }
   }
+
+  getLabel
+
+  handleDropdownSelect = (val) => {
+    const id = this.props.mailItem.id
+    switch(val.text) {
+      case 'Mark Unread' :
+        this.props.onMailUpdate(id,'unread',true)
+        break;
+      case 'Print' :
+        window.print()
+        break;
+      case 'Delete' :
+        this.props.onNewMail(null);
+        this.props.onMailUpdate(id,'folder','deleted');
+        break;
+    }
+    if (this.props.labelList.map(l => l.text.toLowerCase()).includes(val.text.toLowerCase())) {
+      this.props.onMailUpdate(id,'label',val.text.toLowerCase())
+      return
+    } else if (this.props.navList.map(l => l.text.toLowerCase()).includes(val.text.toLowerCase()))  {
+      this.props.onMailUpdate(id,'folder',val.text.toLowerCase())
+      return
+    }
+  }
+
   render() {
     const mailIndex = this.props.data.findIndex(m=>m.id === this.props.mailItem.id)
     const mailLabel = this.props.labelList.find(l=>l.text.toLowerCase() === this.props.mailItem.label)
@@ -184,6 +210,7 @@ class MailContent extends Component {
               iconSize={"16px"}
               dropDownPlacement={"bottomRight"}
               noBorder
+              onSelect={this.handleDropdownSelect}
               options={[
                 {
                   id: 1,

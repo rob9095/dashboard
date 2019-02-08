@@ -36,11 +36,10 @@ class MailApp extends Component {
   }
 
   handleNewMail = (id) => {
-    const data = this.state.data.map(m=>m.id === id ? {...m,unread: false} : m)
-    const mailItem = data.find(item => item.id === id)
+    this.handleMailUpdate(id, "unread", false);
+    const mailItem = this.state.data.find(item => item.id === id)
     this.setState({
       mailItem,
-      data,
     })
   }
 
@@ -53,6 +52,16 @@ class MailApp extends Component {
         id,
         prop,
       },
+    })
+  }
+
+  handleMailUpdate = (id,key,value) => {
+    const data = this.state.data.map(m => m.id === id ? {...m, [key]: value} : m)
+    const mailItem = data.find(item => item.id === id);
+    console.log(data.find(m=>m.id === id))
+    this.setState({
+      data,
+      mailItem,
     })
   }
   
@@ -96,12 +105,8 @@ class MailApp extends Component {
             >
               <MailList
                 mailItem={this.state.mailItem}
-                onNewMail={this.handleNewMail}
-                data={this.state.data.filter(
-                  item =>
-                    item[this.state.currentNavItem.prop] ===
-                    this.state.currentNavItem.text
-                )}
+                onMailUpdate={this.handleMailUpdate}
+                data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text)}
               />
             </div>
             {this.state.mailItem && (
@@ -114,18 +119,11 @@ class MailApp extends Component {
               >
                 <MailContent
                   mailItem={this.state.mailItem}
-                  labelList={this.state.navList.filter(
-                    m => m.isLabel
-                  )}
-                  navList={this.state.navList.filter(
-                    m => !m.isLabel
-                  )}
+                  labelList={this.state.navList.filter(m => m.isLabel)}
+                  navList={this.state.navList.filter(m => !m.isLabel)}
                   onNewMail={this.handleNewMail}
-                  data={this.state.data.filter(
-                    item =>
-                      item[this.state.currentNavItem.prop] ===
-                      this.state.currentNavItem.text
-                  )}
+                  data={this.state.data.filter(item =>item[this.state.currentNavItem.prop] ===this.state.currentNavItem.text)}
+                  onMailUpdate={this.handleMailUpdate}
                 />
               </div>
             )}

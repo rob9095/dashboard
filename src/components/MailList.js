@@ -73,7 +73,7 @@ class MailList extends Component {
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => (
             <List.Item
-              onClick={()=>this.props.onNewMail(item.id)}
+              onClick={()=>this.props.onMailUpdate(item.id,'unread',false)}
               key={item.id}
               className={item.unread ? 'unread' : null}
               style={this.props.mailItem && (item.id === this.props.mailItem.id ? styles.itemHover : null)}
