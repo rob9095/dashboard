@@ -19,14 +19,15 @@ const IconDropDown = (props) => {
             {item.subMenuOptions.map(subItem => (
               <Menu.Item
                 key={subItem.id}
-                onClick={() =>
+                onClick={(e) => {
+                  e.domEvent.stopPropagation()
                   props.onSelect &&
                   props.onSelect({
                     text: subItem.text,
                     id: subItem.id,
                     rowKey: subItem.rowKey
                   })
-                }
+                }}
               >
                 {subItem.icon && (
                   <Icon type={subItem.icon} theme={subItem.iconTheme} />

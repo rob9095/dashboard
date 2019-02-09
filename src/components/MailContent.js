@@ -78,31 +78,6 @@ class MailContent extends Component {
     }
   }
 
-  getLabel
-
-  handleDropdownSelect = (val) => {
-    const id = this.props.mailItem.id
-    switch(val.text) {
-      case 'Mark Unread' :
-        this.props.onMailUpdate(id,'unread',true)
-        break;
-      case 'Print' :
-        window.print()
-        break;
-      case 'Delete' :
-        this.props.onNewMail(null);
-        this.props.onMailUpdate(id,'folder','deleted');
-        break;
-    }
-    if (this.props.labelList.map(l => l.text.toLowerCase()).includes(val.text.toLowerCase())) {
-      this.props.onMailUpdate(id,'label',val.text.toLowerCase())
-      return
-    } else if (this.props.navList.map(l => l.text.toLowerCase()).includes(val.text.toLowerCase()))  {
-      this.props.onMailUpdate(id,'folder',val.text.toLowerCase())
-      return
-    }
-  }
-
   render() {
     const mailIndex = this.props.data.findIndex(m=>m.id === this.props.mailItem.id)
     const mailLabel = this.props.labelList.find(l=>l.text.toLowerCase() === this.props.mailItem.label)
@@ -118,7 +93,7 @@ class MailContent extends Component {
           <div className="flex align-items-center">
             <Tooltip title={"Older"}>
               <Button 
-                onClick={()=>this.props.onNewMail(this.props.data[mailIndex - 1].id)}
+                onClick={() => this.props.onMailUpdate(this.props.data[mailIndex - 1].id,'unread',false)}
                 disabled={mailIndex === 0 ? true : false}
                 className="no-border"
               >
@@ -127,7 +102,7 @@ class MailContent extends Component {
             </Tooltip>
             <Tooltip title={"Newer"}>
               <Button 
-                onClick={()=>this.props.onNewMail(this.props.data[mailIndex + 1].id)}
+                onClick={() => this.props.onMailUpdate(this.props.data[mailIndex + 1].id,'unread',false)}
                 disabled={mailIndex === this.props.data.length - 1 ? true : false}
                 className="no-border"
               >
@@ -140,7 +115,7 @@ class MailContent extends Component {
               </Button>
             </Tooltip>
             <Tooltip title={"Close"}>
-              <Button onClick={()=>this.props.onNewMail(null)} className="no-border">
+              <Button onClick={()=>this.props.onMailUpdate(null)} className="no-border">
                 <Icon type="close" />
               </Button>
             </Tooltip>             
@@ -210,7 +185,7 @@ class MailContent extends Component {
               iconSize={"16px"}
               dropDownPlacement={"bottomRight"}
               noBorder
-              onSelect={this.handleDropdownSelect}
+              onSelect={(val)=>this.props.onDropdownSelect(val,this.props.mailItem.id)}
               options={[
                 {
                   id: 1,
@@ -264,7 +239,7 @@ class MailContent extends Component {
               {this.props.mailItem.folder}
             </Tag>
             {mailLabel && (
-              <Tag color={mailLabel.color} closable>
+              <Tag color={mailLabel.color} closable onClose={()=>this.props.onMailUpdate(this.props.mailItem.id,'label','')} >
                 <Icon style={{marginRight: 3}} type={mailLabel.icon} />
                 {mailLabel.text}
               </Tag>

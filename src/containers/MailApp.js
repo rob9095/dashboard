@@ -35,14 +35,6 @@ class MailApp extends Component {
     this.handleMailNavMenuClick('Inbox','1')
   }
 
-  handleNewMail = (id) => {
-    this.handleMailUpdate(id, "unread", false);
-    const mailItem = this.state.data.find(item => item.id === id)
-    this.setState({
-      mailItem,
-    })
-  }
-
   handleMailNavMenuClick = (text,id,isLabel) => {
     text = text.toLowerCase()
     const prop = isLabel ? 'label' : 'folder'
@@ -55,14 +47,39 @@ class MailApp extends Component {
     })
   }
 
-  handleMailUpdate = (id,key,value) => {
+  handleMailUpdate = (id,key,value,updateMailItem) => {
     const data = this.state.data.map(m => m.id === id ? {...m, [key]: value} : m)
     const mailItem = data.find(item => item.id === id);
-    console.log(data.find(m=>m.id === id))
+    console.log(mailItem)
     this.setState({
       data,
       mailItem,
     })
+  }
+
+  handleDropdownSelect = (val,id) => {
+    console.log({val,id})
+    switch (val.text) {
+      case 'Mark Unread':
+        this.handleMailUpdate(id, "unread", true);
+        break;
+      case 'Mark Read':
+        this.handleMailUpdate(id, "unread", false);
+        break;  
+      case 'Print':
+        window.print()
+        break;
+      case 'Delete':
+        this.handleMailUpdate(null);
+        this.handleMailUpdate(id, "folder", "deleted");
+        break;
+    }
+
+    if (this.state.navList.find(l => l.text.toLowerCase() === val.text.toLowerCase() && l.isLabel)) {
+      this.handleMailUpdate(id, "label", val.text.toLowerCase());
+    } else if (this.state.navList.find(l => l.text.toLowerCase() === val.text.toLowerCase())) {
+      this.handleMailUpdate(id, "folder", val.text.toLowerCase());
+    }
   }
   
   render() {
@@ -107,6 +124,8 @@ class MailApp extends Component {
                 mailItem={this.state.mailItem}
                 onMailUpdate={this.handleMailUpdate}
                 data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text)}
+                labelList={this.state.navList.filter(l => l.isLabel)}
+                onDropdownSelect={this.handleDropdownSelect}
               />
             </div>
             {this.state.mailItem && (
@@ -119,11 +138,11 @@ class MailApp extends Component {
               >
                 <MailContent
                   mailItem={this.state.mailItem}
-                  labelList={this.state.navList.filter(m => m.isLabel)}
-                  navList={this.state.navList.filter(m => !m.isLabel)}
-                  onNewMail={this.handleNewMail}
+                  labelList={this.state.navList.filter(l => l.isLabel)}
+                  navList={this.state.navList.filter(l => !l.isLabel)}
                   data={this.state.data.filter(item =>item[this.state.currentNavItem.prop] ===this.state.currentNavItem.text)}
                   onMailUpdate={this.handleMailUpdate}
+                  onDropdownSelect={this.handleDropdownSelect}
                 />
               </div>
             )}

@@ -91,23 +91,47 @@ class MailList extends Component {
                   dropDownPlacement={"bottomRight"}
                   noBorder={true}
                   buttonStyles={{background:'transparent'}}
+                  onSelect={(val) => this.props.onDropdownSelect(val, item.id)}
                   options={[
                     {
                       id: 1,
-                      text: "Reply",
-                      icon: null,
+                      text: item.unread ? "Mark Read" : "Mark Unread",
+                      icon: "eye",
                       iconTheme: null
                     },
                     {
                       id: 2,
-                      text: "Foward",
-                      icon: null,
+                      text: "Reply",
+                      icon: "arrow-left",
                       iconTheme: null
                     },
                     {
                       id: 3,
+                      text: "Forward",
+                      icon: "arrow-right",
+                      iconTheme: null
+                    },
+                    {
+                      id: 5,
+                      text: "Move to",
+                      icon: "folder-add",
+                      iconTheme: null,
+                      subMenuOptions: [
+                        { id: 2, text: "Important", icon: "star" },
+                        { id: 3, text: "Spam", icon: "warning" }
+                      ]
+                    },
+                    {
+                      id: 6,
+                      text: "Label as",
+                      icon: "plus-circle",
+                      iconTheme: null,
+                      subMenuOptions: this.props.labelList
+                    },
+                    {
+                      id: 7,
                       text: "Delete",
-                      icon: null,
+                      icon: "delete",
                       iconTheme: null
                     }
                   ]}
