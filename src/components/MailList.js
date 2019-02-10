@@ -49,6 +49,12 @@ class MailList extends Component {
     this.searchInput.focus()
   }
 
+  handleMailItemClick = async (id) => {
+    console.log('click from menuItem')
+    await this.props.onMailUpdate(id,'unread',false)
+    this.props.onSetCurrentMail(id)
+  }
+
   render() {
     return (
       <div
@@ -73,7 +79,7 @@ class MailList extends Component {
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => (
             <List.Item
-              onClick={()=>this.props.onMailUpdate(item.id,'unread',false)}
+              onClick={()=>this.handleMailItemClick(item.id)}
               key={item.id}
               className={item.unread ? 'unread' : null}
               style={this.props.mailItem && (item.id === this.props.mailItem.id ? styles.itemHover : null)}

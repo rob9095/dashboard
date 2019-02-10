@@ -47,17 +47,19 @@ class MailApp extends Component {
     })
   }
 
-  handleMailUpdate = (id,key,value,updateMailItem) => {
-    const data = this.state.data.map(m => m.id === id ? {...m, [key]: value} : m)
-    const mailItem = data.find(item => item.id === id);
-    console.log(mailItem)
-    this.setState({
-      data,
-      mailItem,
+  setCurrentMail = (id) => this.setState({currentMailId: id})
+
+  handleMailUpdate = (id,key,value,) => {
+    return new Promise(async(resolve,reject) => {
+      const data = this.state.data.map(m => m.id === id ? {...m, [key]: value} : m)
+      await this.setState({
+        data,
+      })
+      resolve()
     })
   }
 
-  handleDropdownSelect = (val,id) => {
+  handleDropdownSelect = async (val,id) => {
     console.log({val,id})
     switch (val.text) {
       case 'Mark Unread':
@@ -70,8 +72,8 @@ class MailApp extends Component {
         window.print()
         break;
       case 'Delete':
-        this.handleMailUpdate(null);
         this.handleMailUpdate(id, "folder", "deleted");
+        this.setCurrentMail(null)
         break;
     }
 
@@ -83,6 +85,7 @@ class MailApp extends Component {
   }
   
   render() {
+    const mailItem = this.state.data.find(item => item.id === this.state.currentMailId);
     return (
       <div className="stkd-widget" style={{ width: "100%" }}>
         <div
@@ -94,7 +97,7 @@ class MailApp extends Component {
               style={{
                 borderRight: "2px solid #eee",
                 minWidth:
-                  this.props.clientWidth < this.state.breakpoint ? 60 : 300
+                  this.props.clientWidth < this.state.breakpoint ? 60 : 250
               }}
               className="mail-nav"
             >
@@ -113,22 +116,23 @@ class MailApp extends Component {
                 borderLeft: "2px solid #eee",
                 display:
                   this.props.clientWidth < this.state.breakpoint &&
-                  this.state.mailItem
+                  mailItem
                     ? "none"
                     : "inherit",
-                width: this.state.mailItem ? "60%" : "100%"
+                width: mailItem ? "60%" : "100%"
               }}
               className="mail-list"
             >
               <MailList
-                mailItem={this.state.mailItem}
+                mailItem={mailItem}
                 onMailUpdate={this.handleMailUpdate}
+                onSetCurrentMail={this.setCurrentMail}
                 data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text)}
                 labelList={this.state.navList.filter(l => l.isLabel)}
                 onDropdownSelect={this.handleDropdownSelect}
               />
             </div>
-            {this.state.mailItem && (
+            {mailItem && (
               <div
                 style={{
                   borderLeft: "2px solid #eee",
@@ -137,11 +141,12 @@ class MailApp extends Component {
                 className="mail-content"
               >
                 <MailContent
-                  mailItem={this.state.mailItem}
+                  mailItem={mailItem}
                   labelList={this.state.navList.filter(l => l.isLabel)}
                   navList={this.state.navList.filter(l => !l.isLabel)}
                   data={this.state.data.filter(item =>item[this.state.currentNavItem.prop] ===this.state.currentNavItem.text)}
                   onMailUpdate={this.handleMailUpdate}
+                  onSetCurrentMail={this.setCurrentMail}
                   onDropdownSelect={this.handleDropdownSelect}
                 />
               </div>

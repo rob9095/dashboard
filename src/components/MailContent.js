@@ -78,6 +78,11 @@ class MailContent extends Component {
     }
   }
 
+  handleMailItemOpen = async (id) => {
+    await this.props.onMailUpdate(id,'unread',false)
+    this.props.onSetCurrentMail(id)
+  }
+
   render() {
     const mailIndex = this.props.data.findIndex(m=>m.id === this.props.mailItem.id)
     const mailLabel = this.props.labelList.find(l=>l.text.toLowerCase() === this.props.mailItem.label)
@@ -93,7 +98,7 @@ class MailContent extends Component {
           <div className="flex align-items-center">
             <Tooltip title={"Older"}>
               <Button 
-                onClick={() => this.props.onMailUpdate(this.props.data[mailIndex - 1].id,'unread',false)}
+                onClick={() => this.handleMailItemOpen(this.props.data[mailIndex - 1].id)}
                 disabled={mailIndex === 0 ? true : false}
                 className="no-border"
               >
@@ -102,7 +107,7 @@ class MailContent extends Component {
             </Tooltip>
             <Tooltip title={"Newer"}>
               <Button 
-                onClick={() => this.props.onMailUpdate(this.props.data[mailIndex + 1].id,'unread',false)}
+                onClick={() => this.handleMailItemOpen(this.props.data[mailIndex + 1].id,)}
                 disabled={mailIndex === this.props.data.length - 1 ? true : false}
                 className="no-border"
               >
@@ -115,7 +120,7 @@ class MailContent extends Component {
               </Button>
             </Tooltip>
             <Tooltip title={"Close"}>
-              <Button onClick={()=>this.props.onMailUpdate(null)} className="no-border">
+              <Button onClick={()=>this.props.onSetCurrentMail(null)} className="no-border">
                 <Icon type="close" />
               </Button>
             </Tooltip>             

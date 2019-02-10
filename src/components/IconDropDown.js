@@ -20,6 +20,7 @@ const IconDropDown = (props) => {
               <Menu.Item
                 key={subItem.id}
                 onClick={(e) => {
+                  console.log('click from dropdown subitem')
                   e.domEvent.stopPropagation()
                   props.onSelect &&
                   props.onSelect({
@@ -39,14 +40,16 @@ const IconDropDown = (props) => {
         ) : (
           <Menu.Item
             key={item.id}
-            onClick={() =>
+            onClick={(e) => {
+              console.log('click from dropdown')
+              e.domEvent.stopPropagation()
               props.onSelect &&
               props.onSelect({
                 text: item.text,
                 id: item.id,
                 rowKey: item.rowKey
               })
-            }
+            }}
           >
             {item.icon && <Icon type={item.icon} theme={item.iconTheme} />}
             {item.text}
