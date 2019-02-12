@@ -28,6 +28,7 @@ class MailList extends Component {
 
     }
   }
+  
   handleSearch = (e) => {
     const val = e.target.value.toLowerCase()
     this.setState({

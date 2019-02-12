@@ -16,7 +16,7 @@ class MailNav extends Component {
     const prop = isLabel ? 'label' : 'folder'
     const unread = this.props.data.filter(
       m => m.unread === true && m[prop] === text
-    ).length
+    ).filter(m => !isLabel || m.folder !== 'deleted').length
     return unread > 0 ? unread : null
   }
 

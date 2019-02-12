@@ -127,7 +127,7 @@ class MailApp extends Component {
                 mailItem={mailItem}
                 onMailUpdate={this.handleMailUpdate}
                 onSetCurrentMail={this.setCurrentMail}
-                data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text)}
+                data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text).filter(m=>(this.state.currentNavItem.prop !== 'label' || m.folder !== 'deleted'))}
                 labelList={this.state.navList.filter(l => l.isLabel)}
                 onDropdownSelect={this.handleDropdownSelect}
               />
