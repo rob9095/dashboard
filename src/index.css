@@ -1005,6 +1005,12 @@ input:checked + .stkd-slider:before {
   cursor: pointer;
 }
 
+@media screen and (max-width: 480px) {
+  .mail-app .mail-list .ant-list-vertical .ant-list-item .ant-list-item-extra-wrap {
+      flex-wrap: nowrap;
+  }
+}
+
 .mail-app .mail-list .ant-list-item:hover {
   background: rgba(0, 0, 0, .03);
   box-shadow: 0 2px 8px rgba(0, 0, 0, .15);

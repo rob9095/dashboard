@@ -138,46 +138,7 @@ class MailContent extends Component {
             </Tooltip>             
           </div>
         </div>
-        <div className="flex space-between align-items-center" style={{height: 40}}>
-          {/* <div>
-            <Tooltip title={"Important"}>
-              <Button className="no-border">
-                <Icon type="star" />
-              </Button>
-            </Tooltip>
-            <Divider type="vertical" style={{ margin: 0, width: 2 }} />
-            <Tooltip title={"Report Spam"}>
-              <Button className="no-border">
-                <Icon type="warning" />
-              </Button>
-            </Tooltip>
-            <Divider type="vertical" style={{ margin: 0, width: 2 }} />
-            <IconDropDown
-              icon={"folder-open"}
-              iconTheme={"outlined"}
-              iconSize={"16px"}
-              noBorder
-              options={[
-                {
-                  id: 5,
-                  text: "Move to",
-                  icon: "folder-add",
-                  iconTheme: null,
-                  subMenuOptions: [
-                    { id: 2, text: "Important", icon: "star" },
-                    { id: 3, text: "Spam", icon: "warning" }
-                  ]
-                },
-                {
-                  id: 6,
-                  text: "Label as",
-                  icon: "plus-circle",
-                  iconTheme: null,
-                  subMenuOptions: this.props.labelList
-                }
-              ]}
-            />
-          </div> */}
+        <div className="flex space-between align-items-center" style={{minHeight: 40}}>
           <div style={{ fontSize: 12 }}>
             {moment(new Date(this.props.mailItem.date)).format(
               "dddd, MMMM Do YYYY, h:mm A"
