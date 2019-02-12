@@ -35,6 +35,11 @@ class MailApp extends Component {
     this.handleMailNavMenuClick('Inbox','1')
   }
 
+  toggleBreakpoint = () => {
+    const breakpoint = this.state.breakpoint > 992 ? 992 : 9999
+    this.setState({breakpoint})
+  }
+
   handleMailNavMenuClick = (text,id,isLabel) => {
     text = text.toLowerCase()
     const prop = isLabel ? 'label' : 'folder'
@@ -148,6 +153,8 @@ class MailApp extends Component {
                   onMailUpdate={this.handleMailUpdate}
                   onSetCurrentMail={this.setCurrentMail}
                   onDropdownSelect={this.handleDropdownSelect}
+                  onToggleBreakpoint={this.toggleBreakpoint}
+                  showExpand={this.props.clientWidth > 992}
                 />
               </div>
             )}

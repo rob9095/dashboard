@@ -74,13 +74,23 @@ class MailContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      isExpanded: false,
     }
   }
 
   handleMailItemOpen = async (id) => {
     await this.props.onMailUpdate(id,'unread',false)
     this.props.onSetCurrentMail(id)
+  }
+
+  handleBreakpointToggle = () => {
+    this.setState({isExpanded: !this.state.isExpanded})
+    this.props.onToggleBreakpoint()
+  }
+
+  handleMailClose = () => {
+    this.state.isExpanded && this.handleBreakpointToggle()
+    this.props.onSetCurrentMail(null)
   }
 
   render() {
@@ -114,13 +124,15 @@ class MailContent extends Component {
                 <Icon type="down" />
               </Button>
             </Tooltip>
-            <Tooltip title={"Expand"}>
-              <Button className="no-border">
-                <Icon type="arrow-up" style={{ transform: 'rotate(45deg)' }} />
-              </Button>
-            </Tooltip>
+            {this.props.showExpand && (
+              <Tooltip title={this.state.isExpanded ? "Minimize" : "Expand"}>
+                <Button className="no-border" onClick={this.handleBreakpointToggle}>
+                  <Icon type="arrow-up" style={this.state.isExpanded ? { transform: 'rotate(-135deg)' } : { transform: 'rotate(45deg)' }} />
+                </Button>
+              </Tooltip>
+            )}
             <Tooltip title={"Close"}>
-              <Button onClick={()=>this.props.onSetCurrentMail(null)} className="no-border">
+              <Button onClick={this.handleMailClose} className="no-border">
                 <Icon type="close" />
               </Button>
             </Tooltip>             
