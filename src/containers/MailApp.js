@@ -50,6 +50,7 @@ class MailApp extends Component {
         prop,
       },
     })
+    this.props.clientWidth < this.state.breakpoint && this.setCurrentMail(null)
   }
 
   setCurrentMail = (id) => this.setState({currentMailId: id})
