@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Menu, Icon, Drawer, Badge } from "antd";
+import theme from "../theme";
 
 class MailNav extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class MailNav extends Component {
           className="flex align-items-center justify-content-center half-pad"
           style={{ height: 60 }}
         >
-          <Button block type="primary" icon="plus" />
+          <Button block type="primary">New Message</Button>
         </div>
         )
       }
@@ -97,18 +98,26 @@ class MailNav extends Component {
 
   render() {
     return (
-      <div className={this.props.showDrawer ? 'no-pad contain' : 'full-pad contain'} style={{ paddingTop: 0 }}>
+      <div className={this.props.showDrawer ? 'no-pad' : 'full-pad'} style={{ paddingTop: 0 }}>
         {this.props.showDrawer ? (
-          <div>
-            <div className="flex half-pad align-items-center justify-content-center" style={{ height: 60 }}>
-              <Button onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">
-                <Icon type="menu" style={{ fontSize: "1.30rem" }} />
+          this.props.clientWidth < 480 ? 
+            <div className="flex half-pad align-items-center space-between" style={{ height: 60, overflow: 'hidden', background: theme.colors.main}}>
+              <h3 style={{color: '#fff', margin: 0, textTransform: 'capitalize'}}>{this.props.currentNavItem.text}</h3>
+              <Button style={{background: theme.colors.main}} onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">
+                <Icon type="menu" style={{ fontSize: "1.30rem", color: '#fff' }} />
               </Button>
+            </div>            
+          :
+            <div className="contain">
+              <div className="flex half-pad align-items-center justify-content-center" style={{ height: 60 }}>
+                <Button onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">
+                  <Icon type="menu" style={{ fontSize: "1.30rem" }} />
+                </Button>
+              </div>
+              <div>{this.menuDiv(true)}</div>
             </div>
-            <div>{this.menuDiv(true)}</div>
-          </div>
-        ) : (
-          <div>{this.menuDiv()}</div>
+          ) : (
+            <div className="contain">{this.menuDiv()}</div>
         )}
         <Drawer
           placement={"left"}

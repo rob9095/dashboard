@@ -965,10 +965,6 @@ input:checked + .stkd-slider:before {
 /* Mail App */
 
 /* Mail App Navigation*/
-.mail-app .mail-nav {
-  overflow: auto;
-}
-
 .mail-app .mail-nav .menu-item {
   font-size: 14px;
   height: 30px;

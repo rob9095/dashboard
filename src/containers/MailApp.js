@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Row, Col } from "antd";
 import theme from "../theme";
 import mockData from "../data/mockData";
 import MailList from "../components/MailList";
@@ -98,12 +97,17 @@ class MailApp extends Component {
           className="mail-app flex"
           style={{ height: "100%", background: "#fff", width: "100%" }}
         >
-          <div className="flex" style={{ height: "100%", width: "100%" }}>
+          <div className="flex" style={{
+            flexDirection: this.props.clientWidth > 480 ? 'row' : 'column',
+            height: "100%",
+            width: "100%",
+          }}>
             <div
               style={{
                 borderRight: "2px solid #eee",
+                borderLeft: "2px solid #eee",
                 minWidth:
-                  this.props.clientWidth < this.state.breakpoint ? 60 : 250
+                  this.props.clientWidth < this.state.breakpoint ? 50 : 250
               }}
               className="mail-nav"
             >
@@ -114,6 +118,7 @@ class MailApp extends Component {
                 onMenuClick={this.handleMailNavMenuClick}
                 currentNavItem={this.state.currentNavItem}
                 showDrawer={this.props.clientWidth < this.state.breakpoint}
+                clientWidth={this.props.clientWidth}
               />
             </div>
             <div
@@ -125,7 +130,8 @@ class MailApp extends Component {
                   mailItem
                     ? "none"
                     : "inherit",
-                width: mailItem ? "60%" : "100%"
+                width: mailItem ? "60%" : "100%",
+                height: '100%',
               }}
               className="mail-list"
             >
@@ -142,6 +148,7 @@ class MailApp extends Component {
               <div
                 style={{
                   borderLeft: "2px solid #eee",
+                  borderRight: "2px solid #eee",
                   width: "100%"
                 }}
                 className="mail-content"
