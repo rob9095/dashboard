@@ -31,7 +31,7 @@ class MailApp extends Component {
   }
 
   componentDidMount() {
-    this.handleMailNavMenuClick('Inbox','1')
+    this.handleMailNavMenuClick(this.state.navList[0])
   }
 
   toggleBreakpoint = () => {
@@ -39,16 +39,13 @@ class MailApp extends Component {
     this.setState({breakpoint})
   }
 
-  handleMailNavMenuClick = (text,id,isLabel) => {
-    text = text.toLowerCase()
-    const prop = isLabel ? 'label' : 'folder'
-    this.setState({
-      currentNavItem: {
-        text,
-        id,
-        prop,
-      },
-    })
+  handleMailNavMenuClick = (currentNavItem) => {
+    currentNavItem = {
+      ...currentNavItem,
+      text: currentNavItem.text.toLowerCase(),
+      prop: currentNavItem.isLabel ? 'label' : 'folder',
+    }
+    this.setState({currentNavItem})
     this.props.clientWidth < this.state.breakpoint && this.setCurrentMail(null)
   }
 
@@ -119,6 +116,8 @@ class MailApp extends Component {
                 currentNavItem={this.state.currentNavItem}
                 showDrawer={this.props.clientWidth < this.state.breakpoint}
                 clientWidth={this.props.clientWidth}
+                onSetCurrentMail={this.setCurrentMail}
+                mailItem={mailItem}
               />
             </div>
             <div
@@ -142,6 +141,7 @@ class MailApp extends Component {
                 data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text).filter(m=>(this.state.currentNavItem.prop !== 'label' || m.folder !== 'deleted'))}
                 labelList={this.state.navList.filter(l => l.isLabel)}
                 onDropdownSelect={this.handleDropdownSelect}
+                currentNavItem={this.state.currentNavItem}
               />
             </div>
             {mailItem && (

@@ -28,7 +28,7 @@ class MailList extends Component {
 
     }
   }
-  
+
   handleSearch = (e) => {
     const val = e.target.value.toLowerCase()
     this.setState({
@@ -66,7 +66,7 @@ class MailList extends Component {
           <Input
             prefix={(<Icon type="search" />)}
             suffix={this.state.searchVal ? <Icon className="search-close" type="close-circle" onClick={this.clearSearch} /> : null}
-            placeholder="Search"
+            placeholder={"search " + this.props.currentNavItem.text}
             value={this.state.searchVal}
             onChange={this.handleSearch}
             ref={node=>this.searchInput = node}
@@ -164,11 +164,6 @@ class MailList extends Component {
                 }
               />
               {item.content}
-                {/* .split(" ")
-                .filter((w, i) => i <= 25)
-                .map((w, i, a) =>
-                  i === a.length - 1 ? w + "..." : w + " "
-                )} */}
             </List.Item>
           )}
         />

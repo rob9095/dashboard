@@ -1048,6 +1048,7 @@ input:checked + .stkd-slider:before {
   height: 60px;
   font-size: 16px;
   border-bottom: 2px solid #eee;
+  text-transform: capitalize;
 }
 
 .mail-app .mail-list .mail-search input:focus {
