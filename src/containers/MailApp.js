@@ -69,6 +69,14 @@ class MailApp extends Component {
         break;
       case 'Mark Read':
         this.handleMailUpdate(id, "unread", false);
+        break;
+      case 'Reply':
+        this.setState({mailComposer: {}})
+        this.setCurrentMail(id)
+        break;
+      case 'Forward':
+        this.setState({ mailComposer: {foward: true} })
+        this.setCurrentMail(id)
         break;  
       case 'Print':
         window.print()
@@ -106,7 +114,7 @@ class MailApp extends Component {
                 minWidth:
                   this.props.clientWidth < this.state.breakpoint ? 50 : 250
               }}
-              className="mail-nav"
+              className="mail-nav contain"
             >
               <MailNav
                 data={this.state.data}
@@ -163,6 +171,7 @@ class MailApp extends Component {
                   onDropdownSelect={this.handleDropdownSelect}
                   onToggleBreakpoint={this.toggleBreakpoint}
                   showExpand={this.props.clientWidth > 992}
+                  mailComposer={this.state.mailComposer}
                 />
               </div>
             )}

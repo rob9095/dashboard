@@ -122,7 +122,7 @@ class MailNav extends Component {
               </Button>
             </div>            
           :
-            <div className="contain">
+            <div>
               <div className="flex half-pad align-items-center justify-content-center" style={{ height: 60 }}>
                 <Button onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">
                   <Icon type="menu" style={{ fontSize: "1.30rem" }} />
@@ -131,7 +131,7 @@ class MailNav extends Component {
               <div>{this.menuDiv(true)}</div>
             </div>
           ) : (
-            <div className="contain">{this.menuDiv()}</div>
+            <div>{this.menuDiv()}</div>
         )}
         <Drawer
           placement={"left"}

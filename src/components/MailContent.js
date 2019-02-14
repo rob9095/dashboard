@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Icon, Avatar, Tag, Tooltip, Divider } from "antd";
 import IconDropDown from "../components/IconDropDown";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import theme from "../theme";
-import {
-  faReply,
-  faReplyAll,
-  faAngleDown,
-  faLongArrowAltRight
-} from "@fortawesome/free-solid-svg-icons";
+import MailComposer from './MailComposer';
 
-const ButtonGroup = Button.Group;
 const moment = require("moment");
 
 const ReplySvg = () => (
@@ -78,13 +70,21 @@ class MailContent extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.mailComposer && this.setState({mailComposer: this.props.mailComposer})
+  }
+
+  toggle = (key) => {
+    this.setState({[key]: !this.state[key]})
+  }
+
   handleMailItemOpen = async (id) => {
     await this.props.onMailUpdate(id,'unread',false)
     this.props.onSetCurrentMail(id)
   }
 
   handleBreakpointToggle = () => {
-    this.setState({isExpanded: !this.state.isExpanded})
+    this.toggle('isExpanded')
     this.props.onToggleBreakpoint()
   }
 
@@ -146,13 +146,13 @@ class MailContent extends Component {
           </div>
           <div className="flex align-items-center">
             <Tooltip title={"Reply"} placement="bottom">
-              <Button className="no-border">
+              <Button onClick={() => this.setState({ mailComposer: {} })} className="no-border">
                 <ReplyIcon />
               </Button>
             </Tooltip>
             <Divider type="vertical" style={{ margin: 0, width: 2 }} />
             <Tooltip title={"Reply All"} placement="bottom">
-              <Button className="no-border">
+              <Button onClick={() => this.setState({ mailComposer: {} })} className="no-border">
                 <ReplyAllIcon />
               </Button>
             </Tooltip>
@@ -262,7 +262,6 @@ class MailContent extends Component {
               <span className="mail-to-contact">
                 to
                 <strong> me </strong>
-                {/* <FontAwesomeIcon size={"xs"} icon={faAngleDown} /> */}
                 <Icon type="down" style={{fontSize: '.65rem'}} />
               </span>
             </div>
@@ -325,19 +324,34 @@ class MailContent extends Component {
             ))}
           </div>
         )}
-        <div className="flex align-items center" style={{ marginTop: 24 }}>
-          <Button
-            type="primary"
-            style={{ fontWeight: 600, marginRight: 10 }}
-          >
-            <ReplyIcon />
-            <span style={{marginLeft: 5}}>Reply</span>
-          </Button>
-          <Button style={{ fontWeight: 600 }}>
-            <span>Foward</span>
-            <Icon type="arrow-right" style={{ marginLeft: 5 }} />
-          </Button>
-        </div>
+        {this.state.mailComposer ?
+          <MailComposer
+            forward={this.state.mailComposer.foward}
+            onToggle={this.toggle}
+            values={{
+              to: this.props.mailItem.email_address,
+              subject: `Re: ${this.props.mailItem.subject}`,
+              content: this.props.mailItem.content,
+              date: moment(new Date(this.props.mailItem.date)).format("ddd, MMM D YYYY h:mm:ss a"),
+              name: this.props.mailItem.first_name + " " + this.props.mailItem.last_name,
+            }}
+          />
+        :
+          <div className="flex align-items center" style={{ marginTop: 24 }}>
+            <Button
+              type="primary"
+              style={{ fontWeight: 600, marginRight: 10 }}
+              onClick={() => this.setState({ mailComposer: {} })}
+            >
+              <ReplyIcon />
+              <span style={{ marginLeft: 5 }}>Reply</span>
+            </Button>
+            <Button style={{ fontWeight: 600 }} onClick={() => this.setState({mailComposer: {foward: true}})}>
+              <span>Foward</span>
+              <Icon type="arrow-right" style={{ marginLeft: 5 }} />
+            </Button>
+          </div>
+        }
       </div>
     );
   }
