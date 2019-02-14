@@ -328,6 +328,7 @@ class MailContent extends Component {
           <MailComposer
             forward={this.state.mailComposer.foward}
             onToggle={this.toggle}
+            onMailAction={this.props.onDropdownSelect}
             values={{
               to: this.props.mailItem.email_address,
               subject: `Re: ${this.props.mailItem.subject}`,

@@ -4,6 +4,12 @@ import mockData from "../data/mockData";
 import MailList from "../components/MailList";
 import MailContent from "../components/MailContent";
 import MailNav from "../components/MailNav";
+import { message } from 'antd';
+
+const showMessage = (config) => {
+  const { string, type } = config
+  message[type](string);
+};
 
 class MailApp extends Component {
   constructor(props) {
@@ -84,13 +90,31 @@ class MailApp extends Component {
       case 'Delete':
         this.handleMailUpdate(id, "folder", "deleted");
         this.setCurrentMail(null)
+        showMessage({
+          string: 'Message Deleted',
+          type: 'error',
+        })
+        break;
+      case 'Send':
+        showMessage({
+          string: 'Message Sent',
+          type: 'success',
+        })
         break;
     }
 
     if (this.state.navList.find(l => l.text.toLowerCase() === val.text.toLowerCase() && l.isLabel)) {
       this.handleMailUpdate(id, "label", val.text.toLowerCase());
+      showMessage({
+        string: 'Message labeled as ' + val.text,
+        type: 'success',
+      })
     } else if (this.state.navList.find(l => l.text.toLowerCase() === val.text.toLowerCase())) {
       this.handleMailUpdate(id, "folder", val.text.toLowerCase());
+      showMessage({
+        string: 'Message moved to ' + val.text,
+        type: 'success',
+      })
     }
   }
   

@@ -53,6 +53,8 @@ class SimpleMailComposer extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.onMailAction({text: 'Send'},null)
+        this.props.onToggle('mailComposer')
       }
     });
   }
