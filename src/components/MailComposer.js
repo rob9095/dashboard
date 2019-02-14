@@ -14,8 +14,33 @@ class SimpleMailComposer extends Component {
       ]
     }
   }
+
+  setEditorContent = (props) => {
+    const editorContent = props.type === 'forward' ?
+      [
+        { insert: '\n\n' },
+        { insert: '============ Forwarded message ============\n' },
+        { insert: `From: ${props.values.name} <${props.values.to}>\n` },
+        { insert: `Date: ${props.values.date}\n` },
+        { insert: `Subject: ${props.values.subject}\n` },
+        { insert: '============ Forwarded message ============\n\n' },
+        { insert: props.values.content },
+      ]
+      :
+      [
+        { insert: '\n\n' },
+        { insert: `--- On ${props.values.date} ` },
+        { insert: `${props.values.name} <${props.values.to}> `, attributes: { bold: true } },
+        { insert: 'wrote ---' },
+        { insert: '\n\n' },
+        { insert: props.values.content },
+      ]
+    this.editor.setContents(editorContent);
+    props.type === 'reply' ? this.editor.focus() : this.ToInput.focus() 
+  }
+
   componentDidMount() {
-    const editor = new Quill('#editor', {
+    this.editor = new Quill('#editor', {
       modules: {
         toolbar: [
           [{ header: [1, 2, false] }],
@@ -26,35 +51,26 @@ class SimpleMailComposer extends Component {
       placeholder: 'Your Message',
       theme: 'snow'  // or 'bubble'
     });
-    const editorContent = this.props.forward ? 
-      [
-        { insert: '\n\n' },
-        { insert: '============ Forwarded message ============\n'},
-        { insert: `From: ${this.props.values.name} <${this.props.values.to}>\n` },
-        { insert: `Date: ${this.props.values.date}\n` },
-        { insert: `Subject: ${this.props.values.subject}\n` },
-        { insert: '============ Forwarded message ============\n\n' },
-        { insert: this.props.values.content },
-      ]
-    :
-      [
-        { insert: '\n\n' },
-        { insert: `--- On ${this.props.values.date} ` },
-        { insert: `${this.props.values.name} <${this.props.values.to}> `, attributes: { bold: true } },
-        { insert: 'wrote ---' },
-        { insert: '\n\n' },
-        { insert: this.props.values.content },
-      ]
-    editor.setContents(editorContent);
-    this.props.forward ? this.ToInput.focus() : editor.focus()
+    this.props.mailId !== 'new' && this.setEditorContent(this.props)
   }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.mailId !== this.props.mailId || newProps.type !== this.props.type) {
+      this.setEditorContent(newProps)
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        values = {
+          ...values,
+          editor: this.editor.getContents(),
+        }
         console.log('Received values of form: ', values);
         this.props.onMailAction({text: 'Send'},null)
-        this.props.onToggle('mailComposer')
+        this.props.onToggle({})
       }
     });
   }
@@ -71,7 +87,7 @@ class SimpleMailComposer extends Component {
             <Form.Item 
               key={i.text}
             >
-              {getFieldDecorator(i.text, {initialValue: this.props.forward && i.text !== "Subject" ? '' : values[i.text.toLowerCase()]},{
+              {getFieldDecorator(i.text, {initialValue: this.props.type === 'forward' && i.text !== "Subject" ? '' : values[i.text.toLowerCase()]},{
                 rules: [{ required: i.required, message: `${i.text} is required` }],
               })(
                 <Input prefix={i.text !== "Subject" ? <span style={{color: '#bfbfbf'}}>{i.text}</span> : ''} ref={node => { this[i.text+"Input"] = node; }} placeholder={i.text !== "Subject" ? '' : 'Subject'} />
@@ -85,11 +101,11 @@ class SimpleMailComposer extends Component {
             </Button>
             <div>
               <Tooltip title="Save Draft">
-                <Button onClick={()=>this.props.onToggle('mailComposer')} className="no-border" icon="save" />
+                <Button onClick={()=>this.props.onToggle({})} className="no-border" icon="save" />
               </Tooltip>
               <Divider type="vertical" style={{ margin: 0, width: 2 }} />
               <Tooltip title="Delete Reply">
-                <Button onClick={() => this.props.onToggle('mailComposer')} className="no-border" icon="delete" />
+                <Button onClick={() => this.props.onToggle({})} className="no-border" icon="delete" />
               </Tooltip>
             </div>
           </div>

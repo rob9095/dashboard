@@ -70,16 +70,6 @@ class MailContent extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.mailComposer && this.setState({mailComposer: this.props.mailComposer})
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.mailItem.id !== this.props.mailItem.id) {
-      this.setState({mailComposer: null})
-    }
-  }
-
   toggle = (key) => {
     this.setState({[key]: !this.state[key]})
   }
@@ -100,6 +90,41 @@ class MailContent extends Component {
   }
 
   render() {
+    if (this.props.mailComposer.type === 'new') {
+      return (
+        <div className="half-pad contain" style={{ paddingTop: 0 }}>
+          <div
+            className="flex space-between align-items-center"
+            style={{ minHeight: 60, borderBottom: '2px solid #eee' }}
+          >
+            <h2 style={{ textTransform: "capitalize", fontSize: 18 }} className="no-margin">
+              New Message
+            </h2>
+            <div className="flex align-items-center">
+              {this.props.showExpand && (
+                <Tooltip title={this.state.isExpanded ? "Minimize" : "Expand"}>
+                  <Button className="no-border" onClick={this.handleBreakpointToggle}>
+                    <Icon type="arrow-up" style={this.state.isExpanded ? { transform: 'rotate(-135deg)' } : { transform: 'rotate(45deg)' }} />
+                  </Button>
+                </Tooltip>
+              )}
+              <Tooltip title={"Close"}>
+                <Button onClick={this.handleMailClose} className="no-border">
+                  <Icon type="close" />
+                </Button>
+              </Tooltip>
+            </div>
+          </div>
+          <MailComposer
+            type={this.props.mailComposer.type}
+            onToggle={()=>this.props.onSetCurrentMail(null)}
+            onMailAction={this.props.onDropdownSelect}
+            mailId="new"
+            values={{}}
+          />
+        </div>
+      )
+    }
     const mailIndex = this.props.data.findIndex(m=>m.id === this.props.mailItem.id)
     const mailLabel = this.props.labelList.find(l=>l.text.toLowerCase() === this.props.mailItem.label)
     return (
@@ -141,7 +166,7 @@ class MailContent extends Component {
               <Button onClick={this.handleMailClose} className="no-border">
                 <Icon type="close" />
               </Button>
-            </Tooltip>             
+            </Tooltip>
           </div>
         </div>
         <div className="flex space-between align-items-center" style={{minHeight: 40}}>
@@ -152,13 +177,13 @@ class MailContent extends Component {
           </div>
           <div className="flex align-items-center">
             <Tooltip title={"Reply"} placement="bottom">
-              <Button onClick={() => this.setState({ mailComposer: {} })} className="no-border">
+              <Button onClick={() => this.props.onSetMailComposer({type: 'reply'})} className="no-border">
                 <ReplyIcon />
               </Button>
             </Tooltip>
             <Divider type="vertical" style={{ margin: 0, width: 2 }} />
             <Tooltip title={"Reply All"} placement="bottom">
-              <Button onClick={() => this.setState({ mailComposer: {} })} className="no-border">
+              <Button onClick={() => this.props.onSetMailComposer({type: 'reply'})} className="no-border">
                 <ReplyAllIcon />
               </Button>
             </Tooltip>
@@ -330,11 +355,12 @@ class MailContent extends Component {
             ))}
           </div>
         )}
-        {this.state.mailComposer ?
+        {this.props.mailComposer.type === 'reply' || this.props.mailComposer.type === 'forward' ?
           <MailComposer
-            forward={this.state.mailComposer.foward}
-            onToggle={this.toggle}
+            type={this.props.mailComposer.type}
+            onToggle={this.props.onSetMailComposer}
             onMailAction={this.props.onDropdownSelect}
+            mailId={this.props.mailItem.id}
             values={{
               to: this.props.mailItem.email_address,
               subject: `Re: ${this.props.mailItem.subject}`,
@@ -348,13 +374,13 @@ class MailContent extends Component {
             <Button
               type="primary"
               style={{ fontWeight: 600, marginRight: 10 }}
-              onClick={() => this.setState({ mailComposer: {} })}
+              onClick={() => this.props.onSetMailComposer({ type: 'reply' })}
             >
               <ReplyIcon />
               <span style={{ marginLeft: 5 }}>Reply</span>
             </Button>
-            <Button style={{ fontWeight: 600 }} onClick={() => this.setState({mailComposer: {foward: true}})}>
-              <span>Foward</span>
+            <Button style={{ fontWeight: 600 }} onClick={() => this.props.onSetMailComposer({type: 'forward'})}>
+              <span>Forward</span>
               <Icon type="arrow-right" style={{ marginLeft: 5 }} />
             </Button>
           </div>
