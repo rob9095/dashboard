@@ -63,11 +63,13 @@ const IconDropDown = (props) => {
         overlay={menu}
         placement={props.dropDownPlacement}
         style={{ marginBottom: ".5em" }}
+        trigger={['click','hover']}
       >
         <Button
           size={props.size}
           className={props.noBorder ? "no-border" : null}
           style={props.buttonStyles}
+          onClick={(e)=>e.stopPropagation()}
         >
           {props.text}
           {props.icon && (

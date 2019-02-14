@@ -271,7 +271,7 @@ class MailContent extends Component {
           {this.props.mailItem.content}
         </p>
         {this.props.mailItem.attachments && (
-          <div className="flex">
+          <div className="flex flex-wrap">
             {this.props.mailItem.attachments.map(a => (
               <div
                 key={a.name + this.props.mailItem.id}
@@ -280,7 +280,7 @@ class MailContent extends Component {
                   padding: "0px 10px 0px 10px",
                   borderRadius: 5,
                   border: "1px solid #d9d9d9",
-                  marginRight: 10,
+                  margin: 5,
                   minWidth: "150px"
                 }}
               >
