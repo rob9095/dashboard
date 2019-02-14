@@ -84,9 +84,8 @@ class MailContent extends Component {
     this.props.onToggleBreakpoint()
   }
 
-  handleMailClose = () => {
+  componentWillUnmount = () => {
     this.state.isExpanded && this.handleBreakpointToggle()
-    this.props.onSetCurrentMail(null)
   }
 
   render() {
@@ -109,7 +108,7 @@ class MailContent extends Component {
                 </Tooltip>
               )}
               <Tooltip title={"Close"}>
-                <Button onClick={this.handleMailClose} className="no-border">
+                <Button onClick={() => this.props.onSetCurrentMail(null)} className="no-border">
                   <Icon type="close" />
                 </Button>
               </Tooltip>
@@ -163,7 +162,7 @@ class MailContent extends Component {
               </Tooltip>
             )}
             <Tooltip title={"Close"}>
-              <Button onClick={this.handleMailClose} className="no-border">
+              <Button onClick={() => this.props.onSetCurrentMail(null)} className="no-border">
                 <Icon type="close" />
               </Button>
             </Tooltip>

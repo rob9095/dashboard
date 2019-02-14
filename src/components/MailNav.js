@@ -33,7 +33,7 @@ class MailNav extends Component {
           className="flex align-items-center justify-content-center half-pad"
           style={{ height: 60 }}
         >
-          <Button onClick={()=>this.props.onSetMailComposer({type: 'new'})} block type="primary">New Message</Button>
+          <Button onClick={() => {this.props.onSetMailComposer({ type: 'new' }) && this.toggleDrawer()}} block type="primary">New Message</Button>
         </div>
         )
       }

@@ -170,7 +170,7 @@ class MailApp extends Component {
                 borderRight: "2px solid #eee",
                 borderLeft: "2px solid #eee",
                 display:
-                  this.props.clientWidth < this.state.breakpoint && mailItem || this.props.clientWidth < this.state.breakpoint && this.state.mailComposer.newMessage
+                  this.props.clientWidth < this.state.breakpoint && mailItem || this.props.clientWidth < this.state.breakpoint && this.state.mailComposer.type === 'new'
                     ? "none"
                     : "inherit",
                 width: mailItem ? "60%" : "100%",
@@ -188,7 +188,7 @@ class MailApp extends Component {
                 currentNavItem={this.state.currentNavItem}
               />
             </div>
-            {mailItem || this.state.mailComposer.newMessage ? (
+            {mailItem || this.state.mailComposer.type === 'new' ? (
               <div
                 style={{
                   borderLeft: "2px solid #eee",
