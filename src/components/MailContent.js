@@ -74,6 +74,12 @@ class MailContent extends Component {
     this.props.mailComposer && this.setState({mailComposer: this.props.mailComposer})
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.mailItem.id !== this.props.mailItem.id) {
+      this.setState({mailComposer: null})
+    }
+  }
+
   toggle = (key) => {
     this.setState({[key]: !this.state[key]})
   }
