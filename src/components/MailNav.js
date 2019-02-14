@@ -113,8 +113,7 @@ class MailNav extends Component {
                   <Icon type="arrow-left" style={{ fontSize: "1.30rem", color: '#fff' }} />
                 </Button>
               )}
-              <h3 style={{color: '#fff', margin: 0, textTransform: 'capitalize'}}>
-                <Icon type={this.props.currentNavItem.icon} style={{marginRight: 5}} />
+              <h3 className="flex" style={{width: '100%', color: '#fff', margin: 0, textTransform: 'capitalize'}}>
                 {this.props.currentNavItem.text}
               </h3>
               <Button style={{background: 'transparent'}} onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">

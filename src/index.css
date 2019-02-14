@@ -965,7 +965,7 @@ input:checked + .stkd-slider:before {
 /* Mail App */
 
 /* Mail App Navigation*/
-.mail-app .mail-nav .menu-item {
+.mail-app .mail-nav .menu-item, .mail-app .mail-nav .menu-item span {
   font-size: 14px;
   height: 30px;
   display: flex;

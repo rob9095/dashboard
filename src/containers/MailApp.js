@@ -135,6 +135,7 @@ class MailApp extends Component {
               style={{
                 borderRight: "2px solid #eee",
                 borderLeft: "2px solid #eee",
+                minHeight: 60,
                 minWidth:
                   this.props.clientWidth < this.state.breakpoint ? 50 : 250
               }}
@@ -183,7 +184,7 @@ class MailApp extends Component {
                   borderRight: "2px solid #eee",
                   width: "100%"
                 }}
-                className="mail-content"
+                className="mail-content contain"
               >
                 <MailContent
                   mailItem={mailItem}
