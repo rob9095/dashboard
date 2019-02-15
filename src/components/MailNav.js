@@ -160,7 +160,7 @@ class MailNav extends Component {
     return (
       <div className={this.props.showDrawer ? 'no-pad' : 'full-pad'} style={{ paddingTop: 0 }}>
         {this.props.showDrawer ? (
-          this.props.clientWidth < 480 ? 
+          this.props.clientWidth < this.props.mobileBreakpoint ? 
             <div className="flex half-pad align-items-center space-between" style={{ height: 60, overflow: 'hidden', background: this.props.currentNavItem.color ? this.props.currentNavItem.color : theme.colors.main}}>
               {this.props.mailItem && (
                 <Button style={{ background: 'transparent' }} onClick={()=>this.props.onSetCurrentMail(null)} className="no-border flex-i justify-content-center align-items-center">

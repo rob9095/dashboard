@@ -16,6 +16,7 @@ class MailApp extends Component {
     super(props);
     this.state = {
       breakpoint: 992,
+      mobileBreakpoint: 480,
       currentNavItem: {},
       mailComposer: {},
       data: mockData.mailData.map(m => ({
@@ -142,7 +143,7 @@ class MailApp extends Component {
           style={{ height: "100%", background: "#fff", width: "100%" }}
         >
           <div className="flex" style={{
-            flexDirection: this.props.clientWidth > 480 ? 'row' : 'column',
+            flexDirection: this.props.clientWidth > this.state.mobileBreakpoint ? 'row' : 'column',
             height: "100%",
             width: "100%",
           }}>
@@ -168,6 +169,7 @@ class MailApp extends Component {
                 mailItem={mailItem}
                 onSetMailComposer={this.setMailComposer}
                 onNewLabel={this.handleNewLabel}
+                mobileBreakpoint={this.state.mobileBreakpoint}
               />
             </div>
             <div
