@@ -261,10 +261,15 @@ class MailContent extends Component {
               </Tag>
             )}
             <Divider type="vertical" style={{ margin: 0, width: 2 }} />
-            <Tooltip title={"Add Label"} placement="bottom">
-              <Button className="no-border" style={{ padding: '0px 8px' }}>
-                <Icon type="plus-circle" />
-              </Button>
+            <Tooltip title={"Add Label"} placement="top">
+              <IconDropDown
+                icon={"plus-circle"}
+                iconSize={"16px"}
+                iconTheme={"outlined"}
+                noBorder
+                onSelect={(val) => this.props.onDropdownSelect(val, this.props.mailItem.id)}
+                options={mailLabel ? this.props.labelList.filter(l => l.text.toLowerCase() !== mailLabel.text.toLowerCase()) : this.props.labelList}
+              />
             </Tooltip>
           </div>
         </div>
