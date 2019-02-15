@@ -206,7 +206,7 @@ class MailContent extends Component {
               options={[
                 {
                   id: 1,
-                  text: "Mark Unread",
+                  text: this.props.mailItem.unread ? "Mark Read" : "Mark Unread",
                   icon: "eye",
                   iconTheme: null
                 },
