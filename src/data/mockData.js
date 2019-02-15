@@ -17,7 +17,6 @@ const mockData = {
   "email_address": "goffner1@weibo.com",
   "unread": false,
   "folder": "inbox",
-  "label": "friends",
   "subject": "lacinia nisi venenatis tristique",
   "content": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
   "date": "2019-01-14T08:14:30Z"
@@ -29,7 +28,6 @@ const mockData = {
   "unread": false,
   "avatar": "https://robohash.org/inveniamaccusamus.png?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "work",
   "subject": "blandit lacinia erat",
   "content": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
   "date": "2019-01-07T04:11:34Z"
@@ -52,7 +50,6 @@ const mockData = {
   "email_address": "tmuselli4@hao123.com",
   "unread": true,
   "folder": "inbox",
-  "label": "personal",
   "subject": "posuere cubilia curae",
   "content": "Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
   "date": "2019-01-20T16:53:43Z"
@@ -63,7 +60,6 @@ const mockData = {
   "email_address": "showgill5@infoseek.co.jp",
   "unread": true,
   "folder": "inbox",
-  "label": "personal",
   "subject": "est lacinia nisi venenatis",
   "content": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
   "date": "2019-01-15T14:17:54Z"
@@ -85,13 +81,13 @@ const mockData = {
   "email_address": "rlett7@soup.io",
   "attachments": [
     {
-      "name": "LaciniaAeneanSit.ppt",
+      "name": "Lacinit.ppt",
       "size": 4046
     }
   ],
   "unread": false,
   "folder": "inbox",
-  "label": "friends",
+  "label": "work",
   "subject": "faucibus orci luctus et",
   "content": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
   "date": "2019-01-03T06:06:24Z"
@@ -102,7 +98,6 @@ const mockData = {
   "email_address": "fberntssen8@squarespace.com",
   "unread": true,
   "folder": "inbox",
-  "label": "friends",
   "subject": "fusce consequat nulla nisl nunc",
   "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
   "date": "2019-01-05T00:20:39Z"
@@ -126,7 +121,7 @@ const mockData = {
   "unread": true,
   "avatar": "https://robohash.org/adipisciquisquamaut.jpg?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "family",
+  "label": "personal",
   "subject": "venenatis turpis enim blandit mi",
   "content": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
   "date": "2019-01-20T21:55:22Z"
@@ -137,14 +132,13 @@ const mockData = {
   "email_address": "hnotleyb@quantcast.com",
   "attachments": [
     {
-      "name": "SapienIaculisCongue.txt",
+      "name": "Sapie.txt",
       "size": 15501
     }
   ],
   "unread": true,
   "avatar": "https://robohash.org/eummolestiaenihil.bmp?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "personal",
   "subject": "ultrices phasellus id",
   "content": "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
   "date": "2019-01-17T08:47:44Z"
@@ -156,7 +150,6 @@ const mockData = {
   "unread": false,
   "avatar": "https://robohash.org/autenimrerum.jpg?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "personal",
   "subject": "morbi quis tortor",
   "content": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
   "date": "2019-01-26T22:41:01Z"
@@ -167,7 +160,7 @@ const mockData = {
   "email_address": "jalcorand@ameblo.jp",
   "attachments": [
     {
-      "name": "VestibulumEgetVulputate.avi",
+      "name": "Vestate.avi",
       "size": 14441
     },
     {
@@ -178,7 +171,6 @@ const mockData = {
   "unread": true,
   "avatar": "https://robohash.org/consequaturcorporissunt.png?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "personal",
   "subject": "vulputate luctus cum sociis natoque",
   "content": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.",
   "date": "2019-01-01T16:38:52Z"
@@ -188,8 +180,6 @@ const mockData = {
   "last_name": "Haseman",
   "email_address": "dhasemane@sogou.com",
   "unread": false,
-  "folder": "inbox",
-  "label": "personal",
   "subject": "suspendisse potenti",
   "content": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
   "date": "2019-01-03T00:00:57Z"
@@ -213,7 +203,6 @@ const mockData = {
   "unread": false,
   "avatar": "https://robohash.org/mollitiaeiusdolores.bmp?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "personal",
   "subject": "eget eros",
   "content": "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
   "date": "2019-01-08T12:20:41Z"
@@ -225,7 +214,6 @@ const mockData = {
   "unread": true,
   "avatar": "https://robohash.org/blanditiisdoloresit.png?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "work",
   "subject": "ut erat",
   "content": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
   "date": "2019-02-01T10:25:19Z"
@@ -258,7 +246,6 @@ const mockData = {
   "email_address": "nelmanj@live.com",
   "unread": false,
   "folder": "inbox",
-  "label": "friends",
   "subject": "nulla nisl nunc",
   "content": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
   "date": "2019-02-01T06:33:34Z"
@@ -269,18 +256,17 @@ const mockData = {
   "email_address": "bbarusk@nba.com",
   "attachments": [
     {
-      "name": "Ut.xls",
+      "name": "Uted.xls",
       "size": 9390
     },
     {
-      "name": "MaecenasPulvinarLobortis.tiff",
+      "name": "aimge.tiff",
       "size": 3365
     }
   ],
   "unread": false,
   "avatar": "https://robohash.org/quosvoluptatemdolores.png?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "work",
   "subject": "duis bibendum felis sed interdum",
   "content": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
   "date": "2019-01-18T03:30:16Z"
@@ -291,11 +277,11 @@ const mockData = {
   "email_address": "vroachel@ted.com",
   "attachments": [
     {
-      "name": "Sollicitudin.xls",
+      "name": "Sollca.xls",
       "size": 11325
     },
     {
-      "name": "FelisUt.jpeg",
+      "name": "Felist.jpeg",
       "size": 9535
     }
   ],
@@ -313,7 +299,6 @@ const mockData = {
   "email_address": "lnorthm@europa.eu",
   "unread": true,
   "folder": "inbox",
-  "label": "personal",
   "subject": "erat curabitur gravida nisi",
   "content": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
   "date": "2019-01-21T21:04:46Z"
@@ -358,7 +343,6 @@ const mockData = {
   "email_address": "mmarnsq@discovery.com",
   "unread": false,
   "folder": "inbox",
-  "label": "family",
   "subject": "dolor vel",
   "content": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
   "date": "2019-01-14T02:40:25Z"
@@ -382,7 +366,6 @@ const mockData = {
   "unread": false,
   "avatar": "https://robohash.org/involuptassed.png?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "personal",
   "subject": "blandit lacinia erat vestibulum",
   "content": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
   "date": "2019-01-03T18:20:10Z"
@@ -405,7 +388,6 @@ const mockData = {
   "unread": true,
   "avatar": "https://robohash.org/debitisabet.png?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "personal",
   "subject": "adipiscing lorem vitae mattis",
   "content": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
   "date": "2018-12-31T20:12:03Z"
@@ -416,7 +398,7 @@ const mockData = {
   "email_address": "iaronstamv@cafepress.com",
   "attachments": [
     {
-      "name": "NamTristique.tiff",
+      "name": "NamTr.tiff",
       "size": 4030
     }
   ],
@@ -433,11 +415,11 @@ const mockData = {
   "email_address": "mcristeaw@meetup.com",
   "attachments": [
     {
-      "name": "Sed.ppt",
+      "name": "Seded.ppt",
       "size": 10899
     },
     {
-      "name": "ConsectetuerAdipiscing.mpeg",
+      "name": "Cadng.mpeg",
       "size": 5937
     }
   ],
@@ -465,7 +447,6 @@ const mockData = {
   "email_address": "mburneyy@addthis.com",
   "unread": true,
   "folder": "inbox",
-  "label": "work",
   "subject": "mattis egestas metus aenean fermentum",
   "content": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
   "date": "2019-02-01T13:29:50Z"
@@ -476,7 +457,6 @@ const mockData = {
   "email_address": "bpluckz@jalbum.net",
   "unread": true,
   "folder": "inbox",
-  "label": "friends",
   "subject": "feugiat et eros",
   "content": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
   "date": "2019-02-01T04:18:50Z"
@@ -487,7 +467,6 @@ const mockData = {
   "email_address": "pkidby10@joomla.org",
   "unread": true,
   "folder": "inbox",
-  "label": "family",
   "subject": "adipiscing elit proin risus praesent",
   "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
   "date": "2019-01-04T02:59:03Z"
@@ -543,7 +522,6 @@ const mockData = {
   "unread": true,
   "avatar": "https://robohash.org/velitbeataequaerat.png?size=50x50&set=set1",
   "folder": "inbox",
-  "label": "important",
   "subject": "massa tempor convallis nulla",
   "content": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
   "date": "2019-01-19T04:49:15Z"
@@ -554,7 +532,6 @@ const mockData = {
   "email_address": "fpennigar16@google.cn",
   "unread": false,
   "folder": "inbox",
-  "label": "personal",
   "subject": "consequat metus sapien",
   "content": "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
   "date": "2019-01-25T15:21:39Z"
@@ -577,7 +554,6 @@ const mockData = {
   "email_address": "adourin18@a8.net",
   "unread": true,
   "folder": "important",
-  "label": "friends",
   "subject": "convallis nulla neque",
   "content": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
   "date": "2019-01-12T12:50:04Z"
@@ -589,7 +565,6 @@ const mockData = {
   "unread": false,
   "avatar": "https://robohash.org/nonducimusipsam.png?size=50x50&set=set1",
   "folder": "spam",
-  "label": "work",
   "subject": "orci luctus et ultrices posuere",
   "content": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.",
   "date": "2019-01-04T13:45:16Z"
@@ -601,7 +576,6 @@ const mockData = {
   "unread": false,
   "avatar": "https://robohash.org/molestiaearchitectoconsequuntur.bmp?size=50x50&set=set1",
   "folder": "spam",
-  "label": "work",
   "subject": "congue etiam justo etiam",
   "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
   "date": "2019-02-04T01:05:09Z"
@@ -612,7 +586,6 @@ const mockData = {
   "email_address": "mkindleside1b@yellowbook.com",
   "unread": false,
   "folder": "deleted",
-  "label": "work",
   "subject": "sapien non",
   "content": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
   "date": "2019-01-18T16:51:35Z"
@@ -634,7 +607,6 @@ const mockData = {
   "email_address": "dsphinxe1d@narod.ru",
   "unread": false,
   "folder": "deleted",
-  "label": "work",
   "subject": "sollicitudin ut suscipit",
   "content": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
   "date": "2019-02-03T07:33:07Z"

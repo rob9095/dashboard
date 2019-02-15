@@ -1018,6 +1018,14 @@ input:checked + .stkd-slider:before {
   cursor: pointer;
 }
 
+.mail-app .mail-list .ant-list-item .mail-label {
+  height: 10px;
+  width: 10px;
+  background: transparent;
+  margin-left: 10px;
+  border-radius: 50px;
+}
+
 @media screen and (max-width: 480px) {
   .mail-app .mail-list .ant-list-vertical .ant-list-item .ant-list-item-extra-wrap {
       flex-wrap: nowrap;
