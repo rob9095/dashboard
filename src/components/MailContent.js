@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Avatar, Tag, Tooltip, Divider } from "antd";
+import { Button, Icon, Avatar, Tag, Tooltip, Divider, Popover } from "antd";
 import IconDropDown from "../components/IconDropDown";
 import MailComposer from './MailComposer';
 
@@ -302,10 +302,36 @@ class MailContent extends Component {
                   {">"}
                 </span>
               </span>
-              <span className="mail-to-contact">
-                to
-                <strong> me </strong>
-                <Icon type="down" style={{fontSize: '.65rem'}} />
+              <span className="mail-to-contact" style={{cursor: 'pointer'}}>
+                <Popover
+                  placement="bottom"
+                  content={(
+                    <div className="mail-details-popover flex flex-col">
+                      <div className="mail-detail">
+                        <span>From: </span>
+                        {this.props.mailItem.email_address}
+                      </div>
+                      <div className="mail-detail">
+                        <span style={{ color: 'grey' }}>To: </span>
+                        hello@gmail.com
+                      </div>
+                      <div className="mail-detail">
+                        <span>Date: </span>
+                        {moment(new Date(this.props.mailItem.date)).format("ddd, MMM D YYYY h:mm:ss A")}
+                      </div>
+                      <div className="mail-detail">
+                        <span>Subject: </span>
+                        {this.props.mailItem.subject}
+                      </div>
+                    </div>
+                  )}
+                  trigger="click"
+                >
+                  <Tooltip title="Details">
+                    to <strong> me </strong>
+                    <Icon type="down" style={{ fontSize: '.65rem' }} />
+                  </Tooltip>
+                </Popover>
               </span>
             </div>
           </div>
@@ -377,7 +403,7 @@ class MailContent extends Component {
               to: this.props.mailItem.email_address,
               subject: `Re: ${this.props.mailItem.subject}`,
               content: this.props.mailItem.content,
-              date: moment(new Date(this.props.mailItem.date)).format("ddd, MMM D YYYY h:mm:ss a"),
+              date: moment(new Date(this.props.mailItem.date)).format("ddd, MMM D YYYY h:mm:ss A"),
               name: this.props.mailItem.first_name + " " + this.props.mailItem.last_name,
             }}
           />
