@@ -26,6 +26,11 @@ class MailNav extends Component {
     this.props.onMenuClick(navItem);
   }
 
+  handleNewMessageClick = () => {
+    this.state.drawerOpen && this.toggleDrawer()
+    this.props.onSetMailComposer({ type: 'new' })
+  }
+
   menuDiv = (iconOnly) => (
     <div className="flex flex-col justify-content-center">
       {!iconOnly && (
@@ -33,14 +38,14 @@ class MailNav extends Component {
           className="flex align-items-center justify-content-center half-pad"
           style={{ height: 60 }}
         >
-          <Button onClick={() => {this.props.onSetMailComposer({ type: 'new' }) && this.toggleDrawer()}} block type="primary">New Message</Button>
+          <Button onClick={this.handleNewMessageClick} block type="primary">New Message</Button>
         </div>
         )
       }
       <div>
         <Menu selectedKeys={[this.props.currentNavItem.id]} style={{ border: "none" }}>
           {this.props.navList.map(item => (
-            <Menu.Item key={item.id} className="menu-item" onClick={() => this.handleMenuItemClick(item)}>
+            <Menu.Item key={item.id} className={iconOnly ? 'menu-item icon-only' : 'menu-item'} onClick={() => this.handleMenuItemClick(item)}>
               {iconOnly ? (
                 <Badge dot={this.getUnreadCount(item.text, item.isLabel) ? true : false}>
                   <Icon type={item.icon} />
@@ -75,7 +80,7 @@ class MailNav extends Component {
             />
           )}
           {this.props.labelList.map(item => (
-            <Menu.Item className="menu-item" key={item.id} onClick={() => this.handleMenuItemClick(item)}>
+            <Menu.Item className={iconOnly ? 'menu-item icon-only' : 'menu-item'} key={item.id} onClick={() => this.handleMenuItemClick(item)}>
               {iconOnly ? (
                 <Badge dot={this.getUnreadCount(item.text, item.isLabel) ? true : false}>
                   <div

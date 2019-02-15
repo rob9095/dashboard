@@ -972,6 +972,14 @@ input:checked + .stkd-slider:before {
   align-items: center;
 }
 
+.mail-app .mail-nav .menu-item.icon-only, .mail-app .mail-nav .menu-item.icon-only span {
+  font-size: 14px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .mail-app .mail-nav .menu-item i,
 .mail-app .mail-nav .ant-timeline-item-head {
   font-size: 1rem;
@@ -979,10 +987,19 @@ input:checked + .stkd-slider:before {
   position: relative;
 }
 
+.mail-app .mail-nav .menu-item.icon-only i,
+.mail-app .mail-nav .menu-item.icon-only .ant-timeline-item-head {
+  margin-right: 0px;
+}
+
 .mail-app .mail-nav .menu-item .unread {
   font-weight: 600;
   position: absolute;
   right: 16px;
+}
+
+.mail-app .mail-nav .menu-item .ant-badge-dot {
+  top: 6px;
 }
 
 .mail-app .mail-nav .ant-menu-item-group-title {

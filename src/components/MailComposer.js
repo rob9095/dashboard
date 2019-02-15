@@ -51,7 +51,7 @@ class SimpleMailComposer extends Component {
       placeholder: 'Your Message',
       theme: 'snow'  // or 'bubble'
     });
-    this.props.mailId !== 'new' && this.setEditorContent(this.props)
+    this.props.mailId !== 'new' ? this.setEditorContent(this.props) : this.ToInput.focus()
   }
 
   componentWillReceiveProps(newProps) {
