@@ -14,10 +14,8 @@ const IconText = ({ type, text }) => (
 
 const styles = {
   itemSelected: {
-    background: Color(theme.colors.main).fade(.9).string()
-  },
-  itemHover: {
-    background: Color(theme.colors.main).alpha(.1).fade(.5).string(),
+    background: 'rgba(0, 0, 0, .03)',
+    borderLeft: `3px solid ${theme.colors.main}`
   },
 }
 
@@ -56,6 +54,7 @@ class MailList extends Component {
   }
 
   render() {
+    const mailItem = this.props.mailItem ? this.props.mailItem : {}
     return (
       <div
         className="mail-list-wrapper flex flex-col"
@@ -81,10 +80,12 @@ class MailList extends Component {
             const mailLabel = this.props.labelList.find(l => l.text.toLowerCase() === item.label)
             return (
               <List.Item
+                onMouseEnter={()=>this.setState({hoverId: item.id})}
+                onMouseLeave={() => this.setState({ hoverId: null })}
                 onClick={() => this.handleMailItemClick(item.id)}
                 key={item.id}
                 className={item.unread ? 'unread' : null}
-                style={this.props.mailItem && (item.id === this.props.mailItem.id ? styles.itemHover : null)}
+                style={item.id === mailItem.id || this.state.hoverId === item.id ? styles.itemSelected : null}
                 actions={
                   item.attachments && (
                     item.attachments.map(a => (

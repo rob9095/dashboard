@@ -1016,6 +1016,7 @@ input:checked + .stkd-slider:before {
 .mail-app .mail-list .ant-list-item {
   padding: 24px 12px;
   cursor: pointer;
+  border-left: 2px solid transparent;
 }
 
 .mail-app .mail-list .ant-list-item .mail-label {
