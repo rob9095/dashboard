@@ -103,7 +103,11 @@ class MailContent extends Component {
               {this.props.showExpand && (
                 <Tooltip title={this.state.isExpanded ? "Minimize" : "Expand"}>
                   <Button className="no-border" onClick={this.handleBreakpointToggle}>
-                    <Icon type="arrow-up" style={this.state.isExpanded ? { transform: 'rotate(-135deg)' } : { transform: 'rotate(45deg)' }} />
+                    {this.state.isExpanded ? 
+                      <Icon type="minus" />
+                    :
+                      <Icon type="arrow-up" style={{ transform: 'rotate(45deg)' }} />
+                    }
                   </Button>
                 </Tooltip>
               )}
@@ -157,7 +161,11 @@ class MailContent extends Component {
             {this.props.showExpand && (
               <Tooltip title={this.state.isExpanded ? "Minimize" : "Expand"}>
                 <Button className="no-border" onClick={this.handleBreakpointToggle}>
-                  <Icon type="arrow-up" style={this.state.isExpanded ? { transform: 'rotate(-135deg)' } : { transform: 'rotate(45deg)' }} />
+                  {this.state.isExpanded ?
+                    <Icon type="minus" />
+                    :
+                    <Icon type="arrow-up" style={{ transform: 'rotate(45deg)' }} />
+                  }
                 </Button>
               </Tooltip>
             )}
