@@ -44,8 +44,9 @@ class SimpleMailComposer extends Component {
       modules: {
         toolbar: [
           [{ header: [1, 2, false] }],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
           ['bold', 'italic', 'underline'],
-          ['image', 'code-block']
+          ['image', 'code-block', 'link']
         ]
       },
       placeholder: 'Your Message',
@@ -66,7 +67,8 @@ class SimpleMailComposer extends Component {
       if (!err) {
         values = {
           ...values,
-          editor: this.editor.getContents(),
+          editorText: this.editor.getText(),
+          editorContents: this.editor.getContents(),
         }
         console.log('Received values of form: ', values);
         this.props.onMailAction({text: 'Send'},null)
