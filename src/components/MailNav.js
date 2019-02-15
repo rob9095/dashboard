@@ -10,13 +10,13 @@ class MailNav extends Component {
       drawerOpen: false,
       labelPopoverOpen: false,
       colorPickerColor: theme.colors.main,
-      newLabelVal: '',
     };
   }
 
   toggle = (key) => {
     this.setState({[key]: !this.state[key]})
     key === 'drawerOpen' && this.setState({labelPopoverOpen: false})
+    key === 'labelPopoverOpen' && this.setState({newLabelVal: '', colorPickerColor: theme.colors.main})
   }
 
   getUnreadCount = (text,isLabel) => {

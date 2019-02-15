@@ -29,10 +29,10 @@ class MailApp extends Component {
         { id: '4', text: "Sent", icon: "export" },
         { id: '5', text: "Spam", icon: "warning" },
         { id: '6', text: "Deleted", icon: "delete" },
-        { id: '7', text: "Personal", color: theme.colors.main, icon: "user", isLabel: true },
-        { id: '8', text: "Family", color: theme.colors.purple, icon: "home", isLabel: true },
-        { id: '9', text: "Friends", color: theme.colors.orange, icon: "team", isLabel: true },
-        { id: '10', text: "Work", color: theme.colors.green, icon: "laptop", isLabel: true }
+        { id: '7', text: "Personal", color: theme.colors.main, isLabel: true },
+        { id: '8', text: "Family", color: theme.colors.purple, isLabel: true },
+        { id: '9', text: "Friends", color: theme.colors.orange, isLabel: true },
+        { id: '10', text: "Work", color: theme.colors.green, isLabel: true }
       ],
     };
   }
