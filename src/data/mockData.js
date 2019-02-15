@@ -15,6 +15,7 @@ const mockData = {
   "first_name": "Galvan",
   "last_name": "Offner",
   "email_address": "goffner1@weibo.com",
+  "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
   "unread": false,
   "folder": "inbox",
   "subject": "lacinia nisi venenatis tristique",
