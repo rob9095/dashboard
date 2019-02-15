@@ -151,8 +151,11 @@ class MailList extends Component {
                   avatar={<Avatar src={item.avatar} />}
                   title={
                     <div className="mail-title flex align-items-center">
-                      <span className="mail-author">
-                        {`${item.first_name} ${item.last_name}`}
+                      <span className="mail-author flex align-items-center">
+                        {item.unread && (
+                          <Icon type="mail" twoToneColor={theme.colors.main} theme="twoTone" style={{ marginRight: 5, fontSize: 12, }} />
+                        )}
+                        <span>{`${item.first_name} ${item.last_name}`}</span>
                       </span>
                       <span className="mail-date">
                         {moment(new Date(item.date)).format("ddd, hA")}
