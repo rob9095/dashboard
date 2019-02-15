@@ -1,16 +1,23 @@
 import React, { Component } from "react";
-import { Button, Menu, Icon, Drawer, Badge } from "antd";
+import { Button, Menu, Icon, Drawer, Badge, Tooltip, Popover, Input } from "antd";
 import theme from "../theme";
+import { BlockPicker } from 'react-color'
 
 class MailNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       drawerOpen: false,
+      labelPopoverOpen: false,
+      colorPickerColor: theme.colors.main,
+      newLabelVal: '',
     };
   }
 
-  toggleDrawer = () => this.setState({drawerOpen: !this.state.drawerOpen})
+  toggle = (key) => {
+    this.setState({[key]: !this.state[key]})
+    key === 'drawerOpen' && this.setState({labelPopoverOpen: false})
+  }
 
   getUnreadCount = (text,isLabel) => {
     text = text.toLowerCase()
@@ -22,13 +29,19 @@ class MailNav extends Component {
   }
 
   handleMenuItemClick = (navItem) => {
-    this.state.drawerOpen && this.toggleDrawer();
+    this.state.drawerOpen && this.toggle('drawerOpen');
     this.props.onMenuClick(navItem);
   }
 
   handleNewMessageClick = () => {
-    this.state.drawerOpen && this.toggleDrawer()
+    this.state.drawerOpen && this.toggle('drawerOpen');
     this.props.onSetMailComposer({ type: 'new' })
+  }
+
+  handleNewLabelSubmit = () => {
+    this.props.onNewLabel(this.state.newLabelVal, this.state.colorPickerColor)
+    this.toggle('labelPopoverOpen')
+    this.setState({})
   }
 
   menuDiv = (iconOnly) => (
@@ -72,9 +85,45 @@ class MailNav extends Component {
                   }}
                 >
                   <span>Labels</span>
-                  <Button className="no-border">
-                    <Icon type="plus" />
-                  </Button>
+                  <Tooltip title="Add Label">
+                    <Popover onClose={() => this.toggle('labelPopoverOpen')} visible={this.state.labelPopoverOpen} placement="right" trigger="click" content={(
+                      <div>
+                        <Input autoFocus value={this.state.newLabelVal} onChange={(e)=>this.setState({newLabelVal: e.target.value})} style={{ width: 188, marginBottom: 8, display: 'block' }} placeholder="New Label" suffix={(
+                          <Popover placement="right" trigger="click" content={(
+                            <BlockPicker
+                              color={this.state.colorPickerColor}
+                              triangle="hide"
+                              onChange={(color)=>this.setState({colorPickerColor: color.hex})}
+                            />
+                          )}>
+                          <span className="flex align-items-center justify-content-center">
+                            <span className="color-picker-suffix" style={{ background: this.state.colorPickerColor }} />
+                          </span>
+                          </Popover>
+                        )} />
+                          <Button
+                            type="primary"
+                            size="small"
+                            style={{ width: 90, marginRight: 8 }}
+                            disabled={!this.state.newLabelVal || this.props.labelList.find(l=>l.text.toLowerCase() === this.state.newLabelVal.toLowerCase())}
+                            onClick={this.handleNewLabelSubmit}
+                          >
+                            Save
+                          </Button>
+                          <Button
+                            onClick={() => this.toggle('labelPopoverOpen')}
+                            size="small"
+                            style={{ width: 90 }}
+                          >
+                            Cancel
+                        </Button>
+                      </div>
+                    )}>
+                      <Button onClick={() => this.toggle('labelPopoverOpen')} className="no-border">
+                        <Icon type="plus" />
+                      </Button>
+                    </Popover>
+                  </Tooltip>
                 </div>
               }
             />
@@ -84,14 +133,14 @@ class MailNav extends Component {
               {iconOnly ? (
                 <Badge dot={this.getUnreadCount(item.text, item.isLabel) ? true : false}>
                   <div
-                    style={{ borderColor: item.color }}
+                    style={{ background: item.color }}
                     className="ant-timeline-item-head"
                   />
                 </Badge>
               ) : (
                 <div className="flex align-items-center">
                   <div
-                    style={{ borderColor: item.color }}
+                    style={{ background: item.color }}
                     className="ant-timeline-item-head"
                   />
                   {item.text}
@@ -121,14 +170,14 @@ class MailNav extends Component {
               <h3 className="flex" style={{width: '100%', color: '#fff', margin: 0, textTransform: 'capitalize'}}>
                 {this.props.currentNavItem.text}
               </h3>
-              <Button style={{background: 'transparent'}} onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">
+              <Button style={{background: 'transparent'}} onClick={()=>this.toggle('drawerOpen')} className="no-border flex-i justify-content-center align-items-center">
                 <Icon type="menu" style={{ fontSize: "1.30rem", color: '#fff' }} />
               </Button>
-            </div>            
+            </div>
           :
             <div>
               <div className="flex half-pad align-items-center justify-content-center" style={{ height: 60 }}>
-                <Button onClick={this.toggleDrawer} className="no-border flex-i justify-content-center align-items-center">
+                <Button onClick={() => this.toggle('drawerOpen')} className="no-border flex-i justify-content-center align-items-center">
                   <Icon type="menu" style={{ fontSize: "1.30rem" }} />
                 </Button>
               </div>
@@ -139,13 +188,13 @@ class MailNav extends Component {
         )}
         <Drawer
           placement={"left"}
-          onClose={this.toggleDrawer}
+          onClose={()=>this.toggle('drawerOpen')}
           visible={this.state.drawerOpen}
           closable={false}
           className="mail-app"
         >
           <div className="mail-nav">
-            {this.menuDiv()}
+            {this.state.drawerOpen && this.menuDiv()}
           </div>
         </Drawer>
       </div>

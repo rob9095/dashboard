@@ -1119,6 +1119,15 @@ input:checked + .stkd-slider:before {
 }
 
 
+/* Color Picker */
+.color-picker-suffix {
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+
 /* Tables */
 
 .stkd-table thead {

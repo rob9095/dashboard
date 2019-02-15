@@ -159,7 +159,7 @@ class MailList extends Component {
                       </span>
                       {mailLabel && (
                         <Tooltip title={mailLabel.text}>
-                          <span className="mail-label" style={{ border: `2px solid ${mailLabel.color}` }} />
+                          <span className="mail-label" style={{ background: mailLabel.color }} />
                         </Tooltip>
                       )}
                     </div>

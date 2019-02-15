@@ -128,6 +128,12 @@ class MailApp extends Component {
       })
     }
   }
+
+  handleNewLabel = (text,color) => {
+    this.setState({
+      navList: [...this.state.navList, {id: text, color, text, isLabel: true}]
+    })
+  }
   
   render() {
     const mailItem = this.state.data.find(item => item.id === this.state.currentMailId);
@@ -163,6 +169,7 @@ class MailApp extends Component {
                 onSetCurrentMail={this.setCurrentMail}
                 mailItem={mailItem}
                 onSetMailComposer={this.setMailComposer}
+                onNewLabel={this.handleNewLabel}
               />
             </div>
             <div
