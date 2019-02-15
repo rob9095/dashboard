@@ -51,7 +51,6 @@ class MailList extends Component {
   }
 
   handleMailItemClick = async (id) => {
-    console.log('click from menuItem')
     await this.props.onMailUpdate(id,'unread',false)
     this.props.onSetCurrentMail(id)
   }
@@ -148,7 +147,17 @@ class MailList extends Component {
                 }
               >
                 <List.Item.Meta
-                  avatar={<Avatar src={item.avatar} />}
+                  avatar={item.avatar ?
+                    <Avatar src={item.avatar} />
+                    :
+                    <Avatar
+                      style={{
+                        background: item.color,
+                      }}
+                    >
+                      {item.first_name[0] + item.last_name[0]}
+                    </Avatar>
+                  }
                   title={
                     <div className="mail-title flex align-items-center">
                       <span className="mail-author flex align-items-center">

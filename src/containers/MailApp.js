@@ -58,7 +58,6 @@ class MailApp extends Component {
   
   setMailComposer = async (mailComposer) => {
     await this.setState({mailComposer})
-    console.log(this.state)
   }
 
   setCurrentMail = (id) => {
@@ -76,7 +75,6 @@ class MailApp extends Component {
   }
 
   handleDropdownSelect = async (val,id) => {
-    console.log({val,id})
     switch (val.text) {
       case 'Mark Unread':
         this.handleMailUpdate(id, "unread", true);

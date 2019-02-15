@@ -130,6 +130,7 @@ class MailContent extends Component {
     }
     const mailIndex = this.props.data.findIndex(m=>m.id === this.props.mailItem.id)
     const mailLabel = this.props.labelList.find(l=>l.text.toLowerCase() === this.props.mailItem.label)
+    const mailFolder = this.props.navList.find(l => l.text.toLowerCase() === this.props.mailItem.folder)
     return (
       <div className="mail-content half-pad contain" style={{paddingTop: 0}}>
         <div
@@ -250,13 +251,14 @@ class MailContent extends Component {
         </div>
         <div className="flex align-items-center">
           <div className="mail-content-tags">
-            <Tag style={{textTransform: 'capitalize'}}>
-              <Icon style={{marginRight: 3}} type={this.props.navList.find(i=>i.text.toLowerCase() === this.props.mailItem.folder).icon} />
-              {this.props.mailItem.folder}
-            </Tag>
+            {mailFolder && (
+              <Tag style={{ textTransform: 'capitalize' }}>
+                <Icon style={{ marginRight: 3 }} type={mailFolder.icon} />
+                {mailFolder.text}
+              </Tag>
+            )}
             {mailLabel && (
-              <Tag color={mailLabel.color} closable onClose={()=>this.props.onMailUpdate(this.props.mailItem.id,'label','')} >
-                <Icon style={{marginRight: 3}} type={mailLabel.icon} />
+              <Tag color={mailLabel.color} closable onClose={()=>this.props.onMailUpdate(this.props.mailItem.id,'label','')}>
                 {mailLabel.text}
               </Tag>
             )}
