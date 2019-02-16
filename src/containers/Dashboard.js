@@ -22,6 +22,7 @@ import BasicWidget from './BasicWidget';
 import IconDropDown from '../components/IconDropDown'
 import theme from '../theme';
 import MailApp from './MailApp';
+import ChatApp from './ChatApp';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const Color = require('color');
@@ -132,6 +133,10 @@ class Dashboard extends Component {
                 <Icon type="mail" theme="outlined" />
                 <span>Email</span>
               </Menu.Item>
+              <Menu.Item className="stkd-dark menu-item" key="chat-app">
+                <Icon type="message" theme="outlined" />
+                <span>Chat</span>
+              </Menu.Item>
               <SubMenu
                 className="stkd-dark menu-item"
                 key="orders"
@@ -188,6 +193,9 @@ class Dashboard extends Component {
               )} />
               <Route exact path="/app/mail-app" render={props => (
                 <MailApp clientWidth={this.state.clientWidth} {...props} />
+              )} /> 
+              <Route exact path="/app/chat-app" render={props => (
+                <ChatApp clientWidth={this.state.clientWidth} {...props} />
               )} />              
               <Route exact path="/app" render={props => (
                 <div className="full-pad">
