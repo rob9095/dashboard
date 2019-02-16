@@ -27,6 +27,7 @@ class ChatApp extends Component {
     this.state = {
       message: '',
       data: [],
+      chats: [],
     }
   }
 
@@ -35,6 +36,18 @@ class ChatApp extends Component {
       firebase.initializeApp(config);
     }
     this.loadMessages()
+    this.loadChats()
+  }
+
+  deleteChat = (id) => {
+    this.setState({chats: this.state.chats.filter(c=>c.id !== id)})
+  }
+
+  addChat = (chat) => {
+    const chats = this.state.chats.find(c=>c.id === chat.id) ? this.state.chats : [...this.state.chats, chat]
+    this.setState({
+      chats,
+    })
   }
 
   deleteMessage = (id) => {
@@ -56,7 +69,7 @@ class ChatApp extends Component {
     query.onSnapshot((snapshot) => {
       for (let change of snapshot.docChanges()) {
         const message = change.doc.data();
-        change.type === 'removed' ? 
+        change.type === 'removed' ?
           this.deleteMessage(change.doc.id)
         :
           this.addMessage({id: change.doc.id, ...message})
@@ -80,6 +93,64 @@ class ChatApp extends Component {
     console.log(message)
   }
 
+  loadChats = async () => {
+    // Create the query to load the last 12 messages and listen for new ones.
+    var userChats = await firebase.firestore().collection('chatUsers').where('userId','==','T1f5WToDe9zyiopOv4kg').get();
+    let chatsQuery = await firebase.firestore().collection('chat')
+    for (let chat of userChats.docs) {
+      chatsQuery.where('id','==',chat.data().chatId)
+      console.log(chatsQuery.docs)
+    }
+    // Start listening to the query.
+    chatsQuery.onSnapshot((snapshot) => {
+      for (let change of snapshot.docChanges()) {
+        const chat = change.doc.data();
+        change.type === 'removed' ?
+          this.deleteChat(change.doc.id)
+        :
+          this.addChat({id: change.doc.id, ...chat})
+          console.log(chat.timestamp)
+      }
+    });
+  }
+
+  createChat = async () => {
+    const db = firebase.firestore();
+    let chatUsers = ['T1f5WToDe9zyiopOv4kg','WWIdCXSQLWIAydEM8n51'],
+    chat = {
+      name: 'second chat',
+      message: 'Lorum Ipsum don itis lupis ist',
+      userId: 'WWIdCXSQLWIAydEM8n51',
+      firstName: 'Lantis',
+      lastName: 'Ipsum',
+      avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    }
+    const createdChat = await db.collection('chat').add(chat)
+    if (!createdChat.id) {
+      console.log(createdChat)
+      return
+    }
+
+    chatUsers = chatUsers.map(userId=>({userId, chatId: createdChat.id}))
+
+    // Get a new write batch
+    let batch = db.batch();
+
+    for (let cu of chatUsers) {
+      let cuRef = db.collection('chatUsers').doc()
+      batch.set(cuRef, cu)
+    }
+
+    batch.commit()
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
+  }
+
   render() {
     return(
       <div className="stkd-widget" style={{background: '#fff'}}>
@@ -91,6 +162,14 @@ class ChatApp extends Component {
           </div>
           <Input value={this.state.message} onChange={(e)=>this.setState({message: e.target.value})} />
           <Button onClick={this.saveMessage} type="primary">Send</Button>
+          <Button onClick={this.createChat} type="primary">create chat!</Button>
+          <div>
+            {this.state.chats.map(c=>(
+              <div key={c.id}>
+              {c.name}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     )

@@ -102,7 +102,7 @@ class ChatList extends Component {
                         <span>{item.name}</span>
                       </span>
                       <span className="chat-timestamp">
-                        {moment(item.timestamp.toDate()).format("ddd, hA")}
+                        {/* moment(item.timestamp.toDate()).format("ddd, hA") */}
                       </span>
                     </div>
                   }
