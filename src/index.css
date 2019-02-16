@@ -354,7 +354,6 @@ body #root {
 #app-content .app-body {
   overflow-x: hidden;
   min-width: 320px;
-  display: flex;
   height: 100%;
 }
 
@@ -1270,7 +1269,7 @@ i.sort-icon {
 .stkd-sidebar .ant-menu-item .anticon, .stkd-sidebar .ant-menu-submenu-title .anticon,
 .stkd-sidebar .ant-menu-inline-collapsed > .ant-menu-item .anticon,
 .stkd-sidebar .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .anticon {
-  border-radius: 10px; 
+  border-radius: 10px;
   font-size: 1.4rem;
 }
 

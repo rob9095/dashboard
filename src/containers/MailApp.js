@@ -56,7 +56,7 @@ class MailApp extends Component {
     this.setState({currentNavItem})
     this.props.clientWidth < this.state.breakpoint && this.setCurrentMail(null)
   }
-  
+
   setMailComposer = async (mailComposer) => {
     await this.setState({mailComposer})
   }
@@ -92,7 +92,7 @@ class MailApp extends Component {
         this.setCurrentMail(id)
         this.handleMailUpdate(id, "unread", false);
         this.setMailComposer({type: 'forward'})
-        break;  
+        break;
       case 'Print':
         window.print()
         break;
@@ -133,92 +133,94 @@ class MailApp extends Component {
       navList: [...this.state.navList, {id: text, color, text, isLabel: true}]
     })
   }
-  
+
   render() {
     const mailItem = this.state.data.find(item => item.id === this.state.currentMailId);
     return (
-      <div className="stkd-widget" style={{ width: "100%" }}>
-        <div
-          className="mail-app flex"
-          style={{ height: "100%", background: "#fff", width: "100%" }}
-        >
-          <div className="flex" style={{
-            flexDirection: this.props.clientWidth > this.state.mobileBreakpoint ? 'row' : 'column',
-            height: "100%",
-            width: "100%",
-          }}>
-            <div
-              style={{
-                borderRight: "2px solid #eee",
-                borderLeft: "2px solid #eee",
-                minHeight: 60,
-                minWidth:
-                  this.props.clientWidth < this.state.breakpoint ? 50 : 250
-              }}
-              className="mail-nav contain"
-            >
-              <MailNav
-                data={this.state.data}
-                labelList={this.state.navList.filter(m => m.isLabel)}
-                navList={this.state.navList.filter(m => !m.isLabel)}
-                onMenuClick={this.handleMailNavMenuClick}
-                currentNavItem={this.state.currentNavItem}
-                showDrawer={this.props.clientWidth < this.state.breakpoint}
-                clientWidth={this.props.clientWidth}
-                onSetCurrentMail={this.setCurrentMail}
-                mailItem={mailItem}
-                onSetMailComposer={this.setMailComposer}
-                onNewLabel={this.handleNewLabel}
-                mobileBreakpoint={this.state.mobileBreakpoint}
-              />
-            </div>
-            <div
-              style={{
-                borderRight: "2px solid #eee",
-                borderLeft: "2px solid #eee",
-                display:
-                  this.props.clientWidth < this.state.breakpoint && mailItem || this.props.clientWidth < this.state.breakpoint && this.state.mailComposer.type === 'new'
-                    ? "none"
-                    : "inherit",
-                width: mailItem ? "60%" : "100%",
-                height: '100%',
-              }}
-              className="mail-list"
-            >
-              <MailList
-                mailItem={mailItem}
-                onMailUpdate={this.handleMailUpdate}
-                onSetCurrentMail={this.setCurrentMail}
-                data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text).filter(m=>(this.state.currentNavItem.prop !== 'label' || m.folder !== 'deleted'))}
-                labelList={this.state.navList.filter(l => l.isLabel)}
-                onDropdownSelect={this.handleDropdownSelect}
-                currentNavItem={this.state.currentNavItem}
-              />
-            </div>
-            {mailItem || this.state.mailComposer.type === 'new' ? (
+      <div className="flex" style={{height: '100%', width: '100%'}}>
+        <div className="stkd-widget" style={{ width: "100%", }}>
+          <div
+            className="mail-app flex"
+            style={{ height: "100%", background: "#fff", width: "100%" }}
+          >
+            <div className="flex" style={{
+              flexDirection: this.props.clientWidth > this.state.mobileBreakpoint ? 'row' : 'column',
+              height: "100%",
+              width: "100%",
+            }}>
               <div
                 style={{
-                  borderLeft: "2px solid #eee",
                   borderRight: "2px solid #eee",
-                  width: "100%"
+                  borderLeft: "2px solid #eee",
+                  minHeight: 60,
+                  minWidth:
+                    this.props.clientWidth < this.state.breakpoint ? 50 : 250
                 }}
-                className="mail-content contain"
+                className="mail-nav contain"
               >
-                <MailContent
-                  mailItem={mailItem}
-                  labelList={this.state.navList.filter(l => l.isLabel)}
-                  navList={this.state.navList.filter(l => !l.isLabel)}
-                  data={this.state.data.filter(item =>item[this.state.currentNavItem.prop] ===this.state.currentNavItem.text)}
-                  onMailUpdate={this.handleMailUpdate}
+                <MailNav
+                  data={this.state.data}
+                  labelList={this.state.navList.filter(m => m.isLabel)}
+                  navList={this.state.navList.filter(m => !m.isLabel)}
+                  onMenuClick={this.handleMailNavMenuClick}
+                  currentNavItem={this.state.currentNavItem}
+                  showDrawer={this.props.clientWidth < this.state.breakpoint}
+                  clientWidth={this.props.clientWidth}
                   onSetCurrentMail={this.setCurrentMail}
-                  onDropdownSelect={this.handleDropdownSelect}
-                  onToggleBreakpoint={this.toggleBreakpoint}
-                  showExpand={this.props.clientWidth > 992}
-                  mailComposer={this.state.mailComposer}
+                  mailItem={mailItem}
                   onSetMailComposer={this.setMailComposer}
+                  onNewLabel={this.handleNewLabel}
+                  mobileBreakpoint={this.state.mobileBreakpoint}
                 />
               </div>
-            ): null}
+              <div
+                style={{
+                  borderRight: "2px solid #eee",
+                  borderLeft: "2px solid #eee",
+                  display:
+                    this.props.clientWidth < this.state.breakpoint && mailItem || this.props.clientWidth < this.state.breakpoint && this.state.mailComposer.type === 'new'
+                      ? "none"
+                      : "inherit",
+                  width: mailItem ? "60%" : "100%",
+                  height: '100%',
+                }}
+                className="mail-list"
+              >
+                <MailList
+                  mailItem={mailItem}
+                  onMailUpdate={this.handleMailUpdate}
+                  onSetCurrentMail={this.setCurrentMail}
+                  data={this.state.data.filter(item => item[this.state.currentNavItem.prop] === this.state.currentNavItem.text).filter(m=>(this.state.currentNavItem.prop !== 'label' || m.folder !== 'deleted'))}
+                  labelList={this.state.navList.filter(l => l.isLabel)}
+                  onDropdownSelect={this.handleDropdownSelect}
+                  currentNavItem={this.state.currentNavItem}
+                />
+              </div>
+              {mailItem || this.state.mailComposer.type === 'new' ? (
+                <div
+                  style={{
+                    borderLeft: "2px solid #eee",
+                    borderRight: "2px solid #eee",
+                    width: "100%"
+                  }}
+                  className="mail-content contain"
+                >
+                  <MailContent
+                    mailItem={mailItem}
+                    labelList={this.state.navList.filter(l => l.isLabel)}
+                    navList={this.state.navList.filter(l => !l.isLabel)}
+                    data={this.state.data.filter(item =>item[this.state.currentNavItem.prop] ===this.state.currentNavItem.text)}
+                    onMailUpdate={this.handleMailUpdate}
+                    onSetCurrentMail={this.setCurrentMail}
+                    onDropdownSelect={this.handleDropdownSelect}
+                    onToggleBreakpoint={this.toggleBreakpoint}
+                    showExpand={this.props.clientWidth > 992}
+                    mailComposer={this.state.mailComposer}
+                    onSetMailComposer={this.setMailComposer}
+                  />
+                </div>
+              ): null}
+            </div>
           </div>
         </div>
       </div>
