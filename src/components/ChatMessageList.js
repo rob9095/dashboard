@@ -10,7 +10,7 @@ const styles = {
   },
 }
 
-class ChatList extends Component {
+class ChatMessageList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,27 +38,23 @@ class ChatList extends Component {
     this.searchInput.focus()
   }
 
-  handleChatItemClick = (id) => {
+  handleMessageItemClick = (id) => {
     console.log(id)
   }
 
   render() {
-    const chatItem = this.props.chatItem ? this.props.chatItem : {}
+    const currentChat = this.props.currentChat ? this.props.currentChat : {}
     return (
       <div
-        className="chat-list-wrapper flex flex-col"
+        className="message-list-wrapper flex flex-col"
         style={{ height: "100%", width: "100%" }}
       >
-        <div className="chat-search flex space-between half-pad" style={{background: '#fff'}}>
-          <div style={{paddingRight: 10, width: '100%'}}>
-            <Input
-              suffix={this.state.searchVal ? <Icon className="search-close" style={{color: 'red', fontSize: 16}} type="close-circle" onClick={this.clearSearch} /> : <Icon type="search" style={{color: '#a7a8b8', fontSize: 18}} />}
-              placeholder={"Search"}
-              value={this.state.searchVal}
-              onChange={this.handleSearch}
-              ref={node=>this.searchInput = node}
-              style={{color: '#a7a8b8',}}
-            />
+        <div className="message-search flex space-between half-pad" style={{background: '#fff'}}>
+          <div>
+            <h2>{currentChat.name}</h2>
+            <h4>
+              <span>From: </span>{currentChat.firstName + " "+ currentChat.lastName}
+            </h4>
           </div>
           <div>
             <Button className="menu-btn">
@@ -68,25 +64,22 @@ class ChatList extends Component {
         </div>
         <List
           className="contain"
-          itemLayout="vertical"
           size="large"
           style={{height: '100%'}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => {
-            const itemSelected = item.id === chatItem.id || this.state.hoverId === item.id ? true : false
+            const itemSelected = item.id === currentChat.id || this.state.hoverId === item.id ? true : false
             return (
               <List.Item
                 onMouseEnter={()=>this.setState({hoverId: item.id})}
                 onMouseLeave={() => this.setState({ hoverId: null })}
-                onClick={() => this.handleChatItemClick(item.id)}
+                onClick={() => this.handleMessageItemClick(item.id)}
                 key={item.id}
-                className={item.isUserMessage ? 'chat-message user-message' : 'chat-message'}
+                className={item.unread ? 'unread' : null}
                 style={itemSelected ? styles.itemSelected : null}
               >
-                <List.Item.Meta
-                  style={{alignItems: 'center'}}
-                  className="flex"
-                  avatar={item.avatar ?
+                <div className="message-avatar">
+                  {item.avatar ?
                     <Avatar src={item.avatar} />
                     :
                     <Avatar
@@ -97,21 +90,10 @@ class ChatList extends Component {
                       {item.firstName[0]}
                     </Avatar>
                   }
-                  title={
-                    <div className="chat-title flex align-items-center">
-                      <span className="chat-author flex align-items-center">
-                        {/* {item.unread && (
-                          <Icon type="mail" twoToneColor={theme.colors.main} theme="twoTone" style={{ marginRight: 5, fontSize: 12, }} />
-                        )} */}
-                        <span>{item.firstName +" "+ item.lastName}</span>
-                      </span>
-                      <span className="chat-timestamp">
-                        {moment(item.timestamp).format("ddd, hA")}
-                      </span>
-                    </div>
-                  }
-                />
-                {item.message}
+                </div>
+                <div className="message-content">
+                  {item.text}
+                </div>
               </List.Item>
             )
           }}
@@ -121,4 +103,4 @@ class ChatList extends Component {
   }
 }
 
-export default ChatList
+export default ChatMessageList
