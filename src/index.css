@@ -981,21 +981,14 @@ input:checked + .stkd-slider:before {
 
 .chat-app .chat-list .ant-list-item {
   background: #fff;
-  border-radius: 5px;
   margin: 10px 0px;
   padding: 8px;
-  box-shadow: 0 0px 2px rgba(0, 0, 0, .15);
-}
-
-.chat-app .chat-list .ant-list-item .message-content {
-  background: #fff;
-  padding: 12px 24px;
-  border-radius: 0px 10px 10px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px 0px rgba(75, 73, 113, 0.3);
+  border-left: 4px solid transparent;
 }
 
 .chat-app .chat-list .ant-list-vertical .ant-list-item-meta-avatar {
-  background: #fff;
-  border-radius: 50px;
   display: block;
 }
 
@@ -1005,9 +998,7 @@ input:checked + .stkd-slider:before {
 
 .chat-app .chat-list .ant-list-item .ant-list-item-content {
   padding: 12px 24px;
-  color: rgba(0, 0, 0, 0.45);
-  letter-spacing: .5px;
-  max-height: 55px;
+  max-height: 100px;
   overflow: hidden;
 }
 
@@ -1021,6 +1012,33 @@ input:checked + .stkd-slider:before {
   color: rgba(0, 0, 0, 0.45);
   font-weight: 500;
 }
+
+/* Chat App Message List */
+.chat-app .chat-message-list .ant-list-item .message-content {
+  background: #fff;
+  padding: 12px 24px;
+  border-radius: 10px 10px 10px 0px;
+  max-width: 500px;
+  box-shadow: 0px 2px 6px 0px rgba(75, 73, 113, 0.3);
+}
+
+.chat-app .chat-message-list .ant-list-item .message-timestamp {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.chat-app .chat-message-list .ant-list-item .message-avatar {
+  align-items: flex-end;
+  margin:0px 5px;
+}
+.chat-app .chat-message-list .ant-list-item .message-avatar .ant-avatar-image {
+  box-shadow: 0px 2px 6px 0px rgba(75, 73, 113, 0.3);
+}
+
+.chat-app .chat-message-list .ant-list-item {
+  border-bottom: 0px;
+}
+
 
 /* Mail App */
 

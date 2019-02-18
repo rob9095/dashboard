@@ -5,9 +5,11 @@ const Color = require('color');
 const moment = require("moment");
 
 const styles = {
-  itemSelected: {
+  userMessage: {
+    borderRadius: '10px 10px 0px 10px',
     background: theme.colors.main,
-  },
+    color: '#fff'
+  }
 }
 
 class ChatMessageList extends Component {
@@ -65,7 +67,7 @@ class ChatMessageList extends Component {
         <List
           className="contain"
           size="large"
-          style={{height: '100%'}}
+          style={{height: '100%', padding: '0px 12px'}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => {
             const itemSelected = item.id === currentChat.id || this.state.hoverId === item.id ? true : false
@@ -78,21 +80,26 @@ class ChatMessageList extends Component {
                 className={item.unread ? 'unread' : null}
                 style={itemSelected ? styles.itemSelected : null}
               >
-                <div className="message-avatar">
-                  {item.avatar ?
-                    <Avatar src={item.avatar} />
-                    :
-                    <Avatar
-                      style={{
-                        background: item.color,
-                      }}
-                    >
-                      {item.firstName[0]}
-                    </Avatar>
-                  }
-                </div>
-                <div className="message-content">
-                  {item.text}
+                <div className="message-wrapper flex" style={item.isUserMessage ? {flexDirection: 'row-reverse', width: '100%'} : {width: '100%'}}>
+                  <div className="message-avatar flex">
+                    {item.avatar ?
+                      <Avatar src={item.avatar} />
+                      :
+                      <Avatar
+                        style={{
+                          background: item.color,
+                        }}
+                      >
+                        {item.firstName[0]}
+                      </Avatar>
+                    }
+                  </div>
+                  <div className="message-content" style={item.isUserMessage ? styles.userMessage : null}>
+                    {item.text}
+                    <div className="message-timestamp" style={item.isUserMessage ? {color: '#fff'} : null}>
+                      {moment(item.timestamp).fromNow()}
+                    </div>
+                  </div>
                 </div>
               </List.Item>
             )

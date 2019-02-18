@@ -6,7 +6,7 @@ const moment = require("moment");
 
 const styles = {
   itemSelected: {
-    background: theme.colors.main,
+    borderLeft: `4px solid ${theme.colors.main}`,
   },
 }
 
@@ -70,7 +70,7 @@ class ChatList extends Component {
           className="contain"
           itemLayout="vertical"
           size="large"
-          style={{height: '100%'}}
+          style={{height: '100%', padding: '0px 12px'}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => {
             const itemSelected = item.id === chatItem.id || this.state.hoverId === item.id ? true : false
@@ -111,7 +111,12 @@ class ChatList extends Component {
                     </div>
                   }
                 />
-                {item.message}
+                <div className="flex flex-col">
+                  {item.name && <h4 style={{textTransform: 'capitalize'}}>{item.name}</h4>}
+                  <div>
+                    {item.message}
+                  </div>
+                </div>
               </List.Item>
             )
           }}
