@@ -105,6 +105,12 @@ class ChatMessageList extends Component {
             )
           }}
         />
+        <div className="chat-reply flex flex-col half-pad" style={{minHeight: 180}}>
+          <textarea className="half-pad" style={{position: 'relative',background: '#eff2f7', border: '1px solid #eff2f7', marginTop: 12}} placeholder="Type a Message..." />
+          <div className="flex" style={{justifyContent: 'flex-end', marginTop: 24}}>
+            <Button type="primary" style={{minWidth: 150,fontWeight: 'bold',height: 35}}>Send</Button>
+          </div>
+        </div>
       </div>
     )
   }

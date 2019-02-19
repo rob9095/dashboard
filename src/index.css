@@ -1039,6 +1039,10 @@ input:checked + .stkd-slider:before {
   border-bottom: 0px;
 }
 
+.chat-app .chat-message-list .chat-reply {
+  background: #fff;
+}
+
 
 /* Mail App */
 
