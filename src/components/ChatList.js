@@ -50,27 +50,22 @@ class ChatList extends Component {
         style={{ height: "100%", width: "100%" }}
       >
         <div className="chat-search flex space-between half-pad" style={{background: '#fff'}}>
-          <div style={{paddingRight: 10, width: '100%'}}>
+          <div style={{width: '100%'}}>
             <Input
-              suffix={this.state.searchVal ? <Icon className="search-close" style={{color: 'red', fontSize: 16}} type="close-circle" onClick={this.clearSearch} /> : <Icon type="search" style={{color: '#a7a8b8', fontSize: 18}} />}
+              suffix={this.state.searchVal ? <Icon className="search-close" style={{color: 'red', fontSize: 16}} type="close-circle" onClick={this.clearSearch} /> : null}
+              prefix={<Icon type="search" style={{ fontSize: 16 }} />}
               placeholder={"Search"}
               value={this.state.searchVal}
               onChange={this.handleSearch}
               ref={node=>this.searchInput = node}
-              style={{color: '#a7a8b8',}}
             />
-          </div>
-          <div>
-            <Button className="menu-btn">
-              <Icon type="menu" style={{fontSize: 18,color: '#a7a8b8'}} />
-            </Button>
           </div>
         </div>
         <List
           className="contain"
           itemLayout="vertical"
           size="large"
-          style={{height: '100%', padding: '0px 12px'}}
+          style={{height: '100%'}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => {
             const itemSelected = item.id === chatItem.id || this.state.hoverId === item.id ? true : false

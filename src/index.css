@@ -965,10 +965,17 @@ input:checked + .stkd-slider:before {
 
 /* Chat list */
 .chat-app .chat-list .chat-search input {
-  height: 50px;
+  border: 0px;
+  border-radius: 0px;
+  height: 60px;
   font-size: 16px;
-  border: 1px solid #eff2f7;
-  background: #eff2f7;
+  border-bottom: 2px solid #eff2f7;
+  text-transform: capitalize;
+}
+
+.chat-app .chat-list .chat-search input:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .chat-app .chat-list .chat-search .menu-btn {
@@ -981,10 +988,7 @@ input:checked + .stkd-slider:before {
 
 .chat-app .chat-list .ant-list-item {
   background: #fff;
-  margin: 10px 0px;
   padding: 8px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 6px 0px rgba(75, 73, 113, 0.3);
   border-left: 4px solid transparent;
 }
 
