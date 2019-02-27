@@ -49,15 +49,26 @@ class ChatList extends Component {
         className="chat-list-wrapper flex flex-col"
         style={{ height: "100%", width: "100%" }}
       >
-        <div className="chat-search flex space-between half-pad" style={{background: '#fff'}}>
-          <div style={{width: '100%'}}>
+        <div className="flex flex-col half-pad" style={{ background: '#fff', borderBottom: '2px solid #eff2f7' }}>
+          <div className="chat-header flex space-between align-items-center">
+            <h1 className="no-margin">Chat</h1>
+            <div>
+              <Button className="menu-btn no-border">
+                <Icon type="search" />
+              </Button>
+              <Button className="menu-btn no-border">
+                <Icon type="menu" />
+              </Button>
+            </div>
+          </div>
+          <div className="chat-search" style={{marginTop: 12}}>
             <Input
-              suffix={this.state.searchVal ? <Icon className="search-close" style={{color: 'red', fontSize: 16}} type="close-circle" onClick={this.clearSearch} /> : null}
-              prefix={<Icon type="search" style={{ fontSize: 16 }} />}
+              suffix={this.state.searchVal ? <Icon className="search-close" style={{ color: 'red' }} type="close-circle" onClick={this.clearSearch} /> : null}
+              prefix={<Icon type="search" />}
               placeholder={"Search"}
               value={this.state.searchVal}
               onChange={this.handleSearch}
-              ref={node=>this.searchInput = node}
+              ref={node => this.searchInput = node}
             />
           </div>
         </div>
@@ -93,7 +104,7 @@ class ChatList extends Component {
                     </Avatar>
                   }
                   title={
-                    <div className="chat-title flex align-items-center">
+                    <div className="chat-title flex align-items-center space-between">
                       <span className="chat-author flex align-items-center">
                         {/* {item.unread && (
                           <Icon type="mail" twoToneColor={theme.colors.main} theme="twoTone" style={{ marginRight: 5, fontSize: 12, }} />
@@ -101,7 +112,7 @@ class ChatList extends Component {
                         <span>{item.firstName +" "+ item.lastName}</span>
                       </span>
                       <span className="chat-timestamp">
-                        {moment(item.timestamp).format("ddd, hA")}
+                        {moment(item.timestamp).fromNow()}
                       </span>
                     </div>
                   }

@@ -168,24 +168,24 @@ class ChatApp extends Component {
   render() {
     return(
       <div className="flex" style={{height: '100%', width: '100%'}}>
-        <div className="chat-app flex" style={{height: '100%', width: '100%'}}>
-            <div className="chat-list" style={{maxWidth: '40%'}}>
-              <ChatList
-                data={this.state.chats}
-              />
-            </div>
-            <div>
+        <div className="chat-app flex stkd-widget stkd-content" style={{padding: 1}}>
+          <div className="chat-list" style={{ maxWidth: '40%' }}>
+            <ChatList
+              data={this.state.chats}
+            />
+          </div>
+          <div>
             {/* <Input value={this.state.message} onChange={(e)=>this.setState({message: e.target.value})} />
             <Button onClick={this.saveMessage} type="primary">Send</Button>
             <Button onClick={this.createChat} type="primary">create chat!</Button> */}
-            </div>
-            <div className="chat-message-list" style={{width: '100%'}}>
-              <ChatMessageList
-                data={this.state.messages.filter((m,i)=>i<=8).map((m,i)=>i%2?{...m,isUserMessage: true}:m)}
-                currentChat={this.state.chats[0]}
-              />
-            </div>
           </div>
+          <div className="chat-message-list" style={{ width: '100%' }}>
+            <ChatMessageList
+              data={this.state.messages.filter((m, i) => i <= 8).map((m, i) => i % 2 ? { ...m, isUserMessage: true } : m)}
+              currentChat={this.state.chats[0]}
+            />
+          </div>
+        </div>
       </div>
     )
   }

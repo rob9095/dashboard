@@ -964,12 +964,11 @@ input:checked + .stkd-slider:before {
 /* Chat App */
 
 /* Chat list */
+
 .chat-app .chat-list .chat-search input {
   border: 0px;
-  border-radius: 0px;
-  height: 60px;
-  font-size: 16px;
-  border-bottom: 2px solid #eff2f7;
+  border-radius: 5px;
+  background: #eff2f7;
   text-transform: capitalize;
 }
 
@@ -978,18 +977,17 @@ input:checked + .stkd-slider:before {
   box-shadow: none;
 }
 
-.chat-app .chat-list .chat-search .menu-btn {
+.chat-app .chat-list .chat-header .menu-btn {
   height: 50px;
   width: 50px;
   font-size: 16px;
-  background: #eff2f7;
-  border: 1px solid #eff2f7;
 }
 
 .chat-app .chat-list .ant-list-item {
   background: #fff;
   padding: 8px;
   border-left: 4px solid transparent;
+  border-bottom: 2px solid #eff2f7;
 }
 
 .chat-app .chat-list .ant-list-vertical .ant-list-item-meta-avatar {

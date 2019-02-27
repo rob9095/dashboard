@@ -67,7 +67,7 @@ class ChatMessageList extends Component {
         <List
           className="contain"
           size="large"
-          style={{height: '100%', padding: '0px 12px'}}
+          style={{ height: '100%', padding: '0px 12px', background: '#eff2f7'}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => {
             const itemSelected = item.id === currentChat.id || this.state.hoverId === item.id ? true : false
