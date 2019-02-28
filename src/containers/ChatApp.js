@@ -168,8 +168,8 @@ class ChatApp extends Component {
   render() {
     return(
       <div className="flex" style={{height: '100%', width: '100%'}}>
-        <div className="chat-app flex stkd-widget stkd-content" style={{padding: 1}}>
-          <div className="chat-list" style={{ maxWidth: '40%' }}>
+        <div className="chat-app flex stkd-widget stkd-content" style={{padding: 0, width: '100%'}}>
+          <div className="chat-list" style={{ width: '60%' }}>
             <ChatList
               data={this.state.chats}
             />

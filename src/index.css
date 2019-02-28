@@ -977,17 +977,16 @@ input:checked + .stkd-slider:before {
   box-shadow: none;
 }
 
-.chat-app .chat-list .chat-header .menu-btn {
-  height: 50px;
-  width: 50px;
+.chat-app .menu-btn {
+  height: 40px;
+  width: 40px;
   font-size: 16px;
 }
 
 .chat-app .chat-list .ant-list-item {
-  background: #fff;
   padding: 8px;
   border-left: 4px solid transparent;
-  border-bottom: 2px solid #eff2f7;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .chat-app .chat-list .ant-list-vertical .ant-list-item-meta-avatar {
@@ -1002,6 +1001,10 @@ input:checked + .stkd-slider:before {
   padding: 12px 24px;
   max-height: 100px;
   overflow: hidden;
+}
+
+.chat-app .chat-list .ant-list-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
 }
 
 .chat-app .chat-list .ant-list-item h4.ant-list-item-meta-title {

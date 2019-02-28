@@ -7,6 +7,7 @@ const moment = require("moment");
 const styles = {
   itemSelected: {
     borderLeft: `4px solid ${theme.colors.main}`,
+    background: 'rgba(0, 0, 0, 0.03)',
   },
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Icon, Avatar, Input, Tooltip, Button } from "antd";
+import { List, Icon, Avatar, Button } from "antd";
 import theme from "../theme";
 const Color = require('color');
 const moment = require("moment");
@@ -51,23 +51,38 @@ class ChatMessageList extends Component {
         className="message-list-wrapper flex flex-col"
         style={{ height: "100%", width: "100%" }}
       >
-        <div className="message-search flex space-between half-pad" style={{background: '#fff'}}>
-          <div>
-            <h2>{currentChat.name}</h2>
-            <h4>
-              <span>From: </span>{currentChat.firstName + " "+ currentChat.lastName}
-            </h4>
+        <div className="flex space-between align-items-center full-pad" style={{ background: '#fff', borderBottom: '2px solid #eff2f7', height: 125}}>
+          <div className="flex">
+            <div className="flex align-items-center justify-content-center" style={{marginRight: 15}}>
+              {currentChat.avatar ?
+                <Avatar style={{height: 45, width: 45}} src={currentChat.avatar} />
+                :
+                <Avatar
+                  style={{
+                    background: currentChat.color,
+                    height: 45,
+                    width: 45,
+                  }}
+                >
+                  {currentChat.firstName[0]}
+                </Avatar>
+              }              
+            </div>
+            <div className="flex flex-col">
+              <h2 className="no-margin">{currentChat.name}</h2>
+              <h4>{`From: ${currentChat.firstName + " " + currentChat.lastName}`}</h4>            
+            </div>
           </div>
           <div>
-            <Button className="menu-btn">
-              <Icon type="menu" style={{fontSize: 18,color: '#a7a8b8'}} />
+            <Button className="menu-btn no-border">
+              <Icon type="menu" />
             </Button>
           </div>
         </div>
         <List
           className="contain"
           size="large"
-          style={{ height: '100%', padding: '0px 12px', background: '#eff2f7'}}
+          style={{ height: '100%', padding: '0px 12px', background: '#eff2f7', boxShadow: 'inset -8px 2px 8px rgba(0, 0, 0, .15)'}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => {
             const itemSelected = item.id === currentChat.id || this.state.hoverId === item.id ? true : false
