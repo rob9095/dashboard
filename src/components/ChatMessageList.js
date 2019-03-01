@@ -51,7 +51,7 @@ class ChatMessageList extends Component {
         className="message-list-wrapper flex flex-col"
         style={{ height: "100%", width: "100%" }}
       >
-        <div className="flex space-between align-items-center full-pad" style={{ background: '#fff', borderBottom: '2px solid #eff2f7', height: 125}}>
+        <div className="flex space-between align-items-center half-pad" style={{ background: '#fff', borderBottom: '2px solid #eff2f7', height: 104}}>
           <div className="flex">
             <div className="flex align-items-center justify-content-center" style={{marginRight: 15}}>
               {currentChat.avatar ?
@@ -70,19 +70,22 @@ class ChatMessageList extends Component {
             </div>
             <div className="flex flex-col">
               <h2 className="no-margin">{currentChat.name}</h2>
-              <h4>{`From: ${currentChat.firstName + " " + currentChat.lastName}`}</h4>            
+              <h4 className="no-margin">{`From: ${currentChat.firstName + " " + currentChat.lastName}`}</h4>            
             </div>
           </div>
           <div>
             <Button className="menu-btn no-border">
-              <Icon type="menu" />
+              <Icon type="search" />
+            </Button>
+            <Button className="menu-btn no-border">
+              <Icon type="ellipsis" className="rotate-90" />
             </Button>
           </div>
         </div>
         <List
           className="contain"
           size="large"
-          style={{ height: '100%', padding: '0px 12px', background: '#eff2f7', boxShadow: 'inset -8px 2px 8px rgba(0, 0, 0, .15)'}}
+          style={{ height: '100%', padding: '0px 12px',}}
           dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
           renderItem={item => {
             const itemSelected = item.id === currentChat.id || this.state.hoverId === item.id ? true : false
@@ -120,10 +123,10 @@ class ChatMessageList extends Component {
             )
           }}
         />
-        <div className="chat-reply flex flex-col half-pad" style={{minHeight: 180}}>
+        <div className="chat-reply flex flex-col half-pad" style={{ minHeight: 180, borderTop: '2px solid #eff2f7'}}>
           <textarea className="half-pad" style={{position: 'relative',background: '#eff2f7', border: '1px solid #eff2f7', marginTop: 12}} placeholder="Type a Message..." />
           <div className="flex" style={{justifyContent: 'flex-end', marginTop: 24}}>
-            <Button type="primary" style={{minWidth: 150,fontWeight: 'bold',height: 35}}>Send</Button>
+            <Button type="primary" style={{fontWeight: 'bold',height: 35}}>Send</Button>
           </div>
         </div>
       </div>

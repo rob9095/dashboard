@@ -52,25 +52,21 @@ class ChatList extends Component {
       >
         <div className="flex flex-col half-pad" style={{ background: '#fff', borderBottom: '2px solid #eff2f7' }}>
           <div className="chat-header flex space-between align-items-center">
-            <h1 className="no-margin">Chat</h1>
+            <div className="chat-search" style={{ width: '100%' }}>
+              <Input
+                suffix={this.state.searchVal ? <Icon className="search-close" style={{ color: 'red' }} type="close-circle" onClick={this.clearSearch} /> : null}
+                prefix={<Icon type="search" />}
+                placeholder={"Search"}
+                value={this.state.searchVal}
+                onChange={this.handleSearch}
+                ref={node => this.searchInput = node}
+              />
+            </div>
             <div>
-              <Button className="menu-btn no-border">
-                <Icon type="search" />
-              </Button>
               <Button className="menu-btn no-border">
                 <Icon type="menu" />
               </Button>
             </div>
-          </div>
-          <div className="chat-search" style={{marginTop: 12}}>
-            <Input
-              suffix={this.state.searchVal ? <Icon className="search-close" style={{ color: 'red' }} type="close-circle" onClick={this.clearSearch} /> : null}
-              prefix={<Icon type="search" />}
-              placeholder={"Search"}
-              value={this.state.searchVal}
-              onChange={this.handleSearch}
-              ref={node => this.searchInput = node}
-            />
           </div>
         </div>
         <List

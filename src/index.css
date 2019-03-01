@@ -967,8 +967,9 @@ input:checked + .stkd-slider:before {
 
 .chat-app .chat-list .chat-search input {
   border: 0px;
-  border-radius: 5px;
-  background: #eff2f7;
+  border-radius: 0px;
+  height: 60px;
+  font-size: 16px;
   text-transform: capitalize;
 }
 
@@ -1020,11 +1021,10 @@ input:checked + .stkd-slider:before {
 
 /* Chat App Message List */
 .chat-app .chat-message-list .ant-list-item .message-content {
-  background: #fff;
+  background: #eff2f7;
   padding: 12px 24px;
   border-radius: 10px 10px 10px 0px;
   max-width: 500px;
-  box-shadow: 0px 2px 6px 0px rgba(75, 73, 113, 0.3);
 }
 
 .chat-app .chat-message-list .ant-list-item .message-timestamp {
