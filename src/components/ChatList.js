@@ -123,7 +123,11 @@ class ChatList extends Component {
               </List.Item>
             )
           }}
-        />
+        >
+          <div className="bottom justify-flex-end full-pad" style={{position: 'sticky', float: 'right', marginTop: -88}}>
+            <Button type="primary" icon="plus" style={{height: 40, width: 40}} />
+          </div>
+        </List>
       </div>
     )
   }
