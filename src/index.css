@@ -1029,6 +1029,7 @@ input:checked + .stkd-slider:before {
   padding: 12px 24px;
   border-radius: 10px 10px 10px 0px;
   max-width: 500px;
+  border: 1px solid #e8e8e8;
 }
 
 .chat-app .chat-message-list .ant-list-item .message-timestamp {
@@ -1052,6 +1053,13 @@ input:checked + .stkd-slider:before {
   background: #fff;
 }
 
+.chat-app .chat-message-list .chat-reply textarea {
+  position: relative;
+  background: #eff2f7;
+  border: 1px solid #e8e8e8;
+  margin-top: 1px;
+  border-radius: 5px;
+}
 
 /* Mail App */
 

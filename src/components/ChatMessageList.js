@@ -51,7 +51,7 @@ class ChatMessageList extends Component {
         className="message-list-wrapper flex flex-col"
         style={{ height: "100%", width: "100%" }}
       >
-        <div className="flex space-between align-items-center half-pad" style={{ background: '#fff', borderBottom: '2px solid #eff2f7', height: 104}}>
+        <div className="flex space-between align-items-center half-pad" style={{ background: '#fff', borderBottom: '1px solid #e8e8e8', height: 103}}>
           <div className="flex">
             <div className="flex align-items-center justify-content-center" style={{marginRight: 15}}>
               {currentChat.avatar ?
@@ -69,7 +69,7 @@ class ChatMessageList extends Component {
               }              
             </div>
             <div className="flex flex-col">
-              <h2 className="no-margin">{currentChat.name}</h2>
+              <h2 className="no-margin" style={{textTransform: 'capitalize'}}>{currentChat.name}</h2>
               <h4 className="no-margin">{`From: ${currentChat.firstName + " " + currentChat.lastName}`}</h4>            
             </div>
           </div>
@@ -123,8 +123,8 @@ class ChatMessageList extends Component {
             )
           }}
         />
-        <div className="chat-reply flex flex-col half-pad" style={{ minHeight: 180, borderTop: '2px solid #eff2f7'}}>
-          <textarea className="half-pad" style={{position: 'relative',background: '#eff2f7', border: '1px solid #eff2f7', marginTop: 12}} placeholder="Type a Message..." />
+        <div className="chat-reply flex flex-col half-pad" style={{ minHeight: 180, borderTop: '1px solid #e8e8e8'}}>
+          <textarea className="half-pad" placeholder="Type a Message..." />
           <div className="flex" style={{justifyContent: 'flex-end', marginTop: 24}}>
             <Button type="primary" style={{fontWeight: 'bold',height: 35}}>Send</Button>
           </div>

@@ -50,7 +50,7 @@ class ChatList extends Component {
         className="chat-list-wrapper flex flex-col"
         style={{ height: "100%", width: "100%" }}
       >
-        <div className="flex flex-col half-pad" style={{ background: '#fff', borderBottom: '2px solid #eff2f7' }}>
+        <div className="flex flex-col half-pad" style={{ background: '#fff', borderBottom: '1px solid #e8e8e8' }}>
           <div className="chat-header flex space-between align-items-center">
             <div className="chat-search" style={{ width: '100%' }}>
               <Input
