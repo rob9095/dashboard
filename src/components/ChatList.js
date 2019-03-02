@@ -62,8 +62,8 @@ class ChatList extends Component {
               />
             </div>
             <div>
-              <Button className="menu-btn no-border">
-                <Icon type="menu" />
+              <Button type="primary" className="">
+                <Icon type="edit" />
               </Button>
             </div>
           </div>

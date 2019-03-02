@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List, Icon, Avatar, Button } from "antd";
 import theme from "../theme";
+import IconDropDown from './IconDropDown';
 const moment = require("moment");
 
 const styles = {
@@ -75,8 +76,21 @@ class ChatMessageList extends Component {
             </div>
             <div>
               <Button className="menu-btn no-border">
-                <Icon type="ellipsis" className="rotate-90" />
+                <Icon type="search" />
               </Button>
+              <IconDropDown
+                icon={"ellipsis"}
+                iconTheme={"outlined"}
+                iconSize={"16px"}
+                dropDownPlacement={"bottomRight"}
+                noBorder={true}
+                buttonStyles={{ background: 'transparent' }}
+                options={[
+                  {id: 1, text: `View ${currentChat.firstName}'s Profile`, icon: 'user'},
+                  {id: 2, text: 'Notification Preferences', icon: 'bell'},
+                  {id: 3, text: `Delete Chat`, icon: 'delete'}
+                ]}
+              />
             </div>
           </div>
         </div>
