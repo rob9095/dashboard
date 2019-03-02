@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { List, Icon, Avatar, Input, Tooltip, Button } from "antd";
+import { List, Icon, Avatar, Input, Button } from "antd";
 import theme from "../theme";
-const Color = require('color');
 const moment = require("moment");
 
 const styles = {

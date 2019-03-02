@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { List, Icon, Avatar, Button } from "antd";
 import theme from "../theme";
-const Color = require('color');
 const moment = require("moment");
 
 const styles = {
@@ -51,35 +50,34 @@ class ChatMessageList extends Component {
         className="message-list-wrapper flex flex-col"
         style={{ height: "100%", width: "100%" }}
       >
-        <div className="flex space-between align-items-center half-pad" style={{ background: '#fff', borderBottom: '1px solid #e8e8e8', height: 103}}>
-          <div className="flex">
-            <div className="flex align-items-center justify-content-center" style={{marginRight: 15}}>
-              {currentChat.avatar ?
-                <Avatar style={{height: 45, width: 45}} src={currentChat.avatar} />
-                :
-                <Avatar
-                  style={{
-                    background: currentChat.color,
-                    height: 45,
-                    width: 45,
-                  }}
-                >
-                  {currentChat.firstName[0]}
-                </Avatar>
-              }              
+        <div className="flex flex-col justify-content-center half-pad" style={{ background: '#fff', borderBottom: '1px solid #e8e8e8', minHeight: 76}}>
+          <div className="flex space-between align-items-center">
+            <div className="flex half-pad" style={{height: 77}}>
+              <div className="flex align-items-center justify-content-center" style={{ marginRight: 15 }}>
+                {currentChat.avatar ?
+                  <Avatar style={{height: 45, width: 45}} src={currentChat.avatar} />
+                  :
+                  <Avatar
+                    style={{
+                      background: currentChat.color,
+                      height: 45,
+                      width: 45,
+                    }}
+                  >
+                    {currentChat.firstName[0]}
+                  </Avatar>
+                }
+              </div>
+              <div className="flex flex-col">
+                <h2 className="no-margin" style={{ textTransform: 'capitalize' }}>{currentChat.name}</h2>
+                <h4 className="no-margin">{`From: ${currentChat.firstName + " " + currentChat.lastName}`}</h4>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <h2 className="no-margin" style={{textTransform: 'capitalize'}}>{currentChat.name}</h2>
-              <h4 className="no-margin">{`From: ${currentChat.firstName + " " + currentChat.lastName}`}</h4>            
+            <div>
+              <Button className="menu-btn no-border">
+                <Icon type="ellipsis" className="rotate-90" />
+              </Button>
             </div>
-          </div>
-          <div>
-            <Button className="menu-btn no-border">
-              <Icon type="search" />
-            </Button>
-            <Button className="menu-btn no-border">
-              <Icon type="ellipsis" className="rotate-90" />
-            </Button>
           </div>
         </div>
         <List
