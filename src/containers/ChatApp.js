@@ -217,6 +217,16 @@ class ChatApp extends Component {
     // })
     console.log('create chat hit')
     console.log(data)
+    const { title, user, message } = data
+    let chat = {
+      title,
+      userId: user.key,
+      username: user.name,
+      currentUser: this.state.currentUser,
+      message,
+    }
+    //await this.db.collection('Chat').add(chat)
+    return {text:'Chat Created!',status:'success'}
   
   }
 
@@ -250,9 +260,9 @@ class ChatApp extends Component {
             title={'Create Chat'}
             inputs={[
               {span: 24, id: 'title', text: 'Title', required: true, message: 'Choose a title'},
-              {span: 24, id: 'user', text: 'User', required: true, autoComplete: true, autoCompleteData: this.state.Users.map(u=>u.firstName + " " + u.lastName), message: 'Choose a user'},
+              {span: 24, id: 'user', text: 'User', required: true, autoComplete: true, autoCompleteData: this.state.Users.map(u=>({id: u.id, avatar: u.avatar, name: u.firstName + " " + u.lastName})), searchKey: 'name', message: 'Choose a user'},
             ]}
-            okText={'Create'}
+            okText={'Send Message'}
             cancelText={'Cancel'}
             onClose={()=>this.setState({showNewChatModal: false})}
             onSave={this.createChat}

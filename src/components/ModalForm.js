@@ -68,19 +68,23 @@ class BasicModalForm extends Component {
       if (i.autoComplete) {
         return (
           <Col xs={i.span*3} md={i.span} key={i.id}>
-            <FormItem key={i.id} label={`${i.text}`}>
-              {getFieldDecorator(i.id, { setFieldsValue: this.state.values[i.id] }, {
+            <FormItem key={i.id} label={i.label}>
+            {getFieldDecorator(i.id, {setFieldsValue: this.state.values[i.id]}, {
                  rules: [{
                   required: i.required,
                   message: i.message,
                  }],
                })(
                 <AutoCompleteField
-                  key={i.id}
+                  id={i.id}
                   placeholder={"User"}
                   onUpdate={(val)=>this.handleAutoUpdate(val,i.id)}
                   data={i.autoCompleteData}
-                />
+                  searchKey={i.searchKey}
+                  selected={this.state.values[i.id] ? this.state.values[i.id] : {}}
+                >
+                  <Input style={{display: 'none'}} />
+                </AutoCompleteField>
                )}
             </FormItem>
           </Col>
@@ -88,7 +92,7 @@ class BasicModalForm extends Component {
       } else {
         return (
           <Col xs={i.span*3} md={i.span} key={i.id}>
-            <FormItem key={i.id} label={`${i.text}`}>
+            <FormItem key={i.id} label={i.label}>
               {getFieldDecorator(i.id, {
                  rules: [{
                   required: i.required,

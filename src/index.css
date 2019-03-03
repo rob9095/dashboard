@@ -965,6 +965,14 @@ input:checked + .stkd-slider:before {
   color: #666;
 }
 
+/* Single Select Drop Down selected item avatar */
+.ant-select-selection-selected-value .ant-avatar {
+  width: 20px;
+  height: 20px;
+  top: -2px;
+  margin-right: -5px;
+}
+
 /* Chat App */
 
 /* Chat list */
