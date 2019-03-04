@@ -3,6 +3,7 @@ import { Alert, Modal, Form, Row, Col, Input } from 'antd';
 import AutoCompleteField from './AutoCompleteField';
 
 const FormItem = Form.Item;
+const TextArea = Input.TextArea;
 
 class BasicModalForm extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class BasicModalForm extends Component {
     this.state = {
       visible: true,
       values: {},
+      confirmLoading: false,
     }
   }
 
@@ -28,6 +30,7 @@ class BasicModalForm extends Component {
       if (err) {
         return
       } else {
+        this.setState({confirmLoading: true})
         this.props.onSave({...data,...this.state.values})
         .then(res =>{
           this.handleAlert(res.text, res.status)
@@ -36,6 +39,9 @@ class BasicModalForm extends Component {
           console.log(err)
           this.handleAlert(err.text, err.status)
         })
+        setTimeout(()=>{
+          this.setState({confirmLoading: false})
+        }, 2000)   
       }
     })
   }
@@ -99,6 +105,11 @@ class BasicModalForm extends Component {
                   message: i.message,
                  }],
                })(
+                 i.type === 'textarea' ?
+                 <TextArea
+                   placeholder={i.text}
+                 />
+                 : 
                  <Input
                    placeholder={i.text}
                    type={i.type}
@@ -118,6 +129,7 @@ class BasicModalForm extends Component {
           onCancel={this.close}
           okText={this.props.okText}
           cancelText={this.props.cancelText}
+          confirmLoading={this.state.confirmLoading}
         >
           <Form>
             {this.state.showAlert && (

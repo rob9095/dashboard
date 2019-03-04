@@ -15,12 +15,12 @@ class AutoCompleteField extends Component {
   }
 
   onChange = (value,option) => {
-    this.props.onUpdate({key: option.key, value:value, avatar: option.avatar},this.props.id)
+    this.props.onUpdate({key: option.key, value:value, ...option.props.data },this.props.id)
   }
 
   render() {
     const children = this.state.data.map(item=>(
-      <Option key={item.id} value={item[this.props.searchKey]}>
+      <Option key={item.id} value={item[this.props.searchKey]} data={{...item}}>
         {item.avatar ? <Avatar src={item.avatar} /> : null}
         <span style={{marginLeft: 10}}>
           {item[this.props.searchKey]}

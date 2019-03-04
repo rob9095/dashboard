@@ -24,9 +24,8 @@ class ChatList extends Component {
       searchVal: val,
       searchData: this.props.data.filter(item=>(
         item.message.toLowerCase().includes(val) ||
-        item.firstName.toLowerCase().includes(val) ||
-        item.lastName.toLowerCase().includes(val) ||
-        item.name && item.name.toLowerCase().includes(val)
+        item.invitedUsername.toLowerCase().includes(val) ||
+        item.title.toLowerCase().includes(val)
       ))
     })
   }
@@ -43,7 +42,7 @@ class ChatList extends Component {
   }
 
   render() {
-    const chatItem = this.props.chatItem ? this.props.chatItem : {}
+    const chatItem = this.props.chatItem || {}
     return (
       <div
         className="chat-list-wrapper flex flex-col"
@@ -88,15 +87,15 @@ class ChatList extends Component {
                 <List.Item.Meta
                   style={{alignItems: 'center'}}
                   className="flex"
-                  avatar={item.avatar ?
-                    <Avatar src={item.avatar} />
+                  avatar={item.invitedUserAvatar ?
+                    <Avatar src={item.invitedUserAvatar} />
                     :
                     <Avatar
                       style={{
                         background: item.color,
                       }}
                     >
-                      {item.firstName[0]}
+                      {item.invitedUsername[0]}
                     </Avatar>
                   }
                   title={
@@ -105,16 +104,16 @@ class ChatList extends Component {
                         {/* {item.unread && (
                           <Icon type="mail" twoToneColor={theme.colors.main} theme="twoTone" style={{ marginRight: 5, fontSize: 12, }} />
                         )} */}
-                        <span>{item.firstName +" "+ item.lastName}</span>
+                        <span>{item.invitedUsername}</span>
                       </span>
                       <span className="chat-timestamp">
-                        {moment(item.timestamp).fromNow()}
+                        {moment(item.timestamp.toDate()).fromNow()}
                       </span>
                     </div>
                   }
                 />
                 <div className="flex flex-col">
-                  {item.name && <h4 style={{textTransform: 'capitalize'}}>{item.name}</h4>}
+                  {item.title && <h4 style={{textTransform: 'capitalize'}}>{item.invitedUsername}</h4>}
                   <div>
                     {item.message}
                   </div>

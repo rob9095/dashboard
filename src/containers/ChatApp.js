@@ -30,9 +30,17 @@ class ChatApp extends Component {
     this.state = {
       message: '',
       Users: [],
-      chats: this.addAvatars(mockData.chatData),
+      Chats: [],
       messages: this.addAvatars(mockData.messageData),
       currentUser: {},
+      chatListPagination: {
+        page: 1,
+        pageSize: 12,
+      },
+      currentChatPagination: {
+        page: 1,
+        pageSize: 12,
+      },
     }
   }
 
@@ -47,7 +55,8 @@ class ChatApp extends Component {
     })
   }
 
-  listenForDocs = async (colName, where, orderBy, limit) => {
+  listenForDocs = async (queryConfig) => {
+    const { colName, where, orderBy, limit } = queryConfig
     // Create the query
     let query = await this.db.collection(colName)
     query = where ? query.where(where.field,where.op,where.value) : query
@@ -57,16 +66,20 @@ class ChatApp extends Component {
     // Start listening to the query and update state on changes
     query.onSnapshot((snapshot) => {
       for (let change of snapshot.docChanges()) {
-        const doc = change.doc.data();
+        let docData = {
+          ...change.doc.data(),
+          id: change.doc.id,
+        };
         change.type === 'removed' ?
-          this.setState({[colName]: this.state[colName].fitler(doc=>doc.id !== change.doc.id)})
+          this.setState({[colName]: this.state[colName].fitler(doc=>doc.id !== docData.id)})
         :
-          this.setState({[colName]: this.state[colName].find(doc=>doc.id===change.doc.id) ? this.state[colName] : [...this.state[colName], ...doc]})
+          this.setState({[colName]: this.state[colName].find(doc=>doc.id===docData.id) ? this.state[colName] : [...this.state[colName], docData]})
       }
     });
   }
 
-  getDocs = async (colName, where, orderBy, limit) => {
+  getDocs = async (queryConfig) => {
+    const { colName, where, orderBy, limit } = queryConfig
     // Create the query
     let query = await this.db.collection(colName)
     query = where ? query.where(where.field,where.op,where.value) : query
@@ -88,7 +101,7 @@ class ChatApp extends Component {
     const id = '0MlxyJuIWB7SRfdfNnAp'
     this.db.collection('Users').doc(id).get()
     .then(doc=>{
-      doc.exists ? this.setState({currentChat: doc.data()}) : console.log('user not found')
+      doc.exists ? this.setState({currentUser: {...doc.data(), id}}) : console.log('user not found')
     })
     .catch(err=>{
       console.log('error', err)
@@ -101,7 +114,9 @@ class ChatApp extends Component {
     }
     this.db = firebase.firestore()
     this.fetchCurrentUser()
-    this.getDocs('Users')
+    this.getDocs({colName: 'Users'})
+    this.getDocs({colName: 'Chats'})
+    this.listenForDocs({colName:'Chats',orderBy:{field:'timestamp',dir: 'desc'}})
     //this.loadMessages()
     //this.loadChats()
   }
@@ -181,52 +196,29 @@ class ChatApp extends Component {
     });
   }
   
-  createChat = async (data) => {
-    // const db = firebase.firestore()
-    // let chatUsers = ['T1f5WToDe9zyiopOv4kg','WWIdCXSQLWIAydEM8n51'],
-    // chat = {
-    //   name: 'second chat',
-    //   message: 'Lorum Ipsum don itis lupis ist',
-    //   userId: 'WWIdCXSQLWIAydEM8n51',
-    //   firstName: 'Lantis',
-    //   lastName: 'Ipsum',
-    //   avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-    // }
-    // const createdChat = await db.collection('chat').add(chat)
-    // if (!createdChat.id) {
-    //   console.log(createdChat)
-    //   return
-    // }
-  
-    // chatUsers = chatUsers.map(userId=>({userId, chatId: createdChat.id}))
-  
-    // // Get a new write batch
-    // let batch = db.batch();
-  
-    // for (let cu of chatUsers) {
-    //   let cuRef = db.collection('chatUsers').doc()
-    //   batch.set(cuRef, cu)
-    // }
-  
-    // batch.commit()
-    // .then((res) => {
-    //   console.log(res)
-    // })
-    // .catch((err)=>{
-    //   console.log(err)
-    // })
-    console.log('create chat hit')
-    console.log(data)
-    const { title, user, message } = data
-    let chat = {
-      title,
-      userId: user.key,
-      username: user.name,
-      currentUser: this.state.currentUser,
-      message,
-    }
-    //await this.db.collection('Chat').add(chat)
-    return {text:'Chat Created!',status:'success'}
+  createChat = (data) => {
+    return new Promise(async (resolve,reject) => {
+      const { title, user, message } = data
+      let chat = {
+        title,
+        message,
+        invitedUserAvatar: user.avatar,
+        invitedUserId: user.id,
+        currentUserId: this.state.currentUser.id,
+        invitedUsername: user.name,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      }
+      await this.db.collection('Chats').add(chat)
+      .then(res=>{
+        console.log('chat created')
+        resolve({text:'Chat Created',status:'success'})
+      })
+      .catch(err=>{
+        console.log('err creating chat')
+        console.log(err)
+        reject({text:'Unable to Create Chat', status: 'error'})
+      })
+    })
   
   }
 
@@ -259,8 +251,10 @@ class ChatApp extends Component {
           <ModalForm
             title={'Create Chat'}
             inputs={[
-              {span: 24, id: 'title', text: 'Title', required: true, message: 'Choose a title'},
               {span: 24, id: 'user', text: 'User', required: true, autoComplete: true, autoCompleteData: this.state.Users.map(u=>({id: u.id, avatar: u.avatar, name: u.firstName + " " + u.lastName})), searchKey: 'name', message: 'Choose a user'},
+              {span: 24, id: 'title', text: 'Title', required: true, message: 'Choose a title'},
+              {span: 24, id: 'message', text: 'Message', required: true, message: 'Type a message', type: 'textarea'},
+              ,
             ]}
             okText={'Send Message'}
             cancelText={'Cancel'}
@@ -273,7 +267,7 @@ class ChatApp extends Component {
         <div className="chat-app flex stkd-widget stkd-content" style={{padding: 0, width: '100%'}}>
           <div className="chat-list" style={{ width: '60%' }}>
             <ChatList
-              data={this.state.chats}
+              data={this.state.Chats}
             />
           </div>
           <div>
@@ -284,7 +278,7 @@ class ChatApp extends Component {
           <div className="chat-message-list" style={{ width: '100%' }}>
             <ChatMessageList
               data={this.state.messages.filter((m, i) => i <= 8).map((m, i) => i % 2 ? { ...m, isUserMessage: true } : m)}
-              currentChat={this.state.chats[0]}
+              currentChat={mockData.chatData[0]}
             />
           </div>
         </div>
