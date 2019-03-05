@@ -34,8 +34,8 @@ class ChatApp extends Component {
       messages: this.addAvatars(mockData.messageData),
       currentUser: {},
       chatListPagination: {
-        page: 1,
-        pageSize: 12,
+        currentPage: 1,
+        pageSize: 1,
       },
       currentChatPagination: {
         page: 1,
@@ -56,12 +56,13 @@ class ChatApp extends Component {
   }
 
   listenForDocs = async (queryConfig) => {
-    const { colName, where, orderBy, limit } = queryConfig
+    const { colName, where, orderBy, limit, lastDoc } = queryConfig
     // Create the query
     let query = await this.db.collection(colName)
-    query = where ? query.where(where.field,where.op,where.value) : query
+    query = where ? query.where(where.field, where.op, where.value) : query
     query = orderBy ? query.orderBy(orderBy.field, orderBy.dir) : query
     query = limit ? query.limit(limit) : query
+    query = lastDoc ? query.startAfter(lastDoc) : query
   
     // Start listening to the query and update state on changes
     query.onSnapshot((snapshot) => {
@@ -79,17 +80,22 @@ class ChatApp extends Component {
   }
 
   getDocs = async (queryConfig) => {
-    const { colName, where, orderBy, limit } = queryConfig
+    const { colName, where, orderBy, limit } = queryConfig;
+    const { lastDoc } = this.state;
+    console.log(queryConfig)
     // Create the query
-    let query = await this.db.collection(colName)
+    let query = this.db.collection(colName)
     query = where ? query.where(where.field,where.op,where.value) : query
     query = orderBy ? query.orderBy(orderBy.field, orderBy.dir) : query
     query = limit ? query.limit(limit) : query
+    query = lastDoc ? query.startAfter(lastDoc.timestamp) : query
 
     query.get()
     .then(snapShot=>{
       let queryData = snapShot.docs.map(doc=>({...doc.data(), id: doc.id}))
-      this.setState({[colName]: queryData})
+      let nextQuery = 
+      console.log(queryData)
+      this.setState({[colName]: queryData, lastDoc: queryData[queryData.length-1]})
     })
     .catch(err=>{
       console.log('error getting data', err)
@@ -115,8 +121,8 @@ class ChatApp extends Component {
     this.db = firebase.firestore()
     this.fetchCurrentUser()
     this.getDocs({colName: 'Users'})
-    this.getDocs({colName: 'Chats'})
-    this.listenForDocs({colName:'Chats',orderBy:{field:'timestamp',dir: 'desc'}})
+    this.getDocs({ colName: 'Chats', limit: 3, orderBy: { field: 'timestamp', dir: 'desc' }})
+    //this.listenForDocs({colName:'Chats',orderBy:{field:'timestamp',dir: 'desc'}})
     //this.loadMessages()
     //this.loadChats()
   }
@@ -244,6 +250,13 @@ class ChatApp extends Component {
       
   }
 
+  handleLoadMore = (colName, queryConfig) => {
+    queryConfig = {
+      ...queryConfig,
+      colName,
+    }
+  }
+
   render() {
     return(
       <div className="flex" style={{height: '100%', width: '100%'}}>
@@ -268,6 +281,9 @@ class ChatApp extends Component {
           <div className="chat-list" style={{ width: '60%' }}>
             <ChatList
               data={this.state.Chats}
+              onLoadMore={this.getDocs}
+              currentPage={this.state.chatListPagination.currentPage}
+              hasMore={true}
             />
           </div>
           <div>

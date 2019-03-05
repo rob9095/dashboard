@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { List, Icon, Avatar, Input, Button } from "antd";
+import { List, Icon, Avatar, Input, Button, Skeleton } from "antd";
+import InfiniteScroll from 'react-infinite-scroller';
 import theme from "../theme";
 const moment = require("moment");
 
@@ -41,6 +42,17 @@ class ChatList extends Component {
     console.log(id)
   }
 
+  handleLoadMore = () => {
+    let config = {
+      colName: 'Chats',
+      limit: 3,
+      orderBy: {
+        field: 'timestamp',
+      },
+    }
+    this.props.onLoadMore(config)
+  }
+
   render() {
     const chatItem = this.props.chatItem || {}
     return (
@@ -67,65 +79,76 @@ class ChatList extends Component {
             </div>
           </div>
         </div>
-        <List
-          className="contain"
-          itemLayout="vertical"
-          size="large"
-          style={{height: '100%'}}
-          dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
-          renderItem={item => {
-            const itemSelected = item.id === chatItem.id || this.state.hoverId === item.id ? true : false
-            return (
-              <List.Item
-                onMouseEnter={()=>this.setState({hoverId: item.id})}
-                onMouseLeave={() => this.setState({ hoverId: null })}
-                onClick={() => this.handleChatItemClick(item.id)}
-                key={item.id}
-                className={item.isUserMessage ? 'chat-message user-message' : 'chat-message'}
-                style={itemSelected ? styles.itemSelected : null}
-              >
-                <List.Item.Meta
-                  style={{alignItems: 'center'}}
-                  className="flex"
-                  avatar={item.invitedUserAvatar ?
-                    <Avatar src={item.invitedUserAvatar} />
-                    :
-                    <Avatar
-                      style={{
-                        background: item.color,
-                      }}
-                    >
-                      {item.invitedUsername[0]}
-                    </Avatar>
-                  }
-                  title={
-                    <div className="chat-title flex align-items-center space-between">
-                      <span className="chat-author flex align-items-center">
-                        {/* {item.unread && (
-                          <Icon type="mail" twoToneColor={theme.colors.main} theme="twoTone" style={{ marginRight: 5, fontSize: 12, }} />
-                        )} */}
-                        <span>{item.invitedUsername}</span>
-                      </span>
-                      <span className="chat-timestamp">
-                        {moment(item.timestamp.toDate()).fromNow()}
-                      </span>
-                    </div>
-                  }
-                />
-                <div className="flex flex-col">
-                  {item.title && <h4 style={{textTransform: 'capitalize'}}>{item.invitedUsername}</h4>}
-                  <div>
-                    {item.message}
-                  </div>
-                </div>
-              </List.Item>
-            )
-          }}
-        >
-          <div className="bottom justify-flex-end full-pad" style={{position: 'sticky', float: 'right', marginTop: -88}}>
-            <Button type="primary" icon="plus" style={{height: 40, width: 40}} />
-          </div>
-        </List>
+        <div style={{height: '100%', overflowY: 'auto'}}>
+          <InfiniteScroll
+            initialLoad={false}
+            pageStart={0}
+            loadMore={this.handleLoadMore}
+            hasMore={true}
+            useWindow={false}
+          >
+            <List
+              itemLayout="vertical"
+              size="large"
+              style={{ height: '100%' }}
+              dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
+              renderItem={item => {
+                const itemSelected = item.id === chatItem.id || this.state.hoverId === item.id ? true : false
+                return (
+                  <List.Item
+                    onMouseEnter={() => this.setState({ hoverId: item.id })}
+                    onMouseLeave={() => this.setState({ hoverId: null })}
+                    onClick={() => this.handleChatItemClick(item.id)}
+                    key={item.id}
+                    className={item.isUserMessage ? 'chat-message user-message' : 'chat-message'}
+                    style={itemSelected ? styles.itemSelected : null}
+                  >
+                    <Skeleton avatar loading={false} active>
+                      <List.Item.Meta
+                        style={{ alignItems: 'center' }}
+                        className="flex"
+                        avatar={item.invitedUserAvatar ?
+                          <Avatar src={item.invitedUserAvatar} />
+                          :
+                          <Avatar
+                            style={{
+                              background: item.color,
+                            }}
+                          >
+                            {item.invitedUsername[0]}
+                          </Avatar>
+                        }
+                        title={
+                          <div className="chat-title flex align-items-center space-between">
+                            <span className="chat-author flex align-items-center">
+                              {/* {item.unread && (
+                              <Icon type="mail" twoToneColor={theme.colors.main} theme="twoTone" style={{ marginRight: 5, fontSize: 12, }} />
+                            )} */}
+                              <span>{item.invitedUsername}</span>
+                            </span>
+                            <span className="chat-timestamp">
+                              {moment(item.timestamp.toDate()).fromNow()}
+                            </span>
+                          </div>
+                        }
+                      />
+                      <div className="flex flex-col">
+                        {item.title && <h4 style={{ textTransform: 'capitalize' }}>{item.invitedUsername}</h4>}
+                        <div>
+                          {item.message}
+                        </div>
+                      </div>
+                    </Skeleton>
+                  </List.Item>
+                )
+              }}
+            >
+              <div className="bottom justify-flex-end full-pad" style={{ position: 'sticky', float: 'right', marginTop: -88 }}>
+                <Button type="primary" icon="plus" style={{ height: 40, width: 40 }} />
+              </div>
+            </List>
+          </InfiniteScroll>
+        </div>
       </div>
     )
   }
