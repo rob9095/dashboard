@@ -91,6 +91,7 @@ class ChatList extends Component {
               itemLayout="vertical"
               size="large"
               style={{ height: '100%' }}
+              loading={this.props.isLoading}
               dataSource={this.state.searchVal ? this.state.searchData : this.props.data}
               renderItem={item => {
                 const itemSelected = item.id === chatItem.id || this.state.hoverId === item.id ? true : false
@@ -103,7 +104,7 @@ class ChatList extends Component {
                     className={item.isUserMessage ? 'chat-message user-message' : 'chat-message'}
                     style={itemSelected ? styles.itemSelected : null}
                   >
-                    <Skeleton avatar loading={false} active>
+                    <Skeleton avatar loading={item.isLoading} active>
                       <List.Item.Meta
                         style={{ alignItems: 'center' }}
                         className="flex"
@@ -115,7 +116,7 @@ class ChatList extends Component {
                               background: item.color,
                             }}
                           >
-                            {item.invitedUsername[0]}
+                            {item.invitedUsername && item.invitedUsername[0]}
                           </Avatar>
                         }
                         title={
@@ -127,7 +128,7 @@ class ChatList extends Component {
                               <span>{item.invitedUsername}</span>
                             </span>
                             <span className="chat-timestamp">
-                              {moment(item.timestamp.toDate()).fromNow()}
+                              {moment(item.timestamp && item.timestamp.toDate()).fromNow()}
                             </span>
                           </div>
                         }

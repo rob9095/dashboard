@@ -33,6 +33,7 @@ class ChatApp extends Component {
       Chats: [],
       messages: this.addAvatars(mockData.messageData),
       currentUser: {},
+      ChatsLoading: false,
       chatListPagination: {
         currentPage: 1,
         pageSize: 1,
@@ -79,23 +80,27 @@ class ChatApp extends Component {
     });
   }
 
+  toggle = (key) => {
+    this.setState({[key]: !this.state[key]})
+  }
+
   getDocs = async (queryConfig) => {
     const { colName, where, orderBy, limit } = queryConfig;
-    const { lastDoc } = this.state;
+    let { lastDoc } = this.state;
     console.log(queryConfig)
     // Create the query
     let query = this.db.collection(colName)
     query = where ? query.where(where.field,where.op,where.value) : query
     query = orderBy ? query.orderBy(orderBy.field, orderBy.dir) : query
     query = limit ? query.limit(limit) : query
-    query = lastDoc ? query.startAfter(lastDoc.timestamp) : query
-
+    query = lastDoc ? query.startAfter(lastDoc) : query
     query.get()
     .then(snapShot=>{
-      let queryData = snapShot.docs.map(doc=>({...doc.data(), id: doc.id}))
-      let nextQuery = 
-      console.log(queryData)
-      this.setState({[colName]: queryData, lastDoc: queryData[queryData.length-1]})
+      let queryData = snapShot.docs.map(doc=>({...doc.data(), id: doc.id, isLoading: false,})).filter(doc=>
+        !this.state[colName].find(d=>d.id===doc.id)
+      )
+      lastDoc = queryData.length > 0 ? [queryData.length - 1].doc : null
+      this.setState({[colName]: [...this.state[colName],...queryData], lastDoc,})
     })
     .catch(err=>{
       console.log('error getting data', err)
@@ -283,7 +288,8 @@ class ChatApp extends Component {
               data={this.state.Chats}
               onLoadMore={this.getDocs}
               currentPage={this.state.chatListPagination.currentPage}
-              hasMore={true}
+              hasMore={this.state.lastDoc === null ? false : true}
+              isLoading={this.state.ChatsLoading}
             />
           </div>
           <div>
